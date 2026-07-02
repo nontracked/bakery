@@ -1,0 +1,14 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+
+  border: 1px solid transparent;
+  @include hover {
+    background-color: transparent;
+    color: var(--color-black);
+    border-color: var(--color-dark);
+  }
+}

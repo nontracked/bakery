@@ -1,0 +1,418 @@
+import {Product} from "@/types/product";
+
+export const products: Product[] = [
+  {
+    id: "1",
+    name: "Blueberry Charlotte",
+    desc: "A delicate individual dessert balancing the deep notes of dark chocolate with smooth vanilla and vibrant berry flavors.",
+    imgSrc: "/products/4.jpg",
+    ingredients: "Vanilla sponge, dark chocolate ganache, vanilla cream, blueberry confit, glazed blueberries.",
+    price: 5.30,
+    categories: "entremets",
+    rating: 4.8
+  },
+  {
+    id: "2",
+    name: "Individual Raspberry",
+    desc: "A stunning dessert with a powdered vanilla mousse shell, revealing an intricate cross-section of airy vanilla base, light pistachio cream, and rich raspberry gelee.",
+    imgSrc: "/products/5.jpg",
+    ingredients: "Vanilla Mousse & Sponge Base, Light Pistachio, Cream Raspberry Gelee with Whole Raspberries.",
+    price: 5.20,
+    categories: "entremets",
+    rating: 4.9
+  },
+  {
+    id: "3",
+    name: "Double Chocolate",
+    desc: "A decadent cocoa-dusted treat layered with rich chocolate cream, moist sponge, and a tart dark berry center.",
+    imgSrc: "/products/6.jpg",
+    ingredients: "Chocolate mousse, chocolate sponge, dark berry confit, fresh cherries and blackberries.",
+    price: 5.40,
+    categories: "entremets",
+    rating: 4.7
+  },
+  {
+    id: "4",
+    name: "Raspberry & Pistachio Charlotte",
+    desc: "A vibrant individual charlotte featuring layers of nutty pistachio sponge, smooth vanilla cream, and tart raspberry confit.",
+    imgSrc: "/products/7.jpg",
+    ingredients: "Vanilla sponge shell, pistachio sponge, vanilla cream, soft biscuit, raspberry confit, fresh raspberries.",
+    price: 5.30,
+    categories: "entremets",
+    rating: 4.6
+  },
+  {
+    id: "5",
+    name: "Fleur Chocolate",
+    desc: "An elegant dark chocolate flower revealing beautiful layers of pistachio sponge, vanilla cream, and vibrant berry confit.",
+    imgSrc: "/products/14.jpg",
+    ingredients: "Dark chocolate mousse, pistachio sponge, vanilla cream, berry confit, fresh raspberry.",
+    price: 4.50,
+    categories: "entremets",
+    rating: 5.0
+  },
+  {
+    id: "6",
+    name: "Fleur Saint Chocolate",
+    desc: "A beautifully piped milk chocolate flower hiding a soft chocolate sponge and a bright tropical fruit center.",
+    imgSrc: "/products/15.jpg",
+    ingredients: "Milk chocolate mousse, chocolate sponge, passion fruit confit.",
+    price: 4.30,
+    categories: "entremets",
+    rating: 4.5
+  },
+  {
+    id: "7",
+    name: "Fleur Pistachio",
+    desc: "An elegantly crafted pistachio flower with a light vanilla sponge core and a rich dark berry filling.",
+    imgSrc: "/products/13.jpg",
+    ingredients: "Pistachio mousse, vanilla sponge, dark berry confit.",
+    price: 4.10,
+    categories: "entremets",
+    rating: 4.8
+  },
+  {
+    id: "8",
+    name: "Blueberry New York Roll",
+    desc: "A classic laminated spiral pastry half-dipped in smooth white chocolate, elegantly finished with fresh blueberries and crushed pistachios.",
+    imgSrc: "/products/32.jpg",
+    ingredients: "Laminated pastry, white chocolate glaze, fresh blueberries, crushed pistachios.",
+    price: 3.60,
+    categories: "ny-rolls",
+    rating: 4.7
+  },
+  {
+    id: "9",
+    name: "Chocolate Blueberry New York Roll",
+    desc: "A rich, flaky chocolate croissant spiral coated in smooth dark chocolate, topped with fresh blueberries and crushed pistachios.",
+    imgSrc: "/products/33.jpg",
+    ingredients: "Chocolate laminated pastry, dark chocolate glaze, fresh blueberries, crushed pistachios.",
+    price: 3.60,
+    categories: "ny-rolls",
+    rating: 4.8
+  },
+  {
+    id: "10",
+    name: "Chocolate Red Berry New York Roll",
+    desc: "A decadent dark chocolate laminated pastry half-dipped in rich glaze, crowned with a vibrant mix of fresh strawberries, cherries, and red currants.",
+    imgSrc: "/products/34.jpg",
+    ingredients: "Chocolate laminated pastry, dark chocolate glaze, fresh strawberries, cherries, red currants, crushed pistachios.",
+    price: 3.60,
+    categories: "ny-rolls",
+    rating: 4.9
+  },
+  {
+    id: "11",
+    name: "Pink Berry New York Roll",
+    desc: "Our signature buttery spiral croissant adorned with a sweet pink glaze, mixed forest berries, and a delicate sprig of mint.",
+    imgSrc: "/products/35.jpg",
+    ingredients: "Laminated pastry, pink berry glaze, fresh raspberries, blackberries, blueberries, mint.",
+    price: 3.60,
+    categories: "ny-rolls",
+    rating: 4.5
+  },
+  {
+    id: "12",
+    name: "Pistachio Red Berry New York Roll",
+    desc: "A golden flaky wheel generously half-dipped in a smooth pistachio glaze, beautifully finished with tart red fruits and crushed nuts.",
+    imgSrc: "/products/36.jpg",
+    ingredients: "Laminated pastry, pistachio glaze, fresh strawberries, cherries, red currants, crushed pistachios.",
+    price: 3.60,
+    categories: "ny-rolls",
+    rating: 4.8
+  },
+  {
+    id: "13",
+    name: "Dark Chocolate Gold New York Roll",
+    desc: "A premium buttery spiral pastry half-dipped in intense dark chocolate, elegantly garnished with fine chocolate shavings and edible gold dust.",
+    imgSrc: "/products/37.jpg",
+    ingredients: "Laminated pastry, dark chocolate glaze, chocolate shavings, edible gold dust.",
+    price: 3.20,
+    categories: "ny-rolls",
+    rating: 4.7
+  },
+  {
+    id: "14",
+    name: "Pistachio Gold New York Roll",
+    desc: "An exquisite laminated pastry wheel coated in a velvety pistachio glaze, delicately decorated with slivered pistachios and a hint of gold.",
+    imgSrc: "/products/38.jpg",
+    ingredients: "Laminated pastry, pistachio glaze, slivered pistachios, edible gold dust.",
+    price: 3.20,
+    categories: "ny-rolls",
+    rating: 4.7
+  },
+  {
+    id: "15",
+    name: "Tropical Mango Passion New York Roll",
+    desc: "An exotic twist on our classic spiral croissant, featuring a smooth tropical glaze, fresh mango cubes, and toasted coconut flakes.",
+    imgSrc: "/products/39.jpg",
+    ingredients: "Laminated pastry, passionfruit glaze, fresh mango, passionfruit, toasted coconut.",
+    price: 3.30,
+    categories: "ny-rolls",
+    rating: 4.9
+  },
+  {
+    id: "16",
+    name: "Salted Caramel White Chocolate Cookie",
+    desc: "A thick, chewy cookie loaded with white chocolate chunks and soft caramel, finished with sliced almonds and a sprinkle of flaky sea salt.",
+    imgSrc: "/products/24.jpg",
+    ingredients: "Cookie dough, white chocolate chunks, caramel pieces, sliced almonds, caramel drizzle, flaky sea salt.",
+    price: 2.70,
+    categories: "cookies",
+    rating: 4.8
+  },
+  {
+    id: "17",
+    name: "Raspberry Pistachio White Chocolate Cookie",
+    desc: "A thick, chewy cookie loaded with white chocolate chunks, crunchy pistachios, and tart raspberry pieces, finished with a sweet pink drizzle and fresh berries.",
+    imgSrc: "/products/25.jpg",
+    ingredients: "Cookie dough, white chocolate chunks, pistachios, raspberry pieces, fresh raspberries, pink drizzle, flaky sea salt.",
+    price: 2.80,
+    categories: "cookies",
+    rating: 4.9
+  },
+  {
+    id: "18",
+    name: "Dark Chocolate Hazelnut Cookie",
+    desc: "A rich, dark chocolate cookie loaded with large chocolate chunks and toasted hazelnuts, finished with a chocolate drizzle and gold dust.",
+    imgSrc: "/products/26.jpg",
+    ingredients: "Chocolate cookie dough, dark chocolate chunks, toasted hazelnuts, chocolate drizzle, edible gold dust, flaky sea salt.",
+    price: 2.80,
+    categories: "cookies",
+    rating: 4.7
+  },
+  {
+    id: "19",
+    name: "Mixed Berry White Chocolate Hazelnut Cookie",
+    desc: "A thick, indulgent cookie loaded with white chocolate chunks and toasted hazelnuts, topped with fresh raspberries and blackberries.",
+    imgSrc: "/products/27.jpg",
+    ingredients: "Cookie dough, white chocolate chunks, hazelnuts, fresh raspberries, blackberries, berry drizzle, white chocolate drizzle, gold leaf, flaky sea salt.",
+    price: 2.80,
+    categories: "cookies",
+    rating: 4.8
+  },
+  {
+    id: "20",
+    name: "Salted Caramel Date & Hazelnut Cookie",
+    desc: "A thick, chewy cookie loaded with soft caramel chunks, sweet chopped dates, and toasted hazelnuts with a touch of gold.",
+    imgSrc: "/products/28.jpg",
+    ingredients: "Cookie dough, caramel chunks, chopped dates, hazelnuts, caramel drizzle, gold leaf, flaky sea salt.",
+    price: 2.70,
+    categories: "cookies",
+    rating: 4.6
+  },
+  {
+    id: "21",
+    name: "Dark Chocolate Mixed Berry Hazelnut Cookie",
+    desc: "A rich dark chocolate cookie loaded with white chocolate chunks and toasted hazelnuts, topped with fresh berries and double drizzle.",
+    imgSrc: "/products/29.jpg",
+    ingredients: "Chocolate cookie dough, white chocolate chunks, hazelnuts, fresh raspberries, blackberries, berry drizzle, white chocolate drizzle, gold leaf, flaky sea salt.",
+    price: 2.80,
+    categories: "cookies",
+    rating: 4.9
+  },
+  {
+    id: "22",
+    name: "Decadent Chocolate Truffle Cookie",
+    desc: "A fudgy dark chocolate cookie extravagantly topped with artisan truffles, white chocolate blocks, and toasted hazelnuts.",
+    imgSrc: "/products/30.jpg",
+    ingredients: "Chocolate dough, white chocolate chunks, hazelnuts, assorted truffles, chocolate shards, double drizzle, gold leaf, sea salt.",
+    price: 2.80,
+    categories: "cookies",
+    rating: 5.0
+  },
+  {
+    id: "23",
+    name: "Espresso Caramel Pecan Cookie",
+    desc: "A thick, coffee-infused cookie extravagantly topped with soft caramel squares, cocoa truffles, and toasted pecans.",
+    imgSrc: "/products/31.jpg",
+    ingredients: "Espresso cookie dough, caramel squares, cocoa truffles, pecans, dark chocolate chunks, caramel and chocolate drizzle, gold leaf, sea salt.",
+    price: 2.80,
+    categories: "cookies",
+    rating: 4.7
+  },
+  {
+    id: "24",
+    name: "Double Chocolate Beignet",
+    desc: "A soft, sugar-dusted chocolate pastry generously filled with a rich, melting dark chocolate center.",
+    imgSrc: "/products/1.jpg",
+    ingredients: "Chocolate beignet dough, dark chocolate cream, fine sugar dusting.",
+    price: 1.90,
+    categories: "b&d",
+    rating: 4.8
+  },
+  {
+    id: "25",
+    name: "Hazelnut Chocolate Beignet",
+    desc: "A soft, golden sugar-dusted pastry generously filled with a smooth, melting hazelnut milk chocolate center.",
+    imgSrc: "/products/2.jpg",
+    ingredients: "Classic beignet dough, hazelnut chocolate cream, granulated sugar.",
+    price: 1.60,
+    categories: "b&d",
+    rating: 4.9
+  },
+  {
+    id: "26",
+    name: "Pistachio Caramel Dome Tart",
+    desc: "An elegant dome tart featuring a crisp pastry base, vanilla bean mousse, and a rich caramel center, encased in pistachio chocolate.",
+    imgSrc: "/products/18.jpg",
+    ingredients: "Pistachio chocolate shell, crisp shortcrust pastry, sponge cake, caramel insert, vanilla mousse.",
+    price: 3.9,
+    categories: "tarts",
+    rating: 4.8
+  },
+  {
+    id: "27",
+    name: "Matte Chocolate Berry Dome Tart",
+    desc: "An elegant dome dessert featuring a crunchy base, rich chocolate cremeux, tangy dark berry compote, and vanilla mousse.",
+    imgSrc: "/products/19.jpg",
+    ingredients: "Dark chocolate shell, crunchy base, chocolate cremeux, dark berry compote, vanilla mousse.",
+    price: 3.90,
+    categories: "tarts",
+    rating: 4.7
+  },
+  {
+    id: "28",
+    name: "White Chocolate Berry Dome Tart",
+    desc: "An elegant dome dessert featuring a crunchy base, smooth white chocolate cremeux, and tangy dark berry compote.",
+    imgSrc: "/products/20.jpg",
+    ingredients: "White chocolate shell, crunchy base, white chocolate cremeux, dark berry compote, vanilla mousse.",
+    price: 3.80,
+    categories: "tarts",
+    rating: 4.8
+  },
+  {
+    id: "29",
+    name: "Dark Chocolate Raspberry Mousse Dome",
+    desc: "A sophisticated dome dessert featuring a chocolate sponge base, vibrant seeded raspberry jelly insert, and smooth vanilla mousse.",
+    imgSrc: "/products/21.jpg",
+    ingredients: "Glossy dark chocolate glaze, chocolate sponge cake, raspberry jelly, vanilla mousse.",
+    price: 3.90,
+    categories: "tarts",
+    rating: 4.9
+  },
+  {
+    id: "30",
+    name: "Strawberry Jam Square Beignet",
+    desc: "A soft, golden-fried square pastry generously filled with sweet red berry jam and finished with powdered sugar.",
+    imgSrc: "/products/3.jpg",
+    ingredients: "Sweet dough, red berry jam, powdered sugar.",
+    price: 2.10,
+    categories: "b&d",
+    rating: 4.5
+  },
+  {
+    id: "31",
+    name: "Strawberry Jam Square Tart",
+    desc: "A crisp square tart base filled with sweet, vibrant red berry jam and lightly dusted with sugar.",
+    imgSrc: "/products/40.jpg",
+    ingredients: "Sweet dough, red berry jam, powdered sugar.",
+    price: 2.90,
+    categories: "tart",
+    rating: 4.4
+  },
+  {
+    id: "32",
+    name: "Date Chocolate Tart",
+    desc: "An elegant round tart featuring a rustic dark chocolate shortcrust shell filled with a smooth chocolate base, adorned with a concentric pattern of sweet dates.",
+    imgSrc: "/products/17.jpg",
+    ingredients: "Dark chocolate shortcrust, chocolate filling, fresh halved dates.",
+    price: 3.20,
+    categories: "tart",
+    rating: 4.8
+  },
+  {
+    id: "33",
+    name: "Fleur",
+    desc: "Elegant flower-shaped mini cakes with delicate cream petals and a shimmering pearl center, revealing layers of soft sponge, fruit curd, and chocolate ganache.",
+    imgSrc: "/products/16.jpg",
+    ingredients: "Sponge cake, cream, citrus curd, chocolate ganache, edible pearls.",
+    price: 4.90,
+    categories: "entremets",
+    rating: 5.0
+  },
+  {
+    id: "34",
+    name: "Half-Dipped Golden Chocolate Croissants",
+    desc: "A collection of exquisitely flaky, half-dipped mini-croissants adorned with dark chocolate shavings and a touch of edible gold dust.",
+    imgSrc: "/products/22.jpg",
+    ingredients: "Laminated butter dough, dark chocolate, chocolate shavings, edible gold dust.",
+    price: 3.20,
+    categories: "croissants",
+    rating: 4.7
+  },
+  {
+    id: "35",
+    name: "Classic Golden Butter Croissants",
+    desc: "A selection of perfectly baked, golden-brown mini-croissants featuring beautiful, airy, and buttery layers.",
+    imgSrc: "/products/23.jpg",
+    ingredients: "Laminated butter dough, egg wash.",
+    price: 2.80,
+    categories: "croissants",
+    rating: 4.6
+  },
+  {
+    id: "36",
+    name: "Dark Chocolate Glazed Croissants",
+    desc: "Perfectly baked mini-croissants glazed in rich dark chocolate, featuring deep cocoa hues and crisp, flaky layers.",
+    imgSrc: "/products/41.jpg",
+    ingredients: "Laminated cocoa dough, dark chocolate glaze.",
+    price: 3.10,
+    categories: "croissants",
+    rating: 4.8
+  },
+  {
+    id: "37",
+    name: "Decadent Chocolate Berry Donut",
+    desc: "A gourmet donut glazed with rich dark chocolate, topped with fresh mixed berries, white chocolate chunks, roasted hazelnuts, and edible gold.",
+    imgSrc: "/products/8.jpg",
+    ingredients: "Dark chocolate glaze, fresh mixed berries, white chocolate, hazelnuts, edible gold.",
+    price: 3.50,
+    categories: "b&d",
+    rating: 4.9
+  },
+  {
+    id: "38",
+    name: "Hazelnut and White Chocolate Donut",
+    desc: "A gourmet chocolate-glazed donut featuring a topping of white chocolate chunks, roasted hazelnuts, a berry drizzle, and edible gold.",
+    imgSrc: "/products/9.jpg",
+    ingredients: "Dark chocolate glaze, white chocolate chunks, roasted hazelnuts, berry drizzle, edible gold.",
+    price: 3.40,
+    categories: "b&d",
+    rating: 4.7
+  },
+  {
+    id: "39",
+    name: "Chocolate Strawberry Glazed Donut",
+    desc: "An elegant donut featuring a rich dark chocolate glaze accented by strawberry, topped with chocolate shavings, hazelnuts, fresh strawberries, and edible gold.",
+    imgSrc: "/products/10.jpg",
+    ingredients: "Dark chocolate glaze, strawberry glaze, dark chocolate shavings, roasted hazelnuts, fresh strawberry slices, dried strawberry pieces, edible gold.",
+    price: 3.60,
+    categories: "b&d",
+    rating: 4.8
+  },
+  {
+    id: "40",
+    name: "Duo-Glazed Blueberry Pecan Donut",
+    desc: "An elegant donut featuring a contrasting duo-glaze of white chocolate and purple berry, garnished with toasted pecans, white chocolate curls, and fresh blueberries.",
+    imgSrc: "/products/11.jpg",
+    ingredients: "Duo-glaze (creamy white and deep purple berry), toasted pecans, white chocolate curls, fresh blueberries, citrus zest, edible gold flakes.",
+    price: 3.70,
+    categories: "b&d",
+    rating: 4.9
+  },
+  {
+    id: "41",
+    name: "Pistachio & Citrus Donut",
+    desc: "An elegant donut finished with a matte green pistachio and glossy yellow citrus duo-glaze, decorated with fresh pistachios and dark chocolate.",
+    imgSrc: "/products/12.jpg",
+    ingredients: "Matte pistachio and yellow citrus glazes, fresh pistachios, dark chocolate curls, candied peel, red currants, edible gold flakes.",
+    price: 3.30,
+    categories: "b&d",
+    rating: 4.8
+  }
+]
+
+export const getProducts = async (): Promise<Product[]> => {
+  return products
+}

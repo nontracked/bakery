@@ -1,0 +1,51 @@
+.catalog-client {
+  display: flex;
+  flex-direction: column;
+  row-gap: fluid(100,30);
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px 10px;
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile-s {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__tabs {
+    &-list {
+      --columnCount: 8;
+      display: grid;
+      column-gap: 20px;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      align-items: center;
+      grid-template-columns: repeat(var(--columnCount), 1fr);
+      @include tablet {
+        --columnCount: 4;
+        row-gap: 20px;
+      }
+      @include mobile {
+        --columnCount: 2;
+        row-gap: 20px;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+  }
+}
