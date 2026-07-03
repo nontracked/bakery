@@ -2,7 +2,7 @@
 import './CatalogClient.scss'
 import {Product} from "@/types/product";
 import {Category} from "@/types/category";
-import {useMemo} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {ProductCard} from "@/components/ProductCard";
 import {TabButton} from "@/ui/TabButton";
 import {useSearchParams} from "next/navigation";
@@ -33,7 +33,7 @@ const itemVariants: Variants = {
 }
 
 export const CatalogClient = ({products, tabs}: CatalogClientProps) => {
-
+  const [isMobile, setIsMobile] = useState<boolean>(false)
   const searchParams = useSearchParams()
   const activeTab = searchParams.get("category") || 'all'
   const handleTabClick = (id: string) => {
@@ -50,6 +50,17 @@ export const CatalogClient = ({products, tabs}: CatalogClientProps) => {
     }
     return products.filter(({categories}) => categories === activeTab)
   }, [products, activeTab])
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 765)
+    }
+    checkIsMobile()
+    console.log(isMobile)
+    window.addEventListener('resize', checkIsMobile)
+    return () => {
+      window.removeEventListener('resize', checkIsMobile)
+    }
+  }, [isMobile]);
   return (
     <div className="catalog-client">
       <ul
@@ -69,7 +80,9 @@ export const CatalogClient = ({products, tabs}: CatalogClientProps) => {
         whileInView="show"
         viewport={{
           once: true,  // Анимация проиграется 1 раз. Если false - будет прыгать каждый раз при скролле туда-сюда
-          amount: 0.1  // Запустить, когда хотя бы 10% блока покажется на экране
+          amount: isMobile ? 0 : 0.1,
+          margin: isMobile ? '100px' : '0px'
+          // Запустить, когда хотя бы 10% блока покажется на экране
         }}
       >
         {filteredProducts.map((product) => (
