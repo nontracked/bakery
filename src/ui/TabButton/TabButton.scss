@@ -7,6 +7,7 @@
   background-color: transparent;
   width: 100%;
   border-radius: var(--border-radius);
+
   &:not(.tab-button--active) {
     @include hover {
       background-color: var(--color-dark);
@@ -17,8 +18,10 @@
   &__text {
     position: relative;
     z-index: 2;
-    font-size: fluid(18, 14);
+    font-family: var(--font-asap),sans-serif;
+    font-size: fluid(18,16);
     white-space: nowrap;
+    font-weight: 600;
   }
 
   &--active {

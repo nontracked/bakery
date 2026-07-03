@@ -43,6 +43,13 @@ const oswaldFont = localFont({
   display: 'swap'
 })
 
+const asapFont = localFont({
+  src: './fonts/Asap-Regular.woff2',
+  weight: '100 900',
+  display: 'swap',
+  variable: '--font-asap'
+})
+
 export const metadata: Metadata = {
   title: "Bakery",
   description: "Exquisite handcrafted croissants, New York rolls, and pastry illusions.",
@@ -56,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${oswaldFont.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${oswaldFont.variable} ${asapFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
