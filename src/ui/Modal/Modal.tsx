@@ -23,7 +23,7 @@ interface ModalProps {
 
 export const Modal = ({product}: ModalProps) => {
   const {name, imgSrc, desc, price, ingredients, rating, weight} = product
-
+  const mobuleTest = true
   const {isMobile} = useIsMobile()
   const productPrice = useFormattedPrice(price)
   const router = useRouter()
@@ -58,7 +58,7 @@ export const Modal = ({product}: ModalProps) => {
   })
   return (
     <div
-      className={clsx("modal", isMobile && "modal-mobile")}
+      className={clsx("modal", isMobile && "modal--mobile")}
       onClick={onCloseClick}
       ref={containerRef}
     >
