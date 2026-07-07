@@ -9,7 +9,8 @@ export const products: Product[] = [
     ingredients: "Vanilla sponge, dark chocolate ganache, vanilla cream, blueberry confit, glazed blueberries.",
     price: 5.30,
     categories: "entremets",
-    rating: 4.8
+    rating: 4.8,
+    weight: 400,
   },
   {
     id: "2",
@@ -19,7 +20,8 @@ export const products: Product[] = [
     ingredients: "Vanilla Mousse & Sponge Base, Light Pistachio, Cream Raspberry Gelee with Whole Raspberries.",
     price: 5.20,
     categories: "entremets",
-    rating: 4.9
+    rating: 4.9,
+    weight: 405,
   },
   {
     id: "3",
@@ -29,7 +31,8 @@ export const products: Product[] = [
     ingredients: "Chocolate mousse, chocolate sponge, dark berry confit, fresh cherries and blackberries.",
     price: 5.40,
     categories: "entremets",
-    rating: 4.7
+    rating: 4.7,
+    weight: 400,
   },
   {
     id: "4",
@@ -39,7 +42,8 @@ export const products: Product[] = [
     ingredients: "Vanilla sponge shell, pistachio sponge, vanilla cream, soft biscuit, raspberry confit, fresh raspberries.",
     price: 5.30,
     categories: "entremets",
-    rating: 4.6
+    rating: 4.6,
+    weight: 400,
   },
   {
     id: "5",
@@ -49,7 +53,8 @@ export const products: Product[] = [
     ingredients: "Dark chocolate mousse, pistachio sponge, vanilla cream, berry confit, fresh raspberry.",
     price: 4.50,
     categories: "entremets",
-    rating: 5.0
+    rating: 5.0,
+    weight: 230,
   },
   {
     id: "6",
@@ -59,7 +64,8 @@ export const products: Product[] = [
     ingredients: "Milk chocolate mousse, chocolate sponge, passion fruit confit.",
     price: 4.30,
     categories: "entremets",
-    rating: 4.5
+    rating: 4.5,
+    weight: 230,
   },
   {
     id: "7",
@@ -69,7 +75,8 @@ export const products: Product[] = [
     ingredients: "Pistachio mousse, vanilla sponge, dark berry confit.",
     price: 4.10,
     categories: "entremets",
-    rating: 4.8
+    rating: 4.8,
+    weight: 230,
   },
   {
     id: "8",
@@ -79,7 +86,8 @@ export const products: Product[] = [
     ingredients: "Laminated pastry, white chocolate glaze, fresh blueberries, crushed pistachios.",
     price: 3.60,
     categories: "ny-rolls",
-    rating: 4.7
+    rating: 4.7,
+    weight: 90,
   },
   {
     id: "9",
@@ -89,7 +97,8 @@ export const products: Product[] = [
     ingredients: "Chocolate laminated pastry, dark chocolate glaze, fresh blueberries, crushed pistachios.",
     price: 3.60,
     categories: "ny-rolls",
-    rating: 4.8
+    rating: 4.8,
+    weight: 90,
   },
   {
     id: "10",
@@ -99,7 +108,8 @@ export const products: Product[] = [
     ingredients: "Chocolate laminated pastry, dark chocolate glaze, fresh strawberries, cherries, red currants, crushed pistachios.",
     price: 3.60,
     categories: "ny-rolls",
-    rating: 4.9
+    rating: 4.9,
+    weight: 90,
   },
   {
     id: "11",
@@ -109,7 +119,8 @@ export const products: Product[] = [
     ingredients: "Laminated pastry, pink berry glaze, fresh raspberries, blackberries, blueberries, mint.",
     price: 3.60,
     categories: "ny-rolls",
-    rating: 4.5
+    rating: 4.5,
+    weight: 90,
   },
   {
     id: "12",
@@ -119,7 +130,8 @@ export const products: Product[] = [
     ingredients: "Laminated pastry, pistachio glaze, fresh strawberries, cherries, red currants, crushed pistachios.",
     price: 3.60,
     categories: "ny-rolls",
-    rating: 4.8
+    rating: 4.8,
+    weight: 90,
   },
   {
     id: "13",
@@ -129,7 +141,8 @@ export const products: Product[] = [
     ingredients: "Laminated pastry, dark chocolate glaze, chocolate shavings, edible gold dust.",
     price: 3.20,
     categories: "ny-rolls",
-    rating: 4.7
+    rating: 4.7,
+    weight: 90,
   },
   {
     id: "14",
@@ -139,7 +152,8 @@ export const products: Product[] = [
     ingredients: "Laminated pastry, pistachio glaze, slivered pistachios, edible gold dust.",
     price: 3.20,
     categories: "ny-rolls",
-    rating: 4.7
+    rating: 4.7,
+    weight: 90,
   },
   {
     id: "15",
@@ -149,7 +163,8 @@ export const products: Product[] = [
     ingredients: "Laminated pastry, passionfruit glaze, fresh mango, passionfruit, toasted coconut.",
     price: 3.30,
     categories: "ny-rolls",
-    rating: 4.9
+    rating: 4.9,
+    weight: 90,
   },
   {
     id: "16",
@@ -159,7 +174,8 @@ export const products: Product[] = [
     ingredients: "Cookie dough, white chocolate chunks, caramel pieces, sliced almonds, caramel drizzle, flaky sea salt.",
     price: 2.70,
     categories: "cookies",
-    rating: 4.8
+    rating: 4.8,
+    weight: 40,
   },
   {
     id: "17",
@@ -169,7 +185,8 @@ export const products: Product[] = [
     ingredients: "Cookie dough, white chocolate chunks, pistachios, raspberry pieces, fresh raspberries, pink drizzle, flaky sea salt.",
     price: 2.80,
     categories: "cookies",
-    rating: 4.9
+    rating: 4.9,
+    weight: 40,
   },
   {
     id: "18",
@@ -179,7 +196,8 @@ export const products: Product[] = [
     ingredients: "Chocolate cookie dough, dark chocolate chunks, toasted hazelnuts, chocolate drizzle, edible gold dust, flaky sea salt.",
     price: 2.80,
     categories: "cookies",
-    rating: 4.7
+    rating: 4.7,
+    weight: 40,
   },
   {
     id: "19",
@@ -189,7 +207,8 @@ export const products: Product[] = [
     ingredients: "Cookie dough, white chocolate chunks, hazelnuts, fresh raspberries, blackberries, berry drizzle, white chocolate drizzle, gold leaf, flaky sea salt.",
     price: 2.80,
     categories: "cookies",
-    rating: 4.8
+    rating: 4.8,
+    weight: 40,
   },
   {
     id: "20",
@@ -199,7 +218,8 @@ export const products: Product[] = [
     ingredients: "Cookie dough, caramel chunks, chopped dates, hazelnuts, caramel drizzle, gold leaf, flaky sea salt.",
     price: 2.70,
     categories: "cookies",
-    rating: 4.6
+    rating: 4.6,
+    weight: 40,
   },
   {
     id: "21",
@@ -209,7 +229,8 @@ export const products: Product[] = [
     ingredients: "Chocolate cookie dough, white chocolate chunks, hazelnuts, fresh raspberries, blackberries, berry drizzle, white chocolate drizzle, gold leaf, flaky sea salt.",
     price: 2.80,
     categories: "cookies",
-    rating: 4.9
+    rating: 4.9,
+    weight: 40,
   },
   {
     id: "22",
@@ -219,7 +240,8 @@ export const products: Product[] = [
     ingredients: "Chocolate dough, white chocolate chunks, hazelnuts, assorted truffles, chocolate shards, double drizzle, gold leaf, sea salt.",
     price: 2.80,
     categories: "cookies",
-    rating: 5.0
+    rating: 5.0,
+    weight: 40,
   },
   {
     id: "23",
@@ -229,7 +251,8 @@ export const products: Product[] = [
     ingredients: "Espresso cookie dough, caramel squares, cocoa truffles, pecans, dark chocolate chunks, caramel and chocolate drizzle, gold leaf, sea salt.",
     price: 2.80,
     categories: "cookies",
-    rating: 4.7
+    rating: 4.7,
+    weight: 40,
   },
   {
     id: "24",
@@ -239,7 +262,8 @@ export const products: Product[] = [
     ingredients: "Chocolate beignet dough, dark chocolate cream, fine sugar dusting.",
     price: 1.90,
     categories: "b&d",
-    rating: 4.8
+    rating: 4.8,
+    weight: 40,
   },
   {
     id: "25",
@@ -249,7 +273,8 @@ export const products: Product[] = [
     ingredients: "Classic beignet dough, hazelnut chocolate cream, granulated sugar.",
     price: 1.60,
     categories: "b&d",
-    rating: 4.9
+    rating: 4.9,
+    weight: 25,
   },
   {
     id: "26",
@@ -259,7 +284,8 @@ export const products: Product[] = [
     ingredients: "Pistachio chocolate shell, crisp shortcrust pastry, sponge cake, caramel insert, vanilla mousse.",
     price: 3.9,
     categories: "tarts",
-    rating: 4.8
+    rating: 4.8,
+    weight: 40,
   },
   {
     id: "27",
@@ -269,7 +295,8 @@ export const products: Product[] = [
     ingredients: "Dark chocolate shell, crunchy base, chocolate cremeux, dark berry compote, vanilla mousse.",
     price: 3.90,
     categories: "tarts",
-    rating: 4.7
+    rating: 4.7,
+    weight: 40,
   },
   {
     id: "28",
@@ -279,7 +306,8 @@ export const products: Product[] = [
     ingredients: "White chocolate shell, crunchy base, white chocolate cremeux, dark berry compote, vanilla mousse.",
     price: 3.80,
     categories: "tarts",
-    rating: 4.8
+    rating: 4.8,
+    weight: 40,
   },
   {
     id: "29",
@@ -289,7 +317,8 @@ export const products: Product[] = [
     ingredients: "Glossy dark chocolate glaze, chocolate sponge cake, raspberry jelly, vanilla mousse.",
     price: 3.90,
     categories: "tarts",
-    rating: 4.9
+    rating: 4.9,
+    weight: 40,
   },
   {
     id: "30",
@@ -299,7 +328,8 @@ export const products: Product[] = [
     ingredients: "Sweet dough, red berry jam, powdered sugar.",
     price: 2.10,
     categories: "b&d",
-    rating: 4.5
+    rating: 4.5,
+    weight: 15,
   },
   {
     id: "31",
@@ -309,7 +339,8 @@ export const products: Product[] = [
     ingredients: "Sweet dough, red berry jam, powdered sugar.",
     price: 2.90,
     categories: "tart",
-    rating: 4.4
+    rating: 4.4,
+    weight: 36,
   },
   {
     id: "32",
@@ -319,7 +350,8 @@ export const products: Product[] = [
     ingredients: "Dark chocolate shortcrust, chocolate filling, fresh halved dates.",
     price: 3.20,
     categories: "tart",
-    rating: 4.8
+    rating: 4.8,
+    weight: 36,
   },
   {
     id: "33",
@@ -329,7 +361,8 @@ export const products: Product[] = [
     ingredients: "Sponge cake, cream, citrus curd, chocolate ganache, edible pearls.",
     price: 4.90,
     categories: "entremets",
-    rating: 5.0
+    rating: 5.0,
+    weight: 230,
   },
   {
     id: "34",
@@ -339,7 +372,8 @@ export const products: Product[] = [
     ingredients: "Laminated butter dough, dark chocolate, chocolate shavings, edible gold dust.",
     price: 3.20,
     categories: "croissants",
-    rating: 4.7
+    rating: 4.7,
+    weight: 45,
   },
   {
     id: "35",
@@ -349,7 +383,8 @@ export const products: Product[] = [
     ingredients: "Laminated butter dough, egg wash.",
     price: 2.80,
     categories: "croissants",
-    rating: 4.6
+    rating: 4.6,
+    weight: 40,
   },
   {
     id: "36",
@@ -359,7 +394,8 @@ export const products: Product[] = [
     ingredients: "Laminated cocoa dough, dark chocolate glaze.",
     price: 3.10,
     categories: "croissants",
-    rating: 4.8
+    rating: 4.8,
+    weight: 40,
   },
   {
     id: "37",
@@ -369,7 +405,8 @@ export const products: Product[] = [
     ingredients: "Dark chocolate glaze, fresh mixed berries, white chocolate, hazelnuts, edible gold.",
     price: 3.50,
     categories: "b&d",
-    rating: 4.9
+    rating: 4.9,
+    weight: 70,
   },
   {
     id: "38",
@@ -379,7 +416,8 @@ export const products: Product[] = [
     ingredients: "Dark chocolate glaze, white chocolate chunks, roasted hazelnuts, berry drizzle, edible gold.",
     price: 3.40,
     categories: "b&d",
-    rating: 4.7
+    rating: 4.7,
+    weight: 70,
   },
   {
     id: "39",
@@ -389,7 +427,8 @@ export const products: Product[] = [
     ingredients: "Dark chocolate glaze, strawberry glaze, dark chocolate shavings, roasted hazelnuts, fresh strawberry slices, dried strawberry pieces, edible gold.",
     price: 3.60,
     categories: "b&d",
-    rating: 4.8
+    rating: 4.8,
+    weight: 70,
   },
   {
     id: "40",
@@ -399,7 +438,8 @@ export const products: Product[] = [
     ingredients: "Duo-glaze (creamy white and deep purple berry), toasted pecans, white chocolate curls, fresh blueberries, citrus zest, edible gold flakes.",
     price: 3.70,
     categories: "b&d",
-    rating: 4.9
+    rating: 4.9,
+    weight: 70,
   },
   {
     id: "41",
@@ -409,7 +449,8 @@ export const products: Product[] = [
     ingredients: "Matte pistachio and yellow citrus glazes, fresh pistachios, dark chocolate curls, candied peel, red currants, edible gold flakes.",
     price: 3.30,
     categories: "b&d",
-    rating: 4.8
+    rating: 4.8,
+    weight: 70,
   }
 ]
 

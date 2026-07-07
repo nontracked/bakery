@@ -1,9 +1,3 @@
-html {
-  &.is-lock {
-    overflow: hidden;
-  }
-}
-
 body {
   @include fluid-text(18, 14);
   display: flex;
@@ -35,3 +29,9 @@ a {
 :focus-visible {
   @include focus-visible;
 }
+
+
+html {
+  scrollbar-gutter: auto;
+}
+

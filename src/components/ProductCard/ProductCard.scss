@@ -4,7 +4,13 @@
   row-gap: fluid(15, 10);
   justify-content: space-between;
   height: 100%;
-
+  &__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-items: flex-start;
+    align-items: flex-start;
+  }
   &__image {
     width: 100%;
     height: 100%;
@@ -13,7 +19,9 @@
   }
 
   &__title {
+    display: flex;
     font-size: fluid(20, 18);
+
   }
 
   &__title,
@@ -36,6 +44,40 @@
     font-size: fluid(20, 18);
   }
 
+  &__link {
+    position: relative;
+  }
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-duration);
+    @include tablet-above {
+      @include hover {
+        opacity: 1;
+        .product-card__icon {
+          transition: opacity var(--transition-duration);
+          animation: zoomAnimation 2s both infinite;
+          stroke: var(--color-white);
+          width: 20%;
+          height: auto;
+          stroke-width: 1px;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    opacity: 0;
+  }
+
   &__body {
     display: flex;
     flex-direction: column;
@@ -49,5 +91,23 @@
     column-gap: 10px;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+@keyframes zoomAnimation {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+    scale: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    scale: 2;
   }
 }

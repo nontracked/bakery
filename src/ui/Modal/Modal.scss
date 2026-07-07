@@ -1,0 +1,143 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
+  position: fixed;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  @include mobile-above {
+    padding-inline: 30px;
+  }
+
+  &__body {
+    display: flex;
+    background-color: white;
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    object-fit: cover;
+    @include laptop {
+      width: 50%;
+    }
+    @include tablet {
+      width: 40%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(40,20);
+    padding-bottom: 20px;
+    @include mobile-above {
+      max-width: 600px;
+      min-width: 300px;
+    }
+  }
+
+  &__header {
+    padding: fluid(30, 20);
+    padding-bottom: 0;
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+  }
+
+  &__price {
+    padding-block: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__rating {
+    align-self: flex-start;
+  }
+
+  &__title {
+    font-size: fluid(22, 16);
+    letter-spacing: 2px;
+  }
+
+  &__desc {
+    font-size: fluid(18, 16);
+    color: var(--color-dark);
+  }
+
+  &__product-weight {
+    font-family: var(--font-oswald), sans-serif;
+    color: var(--color-dark);
+    letter-spacing: 1.2px;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__title,
+  &__price {
+    font-family: var(--font-oswald), sans-serif;
+  }
+
+  &__desc,
+  &__item {
+    font-family: var(--font-asap), sans-serif;
+  }
+
+  &__item {
+    color: rgba(42, 42, 42, 0.69);
+  }
+
+  &__close-wrap {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration);
+    @include hover {
+      background-color: var(--color-dark);
+      .modal__close {
+        stroke: var(--color-white);
+      }
+    }
+  }
+
+  &__close {
+    width: fluid(44, 22);
+    height: fluid(44, 22);
+
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: fluid(24, 18);
+    border-block: 1px solid rgba(42, 42, 42, 0.19);
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}

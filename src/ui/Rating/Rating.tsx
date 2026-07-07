@@ -1,28 +1,17 @@
 import './Rating.scss'
 import Image from "next/image";
+import {clsx} from "clsx";
 
 interface RatingProps {
   rate: number,
-
+  className?: string
 }
 
-export const Rating = ({rate}: RatingProps) => {
-  const maxRate = rate <= 5 && rate >= 0 ? rate : 5
-  const fillPercentage = (maxRate / 5) * 100
+export const Rating = ({rate, className}: RatingProps) => {
   return (
-    <div className="rating">
-{/*      <div className="rating__stars">
-        <Image className="rating__stars-opacity" src={} alt="Opacity star" />
-        <div
-          className="rating__stars-active"
-          style={{width: `${fillPercentage + 1}%`}}
-        >
-          {[...Array(5)].map((_, index) => (
-            <Image key={index} className="rating__star" src="" alt="Star" />
-          ))}
-        </div>
-      </div>*/}
+    <div className={clsx("rating", className)}>
       <span className="rating__count">{rate}</span>
+      <Image src="/rating/rating.svg" alt="Rating Star" width={16} height={16} />
     </div>
   )
 }
