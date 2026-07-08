@@ -4,16 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {Maximize} from "lucide-react";
-import {ProductButton} from "@/components/ProductButton";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import {Rating} from "@/ui/Rating";
+import {Button} from "@/ui/Button";
+import React from "react";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard = ({product}: ProductCardProps) => {
-  const {name, imgSrc, price, id, rating} = product
+  const {name, imgSrc, price, id, rating, outOfStock} = product
   const searchParams = useSearchParams()
   const currentQuery = searchParams.toString() // Превращаем текущие параметры URL в строку (получится "category=cookies")
   const productHref = currentQuery ? `/product/${id}?${currentQuery}` : `/product/${id}`
@@ -29,13 +30,13 @@ export const ProductCard = ({product}: ProductCardProps) => {
       <div className="product-card__body">
         <div className="product-card__info">
           <span className="product-card__title">{name}</span>
-          <Rating rate={rating}  />
+          <Rating rate={rating} />
         </div>
         <div className="product-card__action">
           <div className="product-card__price">
             $ {productPrice}
           </div>
-          <ProductButton />
+          <Button className="product-card__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock} />
         </div>
       </div>
     </div>

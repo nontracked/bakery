@@ -8,4 +8,5 @@ export interface Product {
   categories?: string;
   imgSrc: string;
   rating: number;
+  outOfStock?:boolean;
 }

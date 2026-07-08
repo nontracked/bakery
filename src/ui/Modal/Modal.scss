@@ -59,6 +59,9 @@
     row-gap: fluid(40, 20);
     padding-bottom: 20px;
     background-color: var(--color-white);
+    @include tablet-above {
+      max-width: 700px;
+    }
   }
 
   &__header {
@@ -82,7 +85,7 @@
   }
 
   &__title {
-    font-size: fluid(22, 16);
+    font-size: fluid(22, 18);
     letter-spacing: 2px;
   }
 
@@ -128,7 +131,15 @@
     padding: 12px;
     cursor: pointer;
     transition: background-color var(--transition-duration);
-    @include hover {
+    @include mobile-above {
+      @include hover {
+        background-color: var(--color-dark);
+        .modal__close {
+          stroke: var(--color-white);
+        }
+      }
+    }
+    @include mobile {
       background-color: var(--color-dark);
       .modal__close {
         stroke: var(--color-white);

@@ -77,6 +77,7 @@ export const products: Product[] = [
     categories: "entremets",
     rating: 4.8,
     weight: 230,
+    outOfStock: true,
   },
   {
     id: "8",

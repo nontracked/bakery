@@ -11,6 +11,7 @@ export default async function ProductModal({params}: Props) {
   const {id} = await params
   const products = await getProducts()
   const product = products.find((product) => product.id === id)
+  // переписать способ получения продукта
   if (!product) {
     return notFound()
   }

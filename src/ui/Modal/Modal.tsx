@@ -14,6 +14,7 @@ import {useGSAP} from "@gsap/react";
 import {useScrollLock} from "@/hooks/useScrollLock";
 import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {Rating} from "@/ui/Rating";
+import {Button} from "@/ui/Button";
 
 gsap.registerPlugin(useGSAP);
 
@@ -22,8 +23,7 @@ interface ModalProps {
 }
 
 export const Modal = ({product}: ModalProps) => {
-  const {name, imgSrc, desc, price, ingredients, rating, weight} = product
-  const mobuleTest = true
+  const {name, imgSrc, desc, price, ingredients, rating, weight, outOfStock} = product
   const {isMobile} = useIsMobile()
   const productPrice = useFormattedPrice(price)
   const router = useRouter()
@@ -82,7 +82,7 @@ export const Modal = ({product}: ModalProps) => {
             <p>$ {productPrice}</p>
           </div>
           <div className="modal__action">
-            <ProductButton />
+            <Button className="product-card__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock} />
           </div>
         </div>
         <div className="modal__close-wrap" onClick={onCloseClick}>
@@ -93,3 +93,7 @@ export const Modal = ({product}: ModalProps) => {
   )
 }
 
+
+// Сделал модалку для мобилки, нужно потестить на баги, сделать фон для крестика
+// С переполнением текста проблему не решил
+// Сделать вариант со страницей

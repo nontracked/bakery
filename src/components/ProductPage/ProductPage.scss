@@ -1,0 +1,116 @@
+.product-page {
+  @include mobile-above {
+    padding-block: 50px;
+    width: 100%;
+  }
+  @include mobile {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__body {
+    display: flex;
+    column-gap: fluid(50, 20);
+    @include mobile {
+      flex-direction: column;
+      padding-inline: 0 !important;
+      row-gap: fluid(80, 20)
+    }
+  }
+
+  &__title {
+    font-size: fluid(26, 18);
+    letter-spacing: 2px;
+    font-family: var(--font-oswald), sans-serif;
+  }
+
+  &__image {
+    object-fit: cover;
+    @include mobile-above {
+      width: 50%;
+      min-width: 400px;
+      max-width: 650px;
+    }
+    @include mobile {
+      width: 100%;
+      height: 500px;
+    }
+    @include mobile-s {
+      height: 350px;
+
+    }
+  }
+
+  &__wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include mobile {
+      right: 20px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    @include mobile {
+      padding-inline: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: flex-start;
+  }
+
+  &__desc {
+    font-size: fluid(20, 16);
+    color: var(--color-dark);
+    font-family: var(--font-asap), sans-serif;
+  }
+
+  &__list {
+    color: rgba(42, 42, 42, 0.69);
+    font-family: var(--font-asap), sans-serif;
+  }
+
+  &__product-weight {
+    font-family: var(--font-oswald), sans-serif;
+    color: var(--color-dark);
+    letter-spacing: 1.2px;
+  }
+
+  &__price {
+    font-size: fluid(24, 18);
+  }
+
+  &__button {
+    padding-block: fluid(12, 10);
+    padding-inline: fluid(24, 14);
+    font-size: fluid(18, 16);
+    border-radius: var(--border-radius);
+    white-space: nowrap;
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  &__button--back {
+    padding: fluid(15, 8);
+    border-radius: 5px;
+  }
+}
