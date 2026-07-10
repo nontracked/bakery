@@ -1,11 +1,10 @@
 'use client'
 import './Modal.scss'
 import {useRouter} from "next/navigation";
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import {useIsMobile} from "@/hooks/useIsMobile";
 import {clsx} from "clsx";
 import Image from "next/image";
-import {ProductButton} from "@/components/ProductButton";
 import {X} from 'lucide-react';
 import {Product} from "@/types/product";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
@@ -15,6 +14,7 @@ import {useScrollLock} from "@/hooks/useScrollLock";
 import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {Rating} from "@/ui/Rating";
 import {Button} from "@/ui/Button";
+import {Oval} from "react-loader-spinner";
 
 gsap.registerPlugin(useGSAP);
 
@@ -24,6 +24,8 @@ interface ModalProps {
 
 export const Modal = ({product}: ModalProps) => {
   const {name, imgSrc, desc, price, ingredients, rating, weight, outOfStock} = product
+  const [imageLoading, setImageLoading] = useState<boolean>(true)
+  const test = 1
   const {isMobile} = useIsMobile()
   const productPrice = useFormattedPrice(price)
   const router = useRouter()
@@ -63,7 +65,22 @@ export const Modal = ({product}: ModalProps) => {
       ref={containerRef}
     >
       <div className="modal__body" onClick={(event) => event.stopPropagation()}>
-        <Image className="modal__image" src={imgSrc} alt="name" width={500} height={690} />
+        <div className="modal__image-wrap">
+          {imageLoading && <Oval
+            wrapperClass="modal__oval"
+            color="#4fa94d"
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#4fa94d"
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />}
+          <Image
+            onLoad={() => setImageLoading(false)} loading="eager" className="modal__image" src={imgSrc} alt="name"
+            width={500}
+            height={690}
+          />
+        </div>
         <div className="modal__content">
           <header className="modal__header">
             <h4 className="modal__title">{name}</h4>
@@ -82,7 +99,9 @@ export const Modal = ({product}: ModalProps) => {
             <p>$ {productPrice}</p>
           </div>
           <div className="modal__action">
-            <Button className="product-card__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock} />
+            <Button
+              className="product-card__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock}
+            />
           </div>
         </div>
         <div className="modal__close-wrap" onClick={onCloseClick}>
@@ -92,8 +111,3 @@ export const Modal = ({product}: ModalProps) => {
     </div>
   )
 }
-
-
-// Сделал модалку для мобилки, нужно потестить на баги, сделать фон для крестика
-// С переполнением текста проблему не решил
-// Сделать вариант со страницей

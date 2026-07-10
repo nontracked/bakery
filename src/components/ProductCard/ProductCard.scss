@@ -5,6 +5,15 @@
   justify-content: space-between;
   height: 100%;
 
+  &__image-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+  }
+
   &__info {
     display: flex;
     flex-direction: column;
@@ -13,11 +22,27 @@
     align-items: flex-start;
   }
 
+  &__oval {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: fluid(81,61);
+      height: fluid(80,60);
+    }
+  }
+
   &__image {
-    width: 100%;
-    height: 100%;
     border-radius: var(--border-radius);
     user-select: none;
+    width: 100%;
+    aspect-ratio: 0.72;
+    object-fit: cover;
+    @include laptop-above {
+      max-height: 535px;
+    }
   }
 
   &__title {
@@ -29,6 +54,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     width: 100%;
+
     &::after {
       position: absolute;
       right: 0;
@@ -38,7 +64,7 @@
       background: rgba(255, 255, 255, 0);
       background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
       height: 100%;
-      width:25px;
+      width: 25px;
     }
   }
 
@@ -57,6 +83,7 @@
     border-radius: var(--border-radius);
     width: 140px;
     white-space: nowrap;
+
     &:disabled {
       pointer-events: none;
       opacity: 0.5;
@@ -76,7 +103,6 @@
   &__overlay {
     position: absolute;
     width: 100%;
-    height: 100%;
     border-radius: var(--border-radius);
     background-color: rgba(0, 0, 0, 0.55);
     display: flex;
@@ -85,6 +111,7 @@
     opacity: 0;
     transition: opacity var(--transition-duration);
     @include tablet-above {
+      height: 100%;
       @include hover {
         opacity: 1;
         .product-card__icon {
@@ -107,8 +134,9 @@
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    height: 100%;
+    /*    height: 100%;*/
     justify-content: space-between;
+    max-height: 400px;
   }
 
   &__action {

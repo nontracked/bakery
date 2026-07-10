@@ -1,6 +1,6 @@
 import React from "react";
 import {Modal} from "@/ui/Modal";
-import {getProducts} from "@/lib/products";
+import {getProductById} from "@/lib/products";
 import {notFound} from "next/navigation";
 
 interface Props {
@@ -9,8 +9,7 @@ interface Props {
 
 export default async function ProductModal({params}: Props) {
   const {id} = await params
-  const products = await getProducts()
-  const product = products.find((product) => product.id === id)
+  const product = await getProductById(id)
   // переписать способ получения продукта
   if (!product) {
     return notFound()
@@ -19,3 +18,6 @@ export default async function ProductModal({params}: Props) {
     <Modal product={product} />
   )
 }
+
+
+// сделать скелетоны, лоадеры, обработчики ошибок для всех компонентов,

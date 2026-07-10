@@ -6,14 +6,16 @@ import {Product} from "@/types/product";
 import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {Button} from "@/ui/Button";
 import {BackButton} from "@/ui/BackButton";
+import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 
 interface Props {
   product: Product,
 }
 
 export const ProductPage = ({product}: Props) => {
-  const {imgSrc, name, rating, desc, weight, ingredients, outOfStock} = product
+  const {imgSrc, name, rating, desc, weight, ingredients,price, outOfStock} = product
   const formattedIng = useFormattedIngredient(ingredients)
+  const formattedPrice = useFormattedPrice(price)
   return (
     <div className="product-page">
       <div className="product-page__body container">
@@ -33,7 +35,7 @@ export const ProductPage = ({product}: Props) => {
             <div className="product-page__product-weight">Weight: {weight} g</div>
           </header>
           <div className="product-page__price">
-            <p>$ {}</p>
+            <p>$ {formattedPrice}</p>
           </div>
           <div className="product-page__action">
             <Button

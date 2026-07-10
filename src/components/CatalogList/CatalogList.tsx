@@ -24,11 +24,15 @@ export const CatalogList = ({isMobile, activeTab, filteredProducts}: CatalogList
         margin: isMobile ? '100px' : '0px'         // Запустить, когда хотя бы 10% блока покажется на экране
       }}
     >
-      {filteredProducts.map((product) => (
-        <motion.li className="catalog-client__item" key={product.id} variants={itemVariants}>
-          <ProductCard product={product} />
-        </motion.li>
-      ))}
+      {filteredProducts.length === 0 ?
+        (<div>Desserts will be available for purchase soon</div>)
+        :
+        (filteredProducts.map((product) => (
+          <motion.li className="catalog-client__item" key={product.id} variants={itemVariants}>
+            <ProductCard product={product} />
+          </motion.li>
+        )))
+      }
     </motion.ul>
   )
 }

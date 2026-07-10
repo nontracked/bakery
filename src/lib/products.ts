@@ -458,3 +458,7 @@ export const products: Product[] = [
 export const getProducts = async (): Promise<Product[]> => {
   return products
 }
+
+export const getProductById = async (id: string): Promise<Product | undefined> => {
+  return products.find((product) => product.id === id)
+}

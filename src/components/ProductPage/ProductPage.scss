@@ -1,4 +1,7 @@
 .product-page {
+  display: flex;
+  align-items: center;
+
   @include mobile-above {
     padding-block: 50px;
     width: 100%;
@@ -14,7 +17,8 @@
     @include mobile {
       flex-direction: column;
       padding-inline: 0 !important;
-      row-gap: fluid(80, 20)
+      row-gap: fluid(80, 20);
+      height: 100%;
     }
   }
 
@@ -22,6 +26,7 @@
     font-size: fluid(26, 18);
     letter-spacing: 2px;
     font-family: var(--font-oswald), sans-serif;
+    padding-right: 70px;
   }
 
   &__image {
@@ -64,8 +69,9 @@
 
   &__action {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    @include mobile {
+      justify-content: center;
+    }
   }
 
   &__header {
@@ -94,6 +100,7 @@
 
   &__price {
     font-size: fluid(24, 18);
+    font-family: var(--font-oswald), sans-serif;
   }
 
   &__button {

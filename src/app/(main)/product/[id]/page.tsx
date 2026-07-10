@@ -1,5 +1,5 @@
 import {ProductPage} from "@/components/ProductPage";
-import {getProducts} from "@/lib/products";
+import {getProductById, getProducts} from "@/lib/products";
 import {notFound} from "next/navigation";
 
 interface ProductPageProps {
@@ -8,8 +8,7 @@ interface ProductPageProps {
 
 export default async function ProductPageServer({params}: ProductPageProps) {
   const {id} = await params
-  const products = await getProducts()
-  const product = products.find((product) => product.id === id)
+  const product = await getProductById(id)
   if (!product) {
     return notFound()
   }
