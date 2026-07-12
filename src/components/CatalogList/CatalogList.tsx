@@ -10,7 +10,7 @@ interface CatalogListProps {
   activeTab: string;
 }
 
-export const CatalogList =  ({isMobile, activeTab, filteredProducts}: CatalogListProps) => {
+export const CatalogList = ({isMobile, activeTab, filteredProducts}: CatalogListProps) => {
   return (
     <motion.ul
       className="catalog-client__list"

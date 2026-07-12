@@ -10,6 +10,7 @@ import {Button} from "@/ui/Button";
 import React, {useState} from "react";
 import {Oval} from "react-loader-spinner";
 import {clsx} from "clsx";
+import {useCartStore} from "@/store/useCartStore";
 
 interface ProductCardProps {
   product: Product;
@@ -22,6 +23,10 @@ export const ProductCard = ({product}: ProductCardProps) => {
   const currentQuery = searchParams.toString() // Превращаем текущие параметры URL в строку (получится "category=cookies")
   const productHref = currentQuery ? `/product/${id}?${currentQuery}` : `/product/${id}`
   const productPrice = useFormattedPrice(price)
+  const addToCart = useCartStore((state: { addToCart: any }) => state.addToCart)
+  const handleAdd = () => {
+    addToCart({id, name, imgSrc, price})
+  }
   return (
     <div className="product-card">
       <Link className="product-card__link" href={productHref} scroll={false}>
@@ -57,6 +62,7 @@ export const ProductCard = ({product}: ProductCardProps) => {
             $ {productPrice}
           </div>
           <Button
+            onClick={handleAdd}
             className="product-card__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock}
           />
         </div>
