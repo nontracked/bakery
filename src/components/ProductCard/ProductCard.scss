@@ -28,9 +28,10 @@
     inset: 0;
     align-items: center;
     justify-content: center;
+
     svg {
-      width: fluid(81,61);
-      height: fluid(80,60);
+      width: fluid(81, 61);
+      height: fluid(80, 60);
     }
   }
 
@@ -40,9 +41,9 @@
     width: 100%;
     aspect-ratio: 0.72;
     object-fit: cover;
-    @include laptop-above {
+/*    @include laptop-above {
       max-height: 535px;
-    }
+    }*/
   }
 
   &__title {
@@ -109,6 +110,7 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
+    z-index: 1;
     transition: opacity var(--transition-duration);
     @include tablet-above {
       height: 100%;

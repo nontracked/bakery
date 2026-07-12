@@ -40,10 +40,6 @@
       width: 100%;
       height: 500px;
     }
-    @include mobile-s {
-      height: 350px;
-
-    }
   }
 
   &__wrap {

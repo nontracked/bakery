@@ -1,14 +1,15 @@
+'use client'
 import './TabList.scss'
 import {TabButton} from "@/ui/TabButton";
 import {Category} from "@/types/category";
+import {useCatalogURL} from "@/hooks/useCatalogUrl";
 
 interface TabListProps {
   tabs: Category[];
-  activeTab: string;
-  handleTabClick: (id: string) => void;
 }
 
-export const TabList = ({tabs, activeTab, handleTabClick}: TabListProps) => {
+export const TabList = ({tabs}: TabListProps) => {
+  const {activeTab, handleTabClick} = useCatalogURL()
   return (
     <ul className="catalog-client__tabs-list">
       {tabs.map(({id, label}) => (

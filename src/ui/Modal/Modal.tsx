@@ -25,7 +25,6 @@ interface ModalProps {
 export const Modal = ({product}: ModalProps) => {
   const {name, imgSrc, desc, price, ingredients, rating, weight, outOfStock} = product
   const [imageLoading, setImageLoading] = useState<boolean>(true)
-  const test = 1
   const {isMobile} = useIsMobile()
   const productPrice = useFormattedPrice(price)
   const router = useRouter()

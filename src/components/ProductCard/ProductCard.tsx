@@ -42,7 +42,8 @@ export const ProductCard = ({product}: ProductCardProps) => {
             className={clsx("product-card__image")}
             onLoad={() => setImageLoad(false)}
             src={imgSrc} alt={name} width={300}
-            height={535} loading="eager"
+            height={535}
+            loading="eager"
           />
         </div>
       </Link>

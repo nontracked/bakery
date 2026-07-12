@@ -27,6 +27,7 @@
     &-list {
       --columnCount: 8;
       display: grid;
+      row-gap: 10px;
       column-gap: 20px;
       justify-content: space-between;
       padding-bottom: 15px;

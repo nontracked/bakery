@@ -5,6 +5,8 @@ import "./globals.css";
 import {QueryProvider} from "@/providers/QueryProvider";
 import React from "react";
 import localFont from "next/font/local";
+import {Header} from "@/layout/Header";
+import {Footer} from "@/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,9 +57,7 @@ export const metadata: Metadata = {
   description: "Exquisite handcrafted croissants, New York rolls, and pastry illusions.",
 };
 
-export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+export default function RootLayout({children}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
@@ -67,8 +67,12 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
-          {children}
+          <Header />
+          <main className="main-content">
+            {children}
+          </main>
         </QueryProvider>
+        <Footer />
       </body>
     </html>
   );
