@@ -11,7 +11,7 @@ export const Header = () => {
           <CartCount />
         </span>
         <button className="header__cart-button" type="button">
-          <ShoppingBasket strokeWidth={1.25} height={30} width={30} />
+          <ShoppingBasket strokeWidth={1.25} height={30} width={30}  />
         </button>
       </div>
     </header>

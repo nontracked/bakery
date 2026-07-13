@@ -11,7 +11,13 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+  }
 
+  &__button-skeleton {
+    height: 48px;
+    width: 100%;
+    background-color: #f3f4f6;
+    border-radius: 8px;
   }
 
   &__info {
@@ -41,9 +47,9 @@
     width: 100%;
     aspect-ratio: 0.72;
     object-fit: cover;
-/*    @include laptop-above {
-      max-height: 535px;
-    }*/
+    /*    @include laptop-above {
+          max-height: 535px;
+        }*/
   }
 
   &__title {
