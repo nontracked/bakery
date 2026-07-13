@@ -1,6 +1,7 @@
 import './CartCount.scss'
 import {useCartStore} from "@/store/useCartStore";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
+import CountUp from "react-countup";
 
 export const CartCount = () => {
   // @ts-ignore
@@ -10,6 +11,8 @@ export const CartCount = () => {
     quantity: number
   }) => accum + cartItem.quantity, 0)
   return (
-    <span>{totalItemsCount}</span>
+    <span>
+      <CountUp end={totalItemsCount} duration={3} />
+    </span>
   )
 }
