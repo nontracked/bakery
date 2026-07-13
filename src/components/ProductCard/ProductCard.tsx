@@ -6,46 +6,22 @@ import {useSearchParams} from "next/navigation";
 import {Maximize} from "lucide-react";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import {Rating} from "@/ui/Rating";
-import {Button} from "@/ui/Button";
 import React, {useState} from "react";
 import {Oval} from "react-loader-spinner";
 import {clsx} from "clsx";
-import {useCartStore} from "@/store/useCartStore";
-import {QuantityItems} from "@/components/QuantityItems";
-import {useHydratedStore} from "@/hooks/useHydratedStore";
+import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard = ({product}: ProductCardProps) => {
-  const {name, imgSrc, price, id, rating, outOfStock} = product
+  const {name, imgSrc, price, id, rating} = product
   const [imageLoad, setImageLoad] = useState<boolean>(true)
   const searchParams = useSearchParams()
   const currentQuery = searchParams.toString() // Превращаем текущие параметры URL в строку (получится "category=cookies")
   const productHref = currentQuery ? `/product/${id}?${currentQuery}` : `/product/${id}`
   const productPrice = useFormattedPrice(price)
-
-  const cart = useHydratedStore(useCartStore, (state) => state.cart)
-  const addToCart = useCartStore((state) => state.addToCart)
-  const removeFromCart = useCartStore((state) => state.removeFromCart)
-  const updateQuantity = useCartStore((state) => state.updateQuantity)
-  const currentItem = cart?.find((cartItem) => cartItem.id === id)
-  const quantity = currentItem ? currentItem.quantity : 0
-
-  const handleAdd = () => {
-    addToCart({id, name, imgSrc, price})
-  }
-  const handleIncrease = () => {
-    updateQuantity(id, 'increase')
-  }
-  const handleDecrease = () => {
-    if (quantity === 1) {
-      removeFromCart(id)
-    } else {
-      updateQuantity(id, 'decrease')
-    }
-  }
 
   return (
     <div className="product-card">
@@ -81,16 +57,7 @@ export const ProductCard = ({product}: ProductCardProps) => {
           <div className="product-card__price">
             $ {productPrice}
           </div>
-          {!cart ?
-            (<div className="product-card__button-skeleton" />)
-            : quantity > 0 ?
-              (<QuantityItems onIncrease={handleIncrease} onDecrease={handleDecrease} quantity={quantity} />)
-              : (<Button
-                onClick={handleAdd}
-                className="product-card__button"
-                label={outOfStock ? "Out of stock" : "Add to cart"}
-                disabled={outOfStock}
-              />)}
+          <ProductButtonDynamic product={product} />
         </div>
       </div>
     </div>

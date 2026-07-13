@@ -4,7 +4,7 @@
 
   &__inner {
     display: flex;
-    column-gap: 10px;
+    column-gap: 5px;
     align-items: center;
     justify-content: space-between;
     width: 140px;
@@ -34,6 +34,9 @@
   border: none;
   border-radius: 3px;
   padding-inline: fluid(24, 14);
+  @include hover {
+    border-color: transparent !important;
+  }
 
   &--degrease {
     border-radius: 3px 0 0 3px;
