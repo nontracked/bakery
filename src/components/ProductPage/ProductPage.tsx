@@ -4,16 +4,16 @@ import {Rating} from "@/ui/Rating";
 import React from "react";
 import {Product} from "@/types/product";
 import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
-import {Button} from "@/ui/Button";
 import {BackButton} from "@/ui/BackButton";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
+import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 
 interface Props {
   product: Product,
 }
 
 export const ProductPage = ({product}: Props) => {
-  const {imgSrc, name, rating, desc, weight, ingredients,price, outOfStock} = product
+  const {imgSrc, name, rating, desc, weight, ingredients,price} = product
   const formattedIng = useFormattedIngredient(ingredients)
   const formattedPrice = useFormattedPrice(price)
   return (
@@ -38,9 +38,7 @@ export const ProductPage = ({product}: Props) => {
             <p>$ {formattedPrice}</p>
           </div>
           <div className="product-page__action">
-            <Button
-              className="product-page__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock}
-            />
+          <ProductButtonDynamic product={product}/>
           </div>
           <div className="product-page__wrap">
             <BackButton className="product-page__button--back"/>

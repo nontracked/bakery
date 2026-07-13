@@ -4,7 +4,6 @@ import {useRouter} from "next/navigation";
 import React, {useRef, useState} from "react";
 import {useIsMobile} from "@/hooks/useIsMobile";
 import {clsx} from "clsx";
-import Image from "next/image";
 import {X} from 'lucide-react';
 import {Product} from "@/types/product";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
@@ -13,8 +12,8 @@ import {useGSAP} from "@gsap/react";
 import {useScrollLock} from "@/hooks/useScrollLock";
 import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {Rating} from "@/ui/Rating";
-import {Button} from "@/ui/Button";
-import {Oval} from "react-loader-spinner";
+import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
+import {ProductImage} from "@/components/ProductImage";
 
 gsap.registerPlugin(useGSAP);
 
@@ -23,8 +22,7 @@ interface ModalProps {
 }
 
 export const Modal = ({product}: ModalProps) => {
-  const {name, imgSrc, desc, price, ingredients, rating, weight, outOfStock} = product
-  const [imageLoading, setImageLoading] = useState<boolean>(true)
+  const {name, imgSrc, desc, price, ingredients, rating, weight} = product
   const {isMobile} = useIsMobile()
   const productPrice = useFormattedPrice(price)
   const router = useRouter()
@@ -65,20 +63,7 @@ export const Modal = ({product}: ModalProps) => {
     >
       <div className="modal__body" onClick={(event) => event.stopPropagation()}>
         <div className="modal__image-wrap">
-          {imageLoading && <Oval
-            wrapperClass="modal__oval"
-            color="#4fa94d"
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor="#4fa94d"
-            strokeWidth={2}
-            strokeWidthSecondary={2}
-          />}
-          <Image
-            onLoad={() => setImageLoading(false)} loading="eager" className="modal__image" src={imgSrc} alt="name"
-            width={500}
-            height={690}
-          />
+          <ProductImage className="modal__image" imgSrc={imgSrc} name={name} width={500} height={690}/>
         </div>
         <div className="modal__content">
           <header className="modal__header">
@@ -98,9 +83,7 @@ export const Modal = ({product}: ModalProps) => {
             <p>$ {productPrice}</p>
           </div>
           <div className="modal__action">
-            <Button
-              className="product-card__button" label={outOfStock ? "Out of stock" : "Add to cart"} disabled={outOfStock}
-            />
+            <ProductButtonDynamic product={product} />
           </div>
         </div>
         <div className="modal__close-wrap" onClick={onCloseClick}>

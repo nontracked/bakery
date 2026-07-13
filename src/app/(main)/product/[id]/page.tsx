@@ -1,5 +1,5 @@
 import {ProductPage} from "@/components/ProductPage";
-import {getProductById, getProducts} from "@/lib/products";
+import {getProductById} from "@/lib/products";
 import {notFound} from "next/navigation";
 
 interface ProductPageProps {

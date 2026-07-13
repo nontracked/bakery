@@ -1,15 +1,14 @@
 import './ProductCard.scss'
 import {Product} from "@/types/product";
-import Image from "next/image";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {Maximize} from "lucide-react";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import {Rating} from "@/ui/Rating";
 import React, {useState} from "react";
-import {Oval} from "react-loader-spinner";
 import {clsx} from "clsx";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
+import {ProductImage} from "@/components/ProductImage";
 
 interface ProductCardProps {
   product: Product;
@@ -30,21 +29,9 @@ export const ProductCard = ({product}: ProductCardProps) => {
           <Maximize className="product-card__icon" />
         </div>
         <div className="product-card__image-wrapper">
-          {imageLoad && <Oval
-            wrapperClass="product-card__oval"
-            color="#4fa94d"
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor="#4fa94d"
-            strokeWidth={2}
-            strokeWidthSecondary={2}
-          />}
-          <Image
-            className={clsx("product-card__image")}
-            onLoad={() => setImageLoad(false)}
-            src={imgSrc} alt={name} width={300}
-            height={535}
-            loading="eager"
+          <ProductImage
+            className="product-card__image" imgSrc={imgSrc} name={name} width={300} height={535}
+            onImageLoad={() => setImageLoad(false)}
           />
         </div>
       </Link>

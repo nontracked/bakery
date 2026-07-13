@@ -1,3 +1,4 @@
+'use client'
 import './ProductButtonDynamic.scss'
 import {QuantityItems} from "@/components/QuantityItems";
 import {Button} from "@/ui/Button";
