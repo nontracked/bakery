@@ -1,0 +1,51 @@
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String
+  products Product[]
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  name        String
+  description String
+  price       Int
+  image       String
+  weight      String?
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id])
+  orderItems  OrderItem[] // история заказов конкретного товара
+}
+
+model Order {
+  id           String   @id @default(uuid())
+  customerName String
+  phone        String
+  address      String
+  totalPrice   Int
+  status       String   @default("NEW")
+  createdAt    DateTime @default(now())
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id       String @id @default(uuid())
+  quantity Int
+  price    Int
+  orderId  String
+  order    Order  @relation(fields: [orderId], references: [id])
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}

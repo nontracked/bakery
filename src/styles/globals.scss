@@ -9,8 +9,11 @@ button,
 label,
 input,
 textarea,
-select,
-svg * {
+select {
+  transition-duration: var(--transition-duration);
+}
+
+svg:not(.skeleton-loader):not(.skeleton-loader *) * {
   transition-duration: var(--transition-duration);
 }
 
