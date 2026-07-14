@@ -1,0 +1,1 @@
+export {TabsLoader} from './TabsLoader'

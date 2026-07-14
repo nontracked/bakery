@@ -9,7 +9,7 @@ export const tabsCategory: Category[] = [
   {id: 'ny-rolls', label: 'New York Rolls'},
   {id: 'tarts', label: 'Tarts'},
   {id: 'popular', label: 'Popular'},
-  {id: 'new', label: 'New'},
+/*  {id: 'new', label: 'New'},*/
 ]
 
 export const getTabsCategory = async (): Promise<Category[]> => {
