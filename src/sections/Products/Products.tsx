@@ -6,6 +6,7 @@ import {CatalogSection} from "@/sections/CatalogSection";
 import {Oval} from "react-loader-spinner";
 
 export const Products = async () => {
+
   return (
     <section className="products container">
       <Suspense fallback={<TabsSkeleton />}>

@@ -44,8 +44,9 @@ export const categoriesRelations = relations(categories, ({many}) => ({
 
 export const productsRelations = relations(products, ({one}) => ({
   category: one(categories, {
-    fields: [products.id],
+    fields: [products.categoryId],
     references: [categories.id]
   })
 }))
 
+// ошибка в получении данных, надо разбираться
