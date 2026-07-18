@@ -10,7 +10,6 @@ interface Props {
 export default async function ProductModal({params}: Props) {
   const {id} = await params
   const product = await getProductById(id)
-  // переписать способ получения продукта
   if (!product) {
     return notFound()
   }
@@ -18,6 +17,3 @@ export default async function ProductModal({params}: Props) {
     <Modal product={product} />
   )
 }
-
-
-// сделать скелетоны, лоадеры, обработчики ошибок для всех компонентов,

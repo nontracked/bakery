@@ -2,7 +2,6 @@ import {create} from "zustand/react";
 import {persist} from "zustand/middleware";
 
 export interface CartItem {
-  // фиксируем, из чего состоит десерт в корзине
   id: string,
   name: string,
   price: number,
@@ -10,7 +9,6 @@ export interface CartItem {
   quantity: number,
 }
 
-// контракт всего хранилища (состояние + все функции)
 interface CartState {
   cart: CartItem[],
   addToCart: (product: Omit<CartItem, 'quantity'>) => void,
@@ -19,7 +17,6 @@ interface CartState {
   clearCart: () => void;
 }
 
-// @ts-ignore
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({

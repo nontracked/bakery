@@ -6,7 +6,6 @@ import {useState} from "react";
 
 export const CartCount = () => {
   const [firstAnim, setFirstAnim] = useState(false)
-  // @ts-ignore
   const cartItems = useHydratedStore(useCartStore, (state) => state.cart)
   if (!cartItems) return null
   const totalItemsCount = cartItems.reduce((accum, cartItem) =>

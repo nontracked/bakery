@@ -5,7 +5,6 @@ export const containerVariants: Variants = {
   show: {
     opacity: 1,
     transition: {
-      // Это та самая задержка: каждая следующая карточка появляется на 0.05с позже
       staggerChildren: 0.05,
     },
   },
