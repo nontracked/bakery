@@ -2,13 +2,13 @@ import './ProductCard.scss'
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {Maximize} from "lucide-react";
-import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import {Rating} from "@/ui/Rating";
 import React, {useState} from "react";
 import {clsx} from "clsx";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 import {ProductImage} from "@/components/ProductImage";
 import {Product} from "@/db/schema";
+import {formatPrice} from "@/utils/formatPrice";
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +20,7 @@ export const ProductCard = ({product}: ProductCardProps) => {
   const searchParams = useSearchParams()
   const currentQuery = searchParams.toString() // Превращаем текущие параметры URL в строку (получится "category=cookies")
   const productHref = currentQuery ? `/product/${id}?${currentQuery}` : `/product/${id}`
-  const productPrice = useFormattedPrice(price)
+  const productPrice = formatPrice(price)
 
   return (
     <div className="product-card">

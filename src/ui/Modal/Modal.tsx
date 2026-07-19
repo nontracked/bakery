@@ -5,15 +5,15 @@ import React, {useRef} from "react";
 import {useIsMobile} from "@/hooks/useIsMobile";
 import {clsx} from "clsx";
 import {X} from 'lucide-react';
-import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import {useScrollLock} from "@/hooks/useScrollLock";
-import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {Rating} from "@/ui/Rating";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 import {ProductImage} from "@/components/ProductImage";
 import {Product} from "@/db/schema";
+import {formatPrice} from "@/utils/formatPrice";
+import {formatIngredients} from "@/utils/formatIngredients";
 
 gsap.registerPlugin(useGSAP);
 
@@ -24,9 +24,9 @@ interface ModalProps {
 export const Modal = ({product}: ModalProps) => {
   const {name, imgSrc, desc, price, ingredients, rating, weight} = product
   const {isMobile} = useIsMobile()
-  const productPrice = useFormattedPrice(price)
+  const productPrice = formatPrice(price)
   const router = useRouter()
-  const formattedIng = useFormattedIngredient(ingredients)
+  const formattedIng = formatIngredients(ingredients)
   useScrollLock()
 
   const containerRef = useRef<HTMLDivElement>(null)

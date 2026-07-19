@@ -2,11 +2,11 @@ import './ProductPage.scss'
 import Image from "next/image";
 import {Rating} from "@/ui/Rating";
 import React from "react";
-import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {BackButton} from "@/ui/BackButton";
-import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 import {Product} from "@/db/schema";
+import {formatPrice} from "@/utils/formatPrice";
+import {formatIngredients} from "@/utils/formatIngredients";
 
 interface Props {
   product: Product,
@@ -14,8 +14,8 @@ interface Props {
 
 export const ProductPage = ({product}: Props) => {
   const {imgSrc, name, rating, desc, weight, ingredients, price} = product
-  const formattedIng = useFormattedIngredient(ingredients)
-  const formattedPrice = useFormattedPrice(price)
+  const formattedIng = formatIngredients(ingredients)
+  const formattedPrice = formatPrice(price)
   return (
     <div className="product-page">
       <div className="product-page__body container">
