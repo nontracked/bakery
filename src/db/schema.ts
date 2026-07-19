@@ -49,4 +49,7 @@ export const productsRelations = relations(products, ({one}) => ({
   })
 }))
 
+export type Product = typeof products.$inferSelect
+export type Category = typeof categories.$inferInsert
+
 // ошибка в получении данных, надо разбираться

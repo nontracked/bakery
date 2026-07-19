@@ -1,3 +1,4 @@
+/*
 export interface Product {
   id: string;
   name: string;
@@ -9,4 +10,4 @@ export interface Product {
   imgSrc: string;
   rating: number;
   outOfStock?:boolean;
-}
+}*/

@@ -1,5 +1,4 @@
 import './ProductCard.scss'
-import {Product} from "@/types/product";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {Maximize} from "lucide-react";
@@ -9,6 +8,7 @@ import React, {useState} from "react";
 import {clsx} from "clsx";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 import {ProductImage} from "@/components/ProductImage";
+import {Product} from "@/db/schema";
 
 interface ProductCardProps {
   product: Product;

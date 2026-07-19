@@ -1,11 +1,10 @@
 'use client'
 import './Modal.scss'
 import {useRouter} from "next/navigation";
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import {useIsMobile} from "@/hooks/useIsMobile";
 import {clsx} from "clsx";
 import {X} from 'lucide-react';
-import {Product} from "@/types/product";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
@@ -14,6 +13,7 @@ import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {Rating} from "@/ui/Rating";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
 import {ProductImage} from "@/components/ProductImage";
+import {Product} from "@/db/schema";
 
 gsap.registerPlugin(useGSAP);
 

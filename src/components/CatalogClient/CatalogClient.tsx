@@ -1,10 +1,10 @@
 'use client'
 import './CatalogClient.scss'
-import {Product} from "@/types/product";
 import {useCatalogFilter} from "@/hooks/useCatalogFilter";
 import {CatalogList} from "@/components/CatalogList";
 import {useIsMobile} from "@/hooks/useIsMobile";
 import {useCatalogURL} from "@/hooks/useCatalogUrl";
+import {Product} from "@/db/schema";
 
 interface CatalogClientProps {
   products: Product[];

@@ -1,5 +1,5 @@
-import {Product} from "@/types/product";
 import {useMemo} from "react";
+import {Product} from "@/db/schema";
 
 export const useCatalogFilter = (products: Product[], activeTab: string) => {
   return useMemo(() => {
@@ -8,6 +8,6 @@ export const useCatalogFilter = (products: Product[], activeTab: string) => {
     } else if (activeTab === 'popular') {
       return products.filter(({rating}) => rating > 4.7).sort((a, b) => b.rating - a.rating)
     }
-    return products.filter(({categories}) => categories === activeTab)
+    return products.filter(({categoryId}) => categoryId === activeTab)
   }, [products, activeTab])
 }

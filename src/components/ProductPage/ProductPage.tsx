@@ -2,18 +2,18 @@ import './ProductPage.scss'
 import Image from "next/image";
 import {Rating} from "@/ui/Rating";
 import React from "react";
-import {Product} from "@/types/product";
 import {useFormattedIngredient} from "@/hooks/useFormattedIngredient";
 import {BackButton} from "@/ui/BackButton";
 import {useFormattedPrice} from "@/hooks/useFormattedPrice";
 import {ProductButtonDynamic} from "@/components/ProductButtonDynamic";
+import {Product} from "@/db/schema";
 
 interface Props {
   product: Product,
 }
 
 export const ProductPage = ({product}: Props) => {
-  const {imgSrc, name, rating, desc, weight, ingredients,price} = product
+  const {imgSrc, name, rating, desc, weight, ingredients, price} = product
   const formattedIng = useFormattedIngredient(ingredients)
   const formattedPrice = useFormattedPrice(price)
   return (
@@ -38,10 +38,10 @@ export const ProductPage = ({product}: Props) => {
             <p>$ {formattedPrice}</p>
           </div>
           <div className="product-page__action">
-          <ProductButtonDynamic product={product}/>
+            <ProductButtonDynamic product={product} />
           </div>
           <div className="product-page__wrap">
-            <BackButton className="product-page__button--back"/>
+            <BackButton className="product-page__button--back" />
           </div>
         </div>
       </div>

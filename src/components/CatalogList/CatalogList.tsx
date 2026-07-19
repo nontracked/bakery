@@ -2,7 +2,7 @@ import './CatalogList.scss'
 import {motion} from "framer-motion";
 import {ProductCard} from "@/components/ProductCard";
 import {containerVariants, itemVariants} from "@/components/CatalogList/catalog.animations";
-import {Product} from "@/types/product";
+import {Product} from "@/db/schema";
 
 interface CatalogListProps {
   filteredProducts: Product[];

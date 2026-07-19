@@ -1,7 +1,7 @@
 import React from "react";
 import {Modal} from "@/ui/Modal";
-import {getProductById} from "@/lib/products";
 import {notFound} from "next/navigation";
+import {getProductById} from "@/db/queries";
 
 interface Props {
   params: Promise<{ id: string }>
