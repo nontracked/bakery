@@ -3,8 +3,8 @@ import './ProductButtonDynamic.scss'
 import {QuantityItems} from "@/components/QuantityItems";
 import {Button} from "@/ui/Button";
 import React from "react";
-import {Product} from "@/types/product";
 import {useProductCart} from "@/hooks/useProductCart";
+import {Product} from "@/db/schema";
 
 interface Props {
   product: Product;
@@ -25,7 +25,7 @@ export const ProductButtonDynamic =
             onClick={handleAdd}
             className="product-card__button"
             label={outOfStock ? "Out of stock" : "Add to cart"}
-            disabled={outOfStock}
+            disabled={!!outOfStock}
           />)}
       </>
     )

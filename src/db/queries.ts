@@ -7,3 +7,11 @@ export const getProductById = async (id: string): Promise<Product | undefined> =
     where: eq(products.id, id) //  вернет первый, где продукт id совпадает с id из params
   })
 }
+
+export const getProducts = async () => {
+  return db.query.products.findMany()
+}
+
+export const getTabs = async () => {
+  return await db.query.categories.findMany()
+}

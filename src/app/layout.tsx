@@ -1,5 +1,4 @@
 import type {Metadata} from "next";
-import {Geist} from "next/font/google";
 import "@/styles/index.js";
 import "./globals.css";
 import {QueryProvider} from "@/providers/QueryProvider";
@@ -7,11 +6,6 @@ import React from "react";
 import localFont from "next/font/local";
 import {Header} from "@/layout/Header";
 import {Footer} from "@/layout/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const oswaldFont = localFont({
   src: [
@@ -63,7 +57,7 @@ export default function RootLayout({children}: Readonly<{
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${oswaldFont.variable} ${asapFont.variable} h-full antialiased`}
+      className={`${oswaldFont.variable} ${asapFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>

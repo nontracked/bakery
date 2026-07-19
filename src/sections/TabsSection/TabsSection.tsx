@@ -1,11 +1,15 @@
 import './TabsSection.scss'
 import {TabList} from "@/components/TabList";
-import {getTabsCategory} from "@/lib/tabsCategory";
+import {getTabs} from "@/db/queries";
 
 export const TabsSection = async () => {
-/*  await new Promise(resolve => setTimeout(resolve, 2000))*/
-  const tabs = await getTabsCategory()
+  const tabs = await getTabs()
+  const allTabs = [
+    {id:'all',label:'All'},
+    ...tabs,
+    {id:'popular',label:'Popular'},
+  ]
   return (
-    <TabList tabs={tabs} />
+    <TabList tabs={allTabs} />
   )
 }

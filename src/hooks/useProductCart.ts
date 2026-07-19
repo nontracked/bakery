@@ -1,7 +1,7 @@
-import {Product} from "@/types/product";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {useCartStore} from "@/store/useCartStore";
 import {useCallback} from "react";
+import {Product} from "@/db/schema";
 
 export const useProductCart = (product: Product) => {
   const {name, imgSrc, price, id} = product

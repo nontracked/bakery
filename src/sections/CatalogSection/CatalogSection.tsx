@@ -1,9 +1,9 @@
 import './CatalogSection.scss'
 import {CatalogClient} from "@/components/CatalogClient";
-import {db} from "@/db";
+import {getProducts} from "@/db/queries";
 
 export const CatalogSection = async () => {
-  const productData = await db.query.products.findMany()
+  const productData = await getProducts()
   return (
     <CatalogClient products={productData} />
   )
