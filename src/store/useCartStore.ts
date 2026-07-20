@@ -62,7 +62,6 @@ export const useCartStore = create<CartState>()(
     {
       name: 'cart-storage',
       partialize: (state) => ({cart: state.cart}),
-      // сохраняем в памяти браузера только корзину, остальные состояния - нет
     },
   )
 )
