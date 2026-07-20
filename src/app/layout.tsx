@@ -6,6 +6,7 @@ import React from "react";
 import localFont from "next/font/local";
 import {Header} from "@/layout/Header";
 import {Footer} from "@/layout/Footer";
+import {CartDrawer} from "@/layout/CartDrawer";
 
 const oswaldFont = localFont({
   src: [
@@ -62,9 +63,8 @@ export default function RootLayout({children}: Readonly<{
       <body className="min-h-full flex flex-col">
         <QueryProvider>
           <Header />
-          <main className="main-content">
-            {children}
-          </main>
+          {children}
+          <CartDrawer />
         </QueryProvider>
         <Footer />
       </body>
