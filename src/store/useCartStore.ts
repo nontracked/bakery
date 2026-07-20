@@ -11,6 +11,9 @@ export interface CartItem {
 
 interface CartState {
   cart: CartItem[],
+  isCartOpen: boolean,
+  openCart: () => void;
+  closeCart: () => void;
   addToCart: (product: Omit<CartItem, 'quantity'>) => void,
   removeFromCart: (productId: string) => void,
   updateQuantity: (productId: string, action: 'increase' | 'decrease') => void,
@@ -21,6 +24,10 @@ export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cart: [],
+      isCartOpen: false,
+      openCart: () => set({isCartOpen: true}),
+      closeCart: () => set({isCartOpen: false}),
+
       addToCart: (product) => set((state) => {
         const existingItem = state.cart.find((item) => item.id === product.id)
         if (existingItem) {
@@ -52,6 +59,10 @@ export const useCartStore = create<CartState>()(
       }),
       clearCart: () => set({cart: []})
     }),
-    {name: 'cart-storage'}
+    {
+      name: 'cart-storage',
+      partialize: (state) => ({cart: state.cart}),
+      // сохраняем в памяти браузера только корзину, остальные состояния - нет
+    },
   )
 )
