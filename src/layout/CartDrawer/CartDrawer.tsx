@@ -4,11 +4,15 @@ import {useCartStore} from "@/store/useCartStore";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {clsx} from "clsx";
 import {useEffect} from "react";
+import {CartItem} from "@/components/CartItem";
+import {formatPrice} from "@/utils/formatPrice";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
   const isCartOpen = useCartStore((state) => state.isCartOpen)
   const closeCart = useCartStore((state) => state.closeCart)
+  const subtotalPrice = cart?.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+  const subtotalPriceFormatted = formatPrice(subtotalPrice || 0)
   useEffect(() => {
     const scrollWidth = window.innerWidth - document.documentElement.clientWidth
     if (isCartOpen) {
@@ -30,12 +34,18 @@ export const CartDrawer = () => {
           <h2 className="cart-drawer__title"></h2>
         </div>
         <div className="cart-drawer__body">
-          items...
+          <ul className="cart-drawer__list">
+            {cart?.map((item) => (
+              <li key={item.id}>
+                <CartItem item={item} />
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="cart-drawer__footer">
           <div className="cart-drawer__total">
             <span>Subtotal:</span>
-            <span>$</span>
+            <span>${subtotalPriceFormatted}</span>
           </div>
           <div className="cart-drawer__checkout">
             <button type="button">

@@ -17,9 +17,11 @@ export const useProductCart = (product: Product) => {
   const handleAdd = useCallback(() => {
     addToCart({id, name, imgSrc, price})
   }, [addToCart, id, name, imgSrc, price])
+
   const handleIncrease = useCallback(() => {
     updateQuantity(id, 'increase')
   }, [updateQuantity, id])
+
   const handleDecrease = useCallback(() => {
     if (currentQuantity === 1) {
       removeFromCart(id)
