@@ -38,7 +38,7 @@ export const ProductPage = ({product}: Props) => {
             <p>$ {formattedPrice}</p>
           </div>
           <div className="product-page__action">
-            <ProductButtonDynamic product={product} />
+            <ProductButtonDynamic className="product-card__button--route" product={product} />
           </div>
           <div className="product-page__wrap">
             <BackButton className="product-page__button--back" />

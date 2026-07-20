@@ -185,3 +185,17 @@
     height: fluid(80, 60);
   }
 }
+
+.product-card__button {
+  padding-block: fluid(12, 10);
+  padding-inline: fluid(24, 14);
+  font-size: fluid(18, 16);
+  border-radius: var(--border-radius);
+  width: 140px;
+  white-space: nowrap;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

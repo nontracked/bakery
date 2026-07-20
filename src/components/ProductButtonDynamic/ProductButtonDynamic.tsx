@@ -5,13 +5,15 @@ import {Button} from "@/ui/Button";
 import React from "react";
 import {useProductCart} from "@/hooks/useProductCart";
 import {Product} from "@/db/schema";
+import {clsx} from "clsx";
 
 interface Props {
   product: Product;
+  className?: string;
 }
 
 export const ProductButtonDynamic =
-  ({product}: Props) => {
+  ({product, className}: Props) => {
     const {handleDecrease, handleIncrease, handleAdd, currentQuantity} = useProductCart(product)
     const {outOfStock} = product
     if (currentQuantity === undefined) {
@@ -23,7 +25,7 @@ export const ProductButtonDynamic =
           (<QuantityItems onIncrease={handleIncrease} onDecrease={handleDecrease} quantity={currentQuantity} />)
           : (<Button
             onClick={handleAdd}
-            className="product-card__button"
+            className={clsx(className ? className : "product-card__button")}
             label={outOfStock ? "Out of stock" : "Add to cart"}
             disabled={!!outOfStock}
           />)}
