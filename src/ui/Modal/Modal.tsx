@@ -63,7 +63,7 @@ export const Modal = ({product}: ModalProps) => {
     >
       <div className="modal__body" onClick={(event) => event.stopPropagation()}>
         <div className="modal__image-wrap">
-          <ProductImage className="modal__image" imgSrc={imgSrc} name={name} width={500} height={690}/>
+          <ProductImage className="modal__image" imgSrc={imgSrc} name={name} width={500} height={690} />
         </div>
         <div className="modal__content">
           <header className="modal__header">

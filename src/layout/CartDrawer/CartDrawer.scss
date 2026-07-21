@@ -19,21 +19,120 @@
     }
   }
 
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__close {
+    cursor: pointer;
+    width: fluid(44, 35);
+    height: fluid(44, 35);
+    @include hover {
+      stroke: #d20348;
+    }
+  }
+
   &__main {
+    display: flex;
+    flex-direction: column;
+    row-gap: fluid(30, 15);
+    padding: 25px;
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: 100%;
-    max-width: 500px;
     z-index: 11;
     transform: translate(100%);
     background-color: var(--color-white);
     transition: transform 0.3s ease-in-out;
+    @include tablet-above {
+      max-width: fluid(500, 350);
+    }
+    @include tablet {
+      max-width: 450px;
+    }
+    @include mobile {
+      max-width: 100%;
+    }
+
     &--open {
       transition: transform 0.3s ease-in-out;
-        transform: translate(0);
+      transform: translate(0);
     }
+  }
+
+  &__title {
+    font-size: fluid(26, 20);
+    font-family: var(--font-asap), sans-serif;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-color: rgba(171, 171, 171, 0.4) #f1f1f1;
+    scrollbar-width: thin;
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: fluid(20, 15);
+    padding-bottom: fluid(20, 15);
+    border-bottom: 1px solid #d0d0d0;
+  }
+
+  &__total {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    font-size: fluid(24, 20);
+    font-family: var(--font-oswald), sans-serif;
+    letter-spacing: 1.3px;
+
+    span {
+      width: 100%;
+      border-bottom: 1px dashed var(--color-dark);
+      height: 90%;
+    }
+  }
+
+  &__checkout {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  &__button-checkout,
+  &__button-clear {
+    padding-block: 10px;
+    font-size: fluid(20, 16);
+    font-family: var(--font-asap), sans-serif;
+    border-radius: 5px;
+  }
+
+  &__button-checkout {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    border: 1px solid transparent;
+  }
+
+  &__button-clear {
+    border: 1px solid var(--color-dark);
+    @include hover {
+      background-color: #d20348;
+      border-color: transparent;
+      color: var(--color-white);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
   }
 }
 

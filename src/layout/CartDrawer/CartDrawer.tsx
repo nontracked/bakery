@@ -3,16 +3,19 @@ import './CartDrawer.scss'
 import {useCartStore} from "@/store/useCartStore";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {clsx} from "clsx";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {CartItem} from "@/components/CartItem";
 import {formatPrice} from "@/utils/formatPrice";
+import {X} from "lucide-react";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
   const isCartOpen = useCartStore((state) => state.isCartOpen)
   const closeCart = useCartStore((state) => state.closeCart)
+  const cartItems = useHydratedStore(useCartStore, (state) => state.cart.reduce((acc, item) => acc + item.quantity, 0))
   const subtotalPrice = cart?.reduce((acc, item) => acc + (item.price * item.quantity), 0)
   const subtotalPriceFormatted = formatPrice(subtotalPrice || 0)
+  const clearCart = useCartStore((state) => state.clearCart)
   useEffect(() => {
     const scrollWidth = window.innerWidth - document.documentElement.clientWidth
     if (isCartOpen) {
@@ -23,33 +26,38 @@ export const CartDrawer = () => {
       document.body.style.overflow = ""
       document.body.style.paddingRight = ""
     }
-
   }, [isCartOpen]);
-
   return (
     <div className="cart-drawer">
       <div className={clsx("cart-drawer__overlay", isCartOpen && "cart-drawer__overlay--open")} onClick={closeCart} />
       <div className={clsx("cart-drawer__main", isCartOpen && "cart-drawer__main--open")}>
         <div className="cart-drawer__header">
-          <h2 className="cart-drawer__title"></h2>
+          <h2 className="cart-drawer__title">Your cart has {cartItems} product(-s)</h2>
+          <X className="cart-drawer__close" size={44} strokeWidth={1.25} onClick={closeCart} />
         </div>
-        <div className="cart-drawer__body">
-          <ul className="cart-drawer__list">
-            {cart?.map((item) => (
-              <li key={item.id}>
-                <CartItem item={item} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="cart-drawer__list">
+          {cart?.map((item) => (
+            <li className="cart-drawer__item" key={item.id}>
+              <CartItem item={item} />
+            </li>
+          ))}
+        </ul>
         <div className="cart-drawer__footer">
           <div className="cart-drawer__total">
-            <span>Subtotal:</span>
-            <span>${subtotalPriceFormatted}</span>
+            <div>Subtotal:</div>
+            <span></span>
+            <div className="cart__drawer__price">${subtotalPriceFormatted}</div>
           </div>
           <div className="cart-drawer__checkout">
-            <button type="button">
-              Оплата
+            <button className="cart-drawer__button-checkout" type="button">
+              Checkout
+            </button>
+            <button
+              className="cart-drawer__button-clear"
+              type="button"
+              onClick={clearCart}
+            >
+              Clear Cart
             </button>
           </div>
         </div>
