@@ -24,7 +24,7 @@ export const ProductCard = ({product}: ProductCardProps) => {
 
   return (
     <div className="product-card">
-      <Link className="product-card__link" href={productHref} scroll={false}>
+      <Link className="product-card__link" href={productHref} scroll={false} prefetch={false}>
         <div className={clsx("product-card__overlay", imageLoad && "visually-hidden")}>
           <Maximize className="product-card__icon" />
         </div>

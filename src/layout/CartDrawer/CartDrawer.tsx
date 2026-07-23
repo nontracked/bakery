@@ -17,7 +17,7 @@ export const CartDrawer = () => {
   const subtotalPrice = cart?.reduce((acc, item) => acc + (item.price * item.quantity), 0)
   const subtotalPriceFormatted = formatPrice(subtotalPrice || 0)
   const clearCart = useCartStore((state) => state.clearCart)
-  // хук для блокировки скролла
+
   useScrollLock(isCartOpen)
   return (
     <div className="cart-drawer">
