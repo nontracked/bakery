@@ -3,7 +3,7 @@ import {Suspense} from "react";
 import {TabsSection} from "@/sections/TabsSection";
 import {TabsSkeleton} from "@/components/TabsSkeleton";
 import {CatalogSection} from "@/sections/CatalogSection";
-import {Oval} from "react-loader-spinner";
+import {CatalogSkeleton} from "@/components/CatalogSkeleton";
 
 export const Products = async () => {
   return (
@@ -11,7 +11,7 @@ export const Products = async () => {
       <Suspense fallback={<TabsSkeleton />}>
         <TabsSection />
       </Suspense>
-      <Suspense fallback={<Oval height={80} width={80} />}>
+      <Suspense fallback={<CatalogSkeleton />}>
         <CatalogSection />
       </Suspense>
     </section>

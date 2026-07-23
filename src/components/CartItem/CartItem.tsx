@@ -5,12 +5,15 @@ import {QuantityItems} from "@/components/QuantityItems";
 import {formatPrice} from "@/utils/formatPrice";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
+import React, {useState} from "react";
+import {Oval} from "react-loader-spinner";
 
 interface CartItemProps {
   item: CartItemType
 }
 
 export const CartItem = ({item}: CartItemProps) => {
+  const [imageLoading, setImageLoading] = useState(true)
   const {name, price, imgSrc, quantity, id} = item
   const removeFromCart = useCartStore((state) => state.removeFromCart)
   const updateQuantity = useCartStore((state) => state.updateQuantity)
@@ -34,7 +37,19 @@ export const CartItem = ({item}: CartItemProps) => {
   return (
     <div className="cart-item">
       <Link className="cart-item__link" href={productHref} scroll={false}>
-        <img className="cart-item__img" src={imgSrc} alt={name} />
+        {imageLoading && <Oval
+          wrapperClass="cart-item__oval"
+          color="#4fa94d"
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />}
+        <img
+          className="cart-item__img" src={imgSrc} alt={name} onLoad={() => setImageLoading(false)}
+          onError={() => setImageLoading(false)}
+        />
       </Link>
       <div className="cart-item__main">
         <h4 className="cart-item__title">{name}</h4>

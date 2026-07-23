@@ -8,8 +8,24 @@
     border-radius: 5px;
   }
 
+  &__oval {
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.8);
+    @include tablet {
+      transform: scale(0.6);
+    }
+    @include mobile {
+      transform: scale(0.8);
+    }
+  }
+
   &__link {
+    position: relative;
     width: 40%;
+
   }
 
   &__title {
