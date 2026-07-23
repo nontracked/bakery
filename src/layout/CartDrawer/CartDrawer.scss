@@ -1,7 +1,6 @@
 .cart-drawer {
   display: grid;
   grid-template-columns: 80% auto;
-
   &__overlay {
     position: fixed;
     inset: 0;
@@ -18,13 +17,11 @@
 
     }
   }
-
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
   &__close {
     cursor: pointer;
     width: fluid(44, 35);
@@ -33,7 +30,6 @@
       stroke: #d20348;
     }
   }
-
   &__main {
     display: flex;
     flex-direction: column;

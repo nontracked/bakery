@@ -27,8 +27,6 @@ export const Modal = ({product}: ModalProps) => {
   const productPrice = formatPrice(price)
   const router = useRouter()
   const formattedIng = formatIngredients(ingredients)
-  useScrollLock()
-
   const containerRef = useRef<HTMLDivElement>(null)
   const timeline = useRef<gsap.core.Timeline | null>(null)
 
@@ -49,12 +47,13 @@ export const Modal = ({product}: ModalProps) => {
       }, '<')
     timeline.current.play()
   }, {scope: containerRef, dependencies: [isMobile]})
-
   const onCloseClick = contextSafe(() => {
     timeline.current?.reverse().then(() => {
       router.back()
     })
   })
+
+  useScrollLock(true)
   return (
     <div
       className={clsx("modal", isMobile && "modal--mobile")}

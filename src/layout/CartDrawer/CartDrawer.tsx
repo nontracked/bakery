@@ -3,10 +3,11 @@ import './CartDrawer.scss'
 import {useCartStore} from "@/store/useCartStore";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {clsx} from "clsx";
-import React, {useEffect} from "react";
+import React from "react";
 import {CartItem} from "@/components/CartItem";
 import {formatPrice} from "@/utils/formatPrice";
 import {X} from "lucide-react";
+import {useScrollLock} from "@/hooks/useScrollLock";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
@@ -16,17 +17,8 @@ export const CartDrawer = () => {
   const subtotalPrice = cart?.reduce((acc, item) => acc + (item.price * item.quantity), 0)
   const subtotalPriceFormatted = formatPrice(subtotalPrice || 0)
   const clearCart = useCartStore((state) => state.clearCart)
-  useEffect(() => {
-    const scrollWidth = window.innerWidth - document.documentElement.clientWidth
-    if (isCartOpen) {
-      document.body.style.overflow = "hidden"
-      document.body.style.paddingRight = `${scrollWidth}px`
-    }
-    return () => {
-      document.body.style.overflow = ""
-      document.body.style.paddingRight = ""
-    }
-  }, [isCartOpen]);
+  // хук для блокировки скролла
+  useScrollLock(isCartOpen)
   return (
     <div className="cart-drawer">
       <div className={clsx("cart-drawer__overlay", isCartOpen && "cart-drawer__overlay--open")} onClick={closeCart} />

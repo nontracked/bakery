@@ -12,7 +12,7 @@ export const TabsLoader = (props: JSX.IntrinsicAttributes & IContentLoaderProps)
       height={53}
       viewBox="0 0 180 53"
       backgroundColor="#cfcfcf"
-      foregroundColor="#e82c2c"
+      foregroundColor="#b8b8b8"
       {...props}
     >
       <rect x="0" y="0" rx="5" ry="5" width="180" height="53" />
