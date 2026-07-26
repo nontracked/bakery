@@ -47,6 +47,13 @@ const asapFont = localFont({
   variable: '--font-asap'
 })
 
+const dancingFont = localFont({
+  src: './fonts/DancingScript-SemiBold.woff2',
+  weight: '600',
+  display: 'swap',
+  variable: '--font-dancing'
+})
+
 export const metadata: Metadata = {
   title: "Bakery",
   description: "Exquisite handcrafted croissants, New York rolls, and pastry illusions.",
@@ -58,7 +65,7 @@ export default function RootLayout({children}: Readonly<{
   return (
     <html
       lang="en"
-      className={`${oswaldFont.variable} ${asapFont.variable} h-full antialiased`}
+      className={`${oswaldFont.variable} ${asapFont.variable} ${dancingFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>

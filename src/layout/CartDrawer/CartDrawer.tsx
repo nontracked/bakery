@@ -8,6 +8,7 @@ import {CartItem} from "@/components/CartItem";
 import {formatPrice} from "@/utils/formatPrice";
 import {X} from "lucide-react";
 import {useScrollLock} from "@/hooks/useScrollLock";
+import {EmptyCart} from "@/components/EmptyCart/EmpryCart";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
@@ -17,42 +18,50 @@ export const CartDrawer = () => {
   const subtotalPrice = cart?.reduce((acc, item) => acc + (item.price * item.quantity), 0)
   const subtotalPriceFormatted = formatPrice(subtotalPrice || 0)
   const clearCart = useCartStore((state) => state.clearCart)
-
   useScrollLock(isCartOpen)
+  const isCartEmpty = !cart?.length
   return (
     <div className="cart-drawer">
       <div className={clsx("cart-drawer__overlay", isCartOpen && "cart-drawer__overlay--open")} onClick={closeCart} />
       <div className={clsx("cart-drawer__main", isCartOpen && "cart-drawer__main--open")}>
         <div className="cart-drawer__header">
-          <h2 className="cart-drawer__title">Your cart has {cartItems} product(-s)</h2>
+          <h2
+            className="cart-drawer__title"
+          >Your cart {cart?.length === 0 ? 'is empty' : `has ${cartItems} product(-s)`}</h2>
           <X className="cart-drawer__close" size={44} strokeWidth={1.25} onClick={closeCart} />
         </div>
-        <ul className="cart-drawer__list">
-          {cart?.map((item) => (
-            <li className="cart-drawer__item" key={item.id}>
-              <CartItem item={item} />
-            </li>
-          ))}
-        </ul>
-        <div className="cart-drawer__footer">
-          <div className="cart-drawer__total">
-            <div>Subtotal:</div>
-            <span></span>
-            <div className="cart__drawer__price">${subtotalPriceFormatted}</div>
-          </div>
-          <div className="cart-drawer__checkout">
-            <button className="cart-drawer__button-checkout" type="button">
-              Checkout
-            </button>
-            <button
-              className="cart-drawer__button-clear"
-              type="button"
-              onClick={clearCart}
-            >
-              Clear Cart
-            </button>
-          </div>
-        </div>
+        {isCartEmpty ? (
+          <EmptyCart />
+        ) : (
+          <>
+            <ul className="cart-drawer__list">
+              {cart?.map((item) => (
+                <li className="cart-drawer__item" key={item.id}>
+                  <CartItem item={item} />
+                </li>
+              ))}
+            </ul>
+            <div className="cart-drawer__footer">
+              <div className="cart-drawer__total">
+                <div>Subtotal:</div>
+                <span></span>
+                <div className="cart__drawer__price">${subtotalPriceFormatted}</div>
+              </div>
+              <div className="cart-drawer__checkout">
+                <button className="cart-drawer__button-checkout" type="button">
+                  Checkout
+                </button>
+                <button
+                  className="cart-drawer__button-clear"
+                  type="button"
+                  onClick={clearCart}
+                >
+                  Clear Cart
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

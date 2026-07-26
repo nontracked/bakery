@@ -1,0 +1,21 @@
+.logo {
+  background-color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 5px 0 ;
+
+  @include hover {
+    div {
+      color: var(--color-red);
+    }
+  }
+
+  div {
+    font-size: fluid(40, 22);
+    font-family: var(--font-dancing), sans-serif;
+    color: var(--color-white);
+    transition: color var(--transition-duration);
+    padding-block: 15px;
+    padding-inline: fluid(25, 10);
+  }
+}

@@ -6,7 +6,6 @@ import {CatalogError} from "@/components/CatalogError";
 export const CatalogSection = async () => {
   try {
     const productData = await getProducts()
-    throw new Error('1231')
     return <CatalogClient products={productData} />
   } catch (error) {
     console.error('Error load data', error)
