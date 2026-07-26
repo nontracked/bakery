@@ -17,14 +17,43 @@
     border-radius: 0 0 0 5px;
     cursor: pointer;
     height: 100%;
+    transition-property: color, background-color;
+    transition-duration: var(--transition-duration);
+    border-left: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    @include hover {
+      border-color: var(--color-dark);
+      background-color: transparent;
+    }
+
+    &-button {
+      position: relative;
+      @include hover {
+        .header__cart {
+          color: transparent;
+        }
+        .header__cart-chevron {
+          translate: -50% -50%;
+          opacity: 1;
+        }
+      }
+    }
+
+    &-chevron {
+      position: absolute;
+      color: var(--color-dark);
+      top: 50%;
+      left: 50%;
+      translate: -80% -50%;
+      opacity: 0;
+      transition-property: opacity, translate;
+      transition-duration: var(--transition-duration);
+      pointer-events: none;
+    }
 
     &-count {
       font-size: fluid(22, 20);
       font-family: var(--font-oswald), sans-serif;
-    }
-
-    &-button {
-      display: flex;
     }
   }
 }

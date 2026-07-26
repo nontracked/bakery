@@ -2,16 +2,19 @@
   background-color: var(--color-dark);
   display: flex;
   align-items: center;
-  border-radius: 0 0 5px 0 ;
-
+  border-radius: 0 0 5px 0;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   @include hover {
     div {
-      color: var(--color-red);
+      color: var(--color-dark);
     }
+    background-color: transparent;
+    border-color: var(--color-dark);
   }
 
   div {
-    font-size: fluid(40, 22);
+    font-size: fluid(38, 22);
     font-family: var(--font-dancing), sans-serif;
     color: var(--color-white);
     transition: color var(--transition-duration);

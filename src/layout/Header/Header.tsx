@@ -1,6 +1,6 @@
 'use client'
 import './Header.scss'
-import {ShoppingBasket} from "lucide-react";
+import {ChevronRight, ShoppingBasket} from "lucide-react";
 import {CartCount} from "@/components/CartCount";
 import {useCartStore} from "@/store/useCartStore";
 import {Logo} from "@/components/Logo";
@@ -11,6 +11,7 @@ export const Header = () => {
     <header className="header">
       <Logo />
       <button className="header__cart-button" type="button" onClick={openCart}>
+        <ChevronRight className="header__cart-chevron" strokeWidth={1.5} size={40} />
         <div className="header__cart">
         <span className="header__cart-count">
           <CartCount />
