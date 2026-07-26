@@ -3,21 +3,23 @@
   column-gap: 40px;
   padding-bottom: 40px;
   justify-content: flex-end;
+
   &__cart {
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: fluid(10,5);
     justify-content: center;
-    padding-block: 20px;
+    padding-block: fluid(20, 10);
     background-color: var(--color-dark);
-    padding-inline: 20px;
+    padding-inline: fluid(20, 10);
     color: var(--color-white);
-    width: 105px;
-    height: 80px;
+    width: fluid(105, 80);
+    height: fluid(80, 60);
     border-radius: 0 0 0 5px;
     cursor: pointer;
+
     &-count {
-      font-size: 22px;
+      font-size: fluid(22, 20);
       font-family: var(--font-oswald), sans-serif;
     }
   }

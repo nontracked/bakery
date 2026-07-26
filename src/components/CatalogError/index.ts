@@ -1,0 +1,1 @@
+export {CatalogError} from './CatalogError'

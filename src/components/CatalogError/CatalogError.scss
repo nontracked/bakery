@@ -1,0 +1,19 @@
+.catalog-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 5px;
+  &__image {
+    @include tablet-above {
+      width: 80%;
+    }
+  }
+  &__info {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    font-size: fluid(22,20);
+    font-family: var(--font-asap),sans-serif;
+  }
+}
