@@ -2,7 +2,7 @@ import {Product, products, sharedCarts} from "@/db/schema";
 import {db} from "@/db/index";
 import {eq} from "drizzle-orm";
 
-type SharedCartItem = {
+export type SharedCartItem = {
   id: string;
   quantity: number;
 }
@@ -21,7 +21,7 @@ export const getTabs = async () => {
   return await db.query.categories.findMany()
 }
 
-export const createSharedCart = async (items: SharedCartItem) => {
+export const createSharedCart = async (items: SharedCartItem[]) => {
   try {
     const result = await db.insert(sharedCarts)
       .values({items})

@@ -9,6 +9,7 @@ import {formatPrice} from "@/utils/formatPrice";
 import {X} from "lucide-react";
 import {useScrollLock} from "@/hooks/useScrollLock";
 import {EmptyCart} from "@/components/EmptyCart/EmpryCart";
+import {ShareCartButton} from "@/components/ShareCartButton";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
@@ -51,7 +52,8 @@ export const CartDrawer = () => {
                 <button className="cart-drawer__button-checkout" type="button">
                   Checkout
                 </button>
-                <button
+                <ShareCartButton/>
+                  <button
                   className="cart-drawer__button-clear"
                   type="button"
                   onClick={clearCart}
