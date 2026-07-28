@@ -46,3 +46,21 @@ main {
 ::selection {
   color: #d20348;
 }
+
+.custom-toast {
+  justify-content: center;
+  font-family: var(--font-asap), sans-serif;
+  font-size: fluid(20, 18) !important;
+  text-align: center;
+
+  &-success {
+    min-width: fluid(480, 300);
+    box-shadow: 0 0 8px 0 rgba(0, 255, 51, 0.4) !important;
+  }
+
+  &-error {
+    min-width: fluid(540, 300);
+    box-shadow: 0 0 8px 0 rgba(255, 0, 0, 0.6) !important;
+  }
+
+}

@@ -1,6 +1,6 @@
 import {Product, products, sharedCarts} from "@/db/schema";
 import {db} from "@/db/index";
-import {eq} from "drizzle-orm";
+import {eq, lt} from "drizzle-orm";
 
 export type SharedCartItem = {
   id: string;
@@ -28,22 +28,33 @@ export const createSharedCart = async (items: SharedCartItem[]) => {
       .returning({id: sharedCarts.id})
     return result[0].id
   } catch (error) {
-    console.error('Error save cart', error)
+    console.error('Error saving the cart', error)
     return null
   }
 }
 
-export const getSharedCartById = async (cartId: string) => {
+export const getShaderCartById = async (cartId: string) => {
   try {
     const result = await db.select()
       .from(sharedCarts)
       .where(eq(sharedCarts.id, cartId))
-    if (result.length > 0) { // если нашли такой
-      return result[0].items as SharedCartItem[] // забираем массив товаров у 1 элемента массива [ { id: 'abc-123', items: [...] } ], в формате описаном выше
+    if (result.length > 0) {
+      return result[0].items as SharedCartItem[]
     }
     return null
   } catch (error) {
-    console.error('Error get save cart', error)
+    console.error('Error retrieving the cart', error)
     return null
+  }
+}
+
+export const clearOldCart = async () => {
+  const twoWeeksAgo = new Date()
+  twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
+  try {
+    await db.delete(sharedCarts)
+      .where(lt(sharedCarts.createdAt, twoWeeksAgo))
+  } catch (error) {
+    console.error('Error whilst clearing the table', error)
   }
 }

@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 import {Header} from "@/layout/Header";
 import {Footer} from "@/layout/Footer";
 import {CartDrawer} from "@/layout/CartDrawer";
+import {Toaster} from "sonner";
 
 const oswaldFont = localFont({
   src: [
@@ -71,6 +72,18 @@ export default function RootLayout({children}: Readonly<{
         <QueryProvider>
           <Header />
           {children}
+          {<Toaster
+            position="top-center"
+            duration={3000}
+            toastOptions={{
+              classNames: {
+                toast: 'custom-toast',
+                title: 'custom-toast-title',
+                success: 'custom-toast-success',
+                error: 'custom-toast-error',
+              }
+            }}
+          />}
           <CartDrawer />
         </QueryProvider>
         <Footer />
