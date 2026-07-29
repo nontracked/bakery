@@ -58,3 +58,4 @@ export const clearOldCart = async () => {
     console.error('Error whilst clearing the table', error)
   }
 }
+

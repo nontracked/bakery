@@ -18,6 +18,8 @@ interface CartState {
   removeFromCart: (productId: string) => void,
   updateQuantity: (productId: string, action: 'increase' | 'decrease') => void,
   clearCart: () => void;
+  setCart: (items: CartItem[]) => void;
+  mergeCart: (items: CartItem[]) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -27,6 +29,25 @@ export const useCartStore = create<CartState>()(
       isCartOpen: false,
       openCart: () => set({isCartOpen: true}),
       closeCart: () => set({isCartOpen: false}),
+      setCart: (items) => set({cart: items}),
+
+      mergeCart: (sharedItems) => set((state) => {
+        const newCart = [...state.cart]
+        sharedItems.map((sharedItem) => {
+          const existingItem = newCart.find((cartItem) => cartItem.id === sharedItem.id)
+          if (existingItem) {
+            const indexToUpdate = newCart.indexOf(existingItem) // Ищем его индекс (чтобы знать, какой именно элемент перезаписать)
+            // Перезаписываем объект на новый
+            newCart[indexToUpdate] = {
+              ...existingItem, // берем все свойства найденного объекта
+              quantity: existingItem.quantity + sharedItem.quantity
+            }
+          } else {
+            newCart.push(sharedItem) // если товар не найден в корзине, то пушим его туда
+          }
+        })
+        return {cart: newCart} // возвращаем новую корзину
+      }),
 
       addToCart: (product) => set((state) => {
         const existingItem = state.cart.find((item) => item.id === product.id)
