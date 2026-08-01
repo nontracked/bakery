@@ -81,6 +81,7 @@ export default function RootLayout({children}: Readonly<{
                 title: 'custom-toast-title',
                 success: 'custom-toast-success',
                 error: 'custom-toast-error',
+                warning: 'custom-toast-warning'
               }
             }}
           />}

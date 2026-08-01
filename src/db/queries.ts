@@ -44,7 +44,7 @@ export const getShaderCartById = async (cartId: string) => {
     }
     return null
   } catch (error) {
-    console.error('Error retrieving the cart', error)
+    console.error('There is no shopping cart with that ID in the database')
     return null
   }
 }

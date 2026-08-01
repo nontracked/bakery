@@ -1,7 +1,8 @@
 'use client'
 import './CartHydrator.scss'
 import {CartItem, useCartStore} from "@/store/useCartStore";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {toast} from "sonner";
 
 interface Props {
   fullItems: CartItem[]
@@ -30,23 +31,34 @@ export const CartHydrator = ({fullItems}: Props) => {
     mergeCart(fullItems)
     setIsModalOpen(false)
     clearUrl()
+    toast.success('The items have been added to the cart!')
   }
 
   const handleReplace = () => {
     setCart(fullItems)
     setIsModalOpen(false)
     clearUrl()
+    toast.success('The items in your cart have been replaced!')
   }
 
   const handleCancel = () => {
     setIsModalOpen(false)
     clearUrl()
+    toast.warning('The cart copying has been canceled!')
+  }
+
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      handleCancel()
+    }
   }
 
   if (!isModalOpen) return null
 
   return (
-    <div className="cart-hydrator__overlay" onClick={handleCancel}>
+    <div
+      className="cart-hydrator__overlay" onClick={handleOverlayClick}
+    >
       <div className="cart-hydrator__content">
         <h3>В вашей корзине уже есть товары!</h3>
         <p>Вы перешли по ссылке с совместной корзиной. Как поступить с товарами?</p>
