@@ -1,4 +1,4 @@
-import {pgTable, uuid, text, integer, real, boolean, timestamp} from "drizzle-orm/pg-core";
+import {pgTable, uuid, text, integer, real, boolean, timestamp, jsonb} from "drizzle-orm/pg-core";
 import {relations} from "drizzle-orm";
 
 export const categories = pgTable('categories', {
@@ -37,6 +37,11 @@ export const ordersItems = pgTable("orders_items", {
   productId: uuid("product_id").references(() => products.id).notNull()
 })
 
+export const sharedCarts = pgTable('shared_carts', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  items: jsonb('items').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})
 
 export const categoriesRelations = relations(categories, ({many}) => ({
   products: many(products)

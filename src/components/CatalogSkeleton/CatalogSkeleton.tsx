@@ -8,12 +8,12 @@ export const CatalogSkeleton = () => {
         <li key={index}>
           <ContentLoader
             speed={1}
-            width="100%"   // Позволяем тянуться по ширине родителя
-            height="100%"  // Позволяем тянуться по высоте
-            viewBox="0 0 389 691" // Оставляем оригинальную сетку координат!
+            width="100%"
+            height="100%"
+            viewBox="0 0 389 691"
             backgroundColor="#cfcfcf"
             foregroundColor="#b8b8b8"
-            style={{ width: '100%', height: 'auto', aspectRatio: '387 / 691' }} // Гарантирует правильные пропорции
+            style={{ width: '100%', height: 'auto', aspectRatio: '387 / 691' }}
           >
             <rect x="0" y="0" rx="5" ry="5" width="384" height="538" />
             <rect x="0" y="562" rx="3" ry="3" width="315" height="24" />

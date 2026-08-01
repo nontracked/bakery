@@ -1,11 +1,11 @@
 export const formatIngredients = (str: string) => {
   if (!str) return []
   return str
-    .replace(/\.$/, '') // убираю точку в самом конце строки (если она там случайно есть)
+    .replace(/\.$/, '')
     .split(',')
     .map((item) => {
-      const afterTrim = item.trim() // удаляю пробелы
-      if (!afterTrim) return '' // если после обрезки ничего не осталось возврат пустой строки
+      const afterTrim = item.trim()
+      if (!afterTrim) return ''
       return afterTrim[0].toUpperCase() + afterTrim.slice(1)
-    }).filter(Boolean) // удаляем весь мусор
+    }).filter(Boolean)
 }
