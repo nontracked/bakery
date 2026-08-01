@@ -18,7 +18,7 @@ export const ProductCard = ({product}: ProductCardProps) => {
   const {name, imgSrc, price, id, rating} = product
   const [imageLoad, setImageLoad] = useState<boolean>(true)
   const searchParams = useSearchParams()
-  const currentQuery = searchParams.toString() // Превращаем текущие параметры URL в строку (получится "category=cookies")
+  const currentQuery = searchParams.toString()
   const productHref = currentQuery ? `/product/${id}?${currentQuery}` : `/product/${id}`
   const productPrice = formatPrice(price)
 

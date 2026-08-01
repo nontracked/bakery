@@ -22,6 +22,13 @@
       "when": 1784372820513,
       "tag": "0002_careless_the_leader",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1785149271959,
+      "tag": "0003_charming_madelyne_pryor",
+      "breakpoints": true
     }
   ]
 }
