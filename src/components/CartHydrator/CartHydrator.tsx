@@ -3,6 +3,9 @@ import './CartHydrator.scss'
 import {CartItem, useCartStore} from "@/store/useCartStore";
 import React, {useEffect, useState} from "react";
 import {toast} from "sonner";
+import {useScrollLock} from "@/hooks/useScrollLock";
+import {useHydratedStore} from "@/hooks/useHydratedStore";
+import {CartItem as CartItemModal} from "@/components/CartItem";
 
 interface Props {
   fullItems: CartItem[]
@@ -10,6 +13,7 @@ interface Props {
 
 export const CartHydrator = ({fullItems}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const cart = useHydratedStore(useCartStore, ((state) => state.cart))
   const setCart = useCartStore((state) => state.setCart)
   const mergeCart = useCartStore((state) => state.mergeCart)
   const clearUrl = () => {
@@ -22,10 +26,14 @@ export const CartHydrator = ({fullItems}: Props) => {
     if (currentCart.length === 0) {
       setCart(fullItems)
       clearUrl()
+      /*      setTimeout(() => {
+              toast.success('The items have been added to the cart!',{duration:1000})
+            }, 100)*/
     } else {
       setIsModalOpen(true)
     }
   }, [fullItems]);
+  useScrollLock(isModalOpen)
 
   const handleMerge = () => {
     mergeCart(fullItems)
@@ -60,17 +68,29 @@ export const CartHydrator = ({fullItems}: Props) => {
       className="cart-hydrator__overlay" onClick={handleOverlayClick}
     >
       <div className="cart-hydrator__content">
-        <h3>В вашей корзине уже есть товары!</h3>
-        <p>Вы перешли по ссылке с совместной корзиной. Как поступить с товарами?</p>
+        <div className="cart-hydrator__info">
+          <h3>You already have items in your cart!</h3>
+          <p>You clicked on a link to a shared shopping cart. What should you do with the items?</p>
+        </div>
+        <div className="cart-hydrator__cart">
+          <span className="cart-hydrator__cart-info">Current Cart</span>
+          <ul className="cart-hydrator__list">
+            {cart?.map((item) => (
+              <li className="cart-hydrator__item" key={item.id}>
+                <CartItemModal item={item} />
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="cart-hydrator__actions">
-          <button type="button" className="cart-hydrator__button" onClick={handleCancel}>
-            Отменить
+          <button type="button" className="cart-hydrator__button cart-hydrator__button--cancel" onClick={handleCancel}>
+            Cancel
           </button>
-          <button type="button" className="cart-hydrator__button" onClick={handleReplace}>
-            Заменить
+          <button type="button" className="cart-hydrator__button cart-hydrator__button--replace" onClick={handleReplace}>
+            Replace with new ones
           </button>
-          <button type="button" className="cart-hydrator__button" onClick={handleMerge}>
-            Добавить
+          <button type="button" className="cart-hydrator__button cart-hydrator__button--add" onClick={handleMerge} title="">
+            Add to old cart
           </button>
         </div>
       </div>
