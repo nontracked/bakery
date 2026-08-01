@@ -36,17 +36,16 @@ export const useCartStore = create<CartState>()(
         sharedItems.map((sharedItem) => {
           const existingItem = newCart.find((cartItem) => cartItem.id === sharedItem.id)
           if (existingItem) {
-            const indexToUpdate = newCart.indexOf(existingItem) // Ищем его индекс (чтобы знать, какой именно элемент перезаписать)
-            // Перезаписываем объект на новый
+            const indexToUpdate = newCart.indexOf(existingItem)
             newCart[indexToUpdate] = {
-              ...existingItem, // берем все свойства найденного объекта
+              ...existingItem,
               quantity: existingItem.quantity + sharedItem.quantity
             }
           } else {
-            newCart.push(sharedItem) // если товар не найден в корзине, то пушим его туда
+            newCart.push(sharedItem)
           }
         })
-        return {cart: newCart} // возвращаем новую корзину
+        return {cart: newCart}
       }),
 
       addToCart: (product) => set((state) => {

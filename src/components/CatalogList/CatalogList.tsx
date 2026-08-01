@@ -19,9 +19,9 @@ export const CatalogList = ({isMobile, activeTab, filteredProducts}: CatalogList
       initial="hidden"
       whileInView="show"
       viewport={{
-        once: true,  // Анимация проиграется 1 раз. Если false - будет прыгать каждый раз при скролле туда-сюда
+        once: true,
         amount: isMobile ? 0 : 0.03,
-        margin: isMobile ? '100px' : '0px'         // Запустить, когда хотя бы 10% блока покажется на экране
+        margin: isMobile ? '100px' : '0px'
       }}
     >
       {filteredProducts.length === 0 ?

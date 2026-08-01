@@ -1,6 +1,7 @@
 import {Product, products, sharedCarts} from "@/db/schema";
 import {db} from "@/db/index";
-import {eq, lt} from "drizzle-orm";
+import {eq, inArray, lt} from "drizzle-orm";
+import {CartItem} from "@/store/useCartStore";
 
 export type SharedCartItem = {
   id: string;
@@ -9,7 +10,7 @@ export type SharedCartItem = {
 
 export const getProductById = async (id: string): Promise<Product | undefined> => {
   return await db.query.products.findFirst({
-    where: eq(products.id, id) //  вернет первый, где продукт id совпадает с id из params
+    where: eq(products.id, id)
   })
 }
 
@@ -59,3 +60,29 @@ export const clearOldCart = async () => {
   }
 }
 
+export const fetchFullProductsBySharedItems = async (sharedItems: SharedCartItem[]): Promise<CartItem[]> => {
+  try {
+    const productsIds = sharedItems.map((items) => items.id)
+    if (productsIds.length === 0) return []
+    const dbProducts = await db
+      .select()
+      .from(products)
+      .where(inArray(products.id, productsIds))
+    const fullCartItems = sharedItems.map((item) => {
+      const productInfo = dbProducts.find((product) => product.id === item.id)
+      if (!productInfo) return null
+      return {
+        id: productInfo.id,
+        name: productInfo.name,
+        price: productInfo.price,
+        imgSrc: productInfo.imgSrc,
+        quantity: item.quantity,
+      }
+    })
+    return fullCartItems.filter((item) => item !== null) as CartItem[]
+  } catch (error) {
+    console.error('Error adding product data', error)
+    return []
+  }
+
+};
