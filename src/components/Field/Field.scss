@@ -1,3 +1,66 @@
 .field {
+  &__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }
 
+  &__input,
+  &__textarea {
+    padding-block: 10px;
+    padding-inline: 15px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-dark);
+    border-radius: 5px;
+  }
+
+  &--error {
+    border-color: var(--color-red);
+  }
+
+  &__label {
+    b {
+      color: var(--color-red);
+    }
+
+    &--error {
+      position: absolute;
+      font-size: fluid(18, 14);
+      bottom: -28px;
+      color: var(--color-red);
+      transition: all var(--transition-duration);
+      animation: errorOpacity 0.2s;
+      white-space: nowrap;
+      @include tablet {
+        bottom: -25px;
+      }
+    }
+  }
+
+  &__label,
+  &__input,
+  &__textarea {
+    font-size: fluid(20, 18);
+    font-family: var(--font-asap), sans-serif;
+    color: var(--color-dark);
+  }
+
+  &__textarea {
+    resize: none;
+    height: 200px;
+  }
+
+  &--wide {
+    grid-column: -1/  1;
+  }
+}
+
+@keyframes errorOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

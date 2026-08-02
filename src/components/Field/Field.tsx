@@ -28,11 +28,11 @@ export const Field = ({
   const fieldError = errors[schemaName]
   const Component = textarea ? 'textarea' : 'input'
   return (
-    <div className={clsx("field", className)}>
+    <div className={clsx("field", `field--${className}`)}>
       <div className="field__inner">
         <label className="field__label" htmlFor={schemaName}>{label} {isReq && <b>*</b>}</label>
         <Component
-          className={clsx(`field__${Component}`, 'field--error')}
+          className={clsx(`field__${Component}`, fieldError && 'field--error')}
           type={textarea ? undefined : type}
           placeholder={placeholder}
           id={schemaName}

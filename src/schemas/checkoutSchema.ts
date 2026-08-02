@@ -17,8 +17,8 @@ export const checkoutSchema = z.object({
     .email('Enter a valid email address'),
   phone: z
     .string()
-    .regex(/^[0-9+-]+$/, 'Only numbers and symbols + or -')
-    .optional(),
+    .min(4,'Phone number is required')
+    .regex(/^[0-9+-]+$/, 'Only numbers and symbols + or -'),
   address: z
     .string()
     .min(1, 'Enter your full shipping address'),

@@ -50,13 +50,11 @@ export const CartDrawer = () => {
                 <div className="cart__drawer__price">${subtotalPriceFormatted}</div>
               </div>
               <div className="cart-drawer__checkout">
-                <button className="cart-drawer__button-checkout" type="button">
-                  <Link href="/checkout" onClick={closeCart}>
-                    Checkout
-                  </Link>
-                </button>
-                <ShareCartButton/>
-                  <button
+                <Link className="cart-drawer__button-checkout" href="/checkout" onClick={closeCart}>
+                  Checkout
+                </Link>
+                <ShareCartButton />
+                <button
                   className="cart-drawer__button-clear"
                   type="button"
                   onClick={clearCart}
