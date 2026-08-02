@@ -10,6 +10,7 @@ import {X} from "lucide-react";
 import {useScrollLock} from "@/hooks/useScrollLock";
 import {EmptyCart} from "@/components/EmptyCart/EmpryCart";
 import {ShareCartButton} from "@/components/ShareCartButton";
+import Link from "next/link";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
@@ -50,7 +51,9 @@ export const CartDrawer = () => {
               </div>
               <div className="cart-drawer__checkout">
                 <button className="cart-drawer__button-checkout" type="button">
-                  Checkout
+                  <Link href="/checkout">
+                    Checkout
+                  </Link>
                 </button>
                 <ShareCartButton/>
                   <button
