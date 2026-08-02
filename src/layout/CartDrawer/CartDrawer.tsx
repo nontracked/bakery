@@ -51,7 +51,7 @@ export const CartDrawer = () => {
               </div>
               <div className="cart-drawer__checkout">
                 <button className="cart-drawer__button-checkout" type="button">
-                  <Link href="/checkout">
+                  <Link href="/checkout" onClick={closeCart}>
                     Checkout
                   </Link>
                 </button>
