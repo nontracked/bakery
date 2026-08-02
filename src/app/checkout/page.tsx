@@ -1,5 +1,8 @@
 export default function CheckoutPage() {
   return (
-    <div>111</div>
+    <div className="checkout">
+      <form className="checkout__form"></form>
+      <div className="checkout__cart"></div>
+    </div>
   )
 }
