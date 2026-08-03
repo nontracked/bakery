@@ -14,7 +14,7 @@ export const Header = () => {
     <header className="header">
       <Logo />
       <button
-        className={clsx("header__cart-button", pathname !== '/' && 'visually-hidden')} type="button" onClick={openCart}
+        className={clsx("header__cart-button", pathname === '/checkout' && 'visually-hidden')} type="button" onClick={openCart}
       >
         <ChevronRight className="header__cart-chevron" strokeWidth={1.5} size={40} />
         <div className="header__cart">
