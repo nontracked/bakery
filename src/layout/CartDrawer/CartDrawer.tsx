@@ -11,6 +11,7 @@ import {useScrollLock} from "@/hooks/useScrollLock";
 import {EmptyCart} from "@/components/EmptyCart/EmpryCart";
 import {ShareCartButton} from "@/components/ShareCartButton";
 import Link from "next/link";
+import {CartList} from "@/components/CartList";
 
 export const CartDrawer = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
@@ -36,13 +37,14 @@ export const CartDrawer = () => {
           <EmptyCart />
         ) : (
           <>
-            <ul className="cart-drawer__list">
+            <CartList cart={cart} classNameList="cart-drawer__list" classNameItem="cart-drawer__item"/>
+{/*            <ul className="cart-drawer__list">
               {cart?.map((item) => (
                 <li className="cart-drawer__item" key={item.id}>
                   <CartItem item={item} />
                 </li>
               ))}
-            </ul>
+            </ul>*/}
             <div className="cart-drawer__footer">
               <div className="cart-drawer__total">
                 <div>Subtotal:</div>

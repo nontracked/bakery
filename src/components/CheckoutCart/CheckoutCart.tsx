@@ -1,8 +1,8 @@
 import './CheckoutCart.scss'
-import {CartItem} from "@/components/CartItem";
 import {formatPrice} from "@/utils/formatPrice";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {useCartStore} from "@/store/useCartStore";
+import {CartList} from "@/components/CartList";
 
 export const CheckoutCart = () => {
   const cart = useHydratedStore(useCartStore, ((state) => state.cart))
@@ -24,13 +24,7 @@ export const CheckoutCart = () => {
           Your cart {cartLength > 0 ? `has ${cartLength} item(-s)` : 'is empty'}
         </h2>
         <div className="checkout__cart-body">
-          <ul className="checkout__cart-list">
-            {cart.map((item) => (
-              <li className="checkout__cart-item" key={item.id}>
-                <CartItem item={item} />
-              </li>
-            ))}
-          </ul>
+          <CartList cart={cart} classNameList="checkout__cart-list" classNameItem="checkout__cart-item" />
           <div className="checkout__cart-info">
             <span>Subtotal <p>$ {subTotalFormatted}</p></span>
             <span>Service Fee <p>$ {taxesFormatted}</p></span>

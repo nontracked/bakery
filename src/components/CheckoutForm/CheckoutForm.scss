@@ -1,7 +1,7 @@
 .checkout-form {
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  row-gap: fluid(40,30);
+  row-gap: fluid(40,25);
   column-gap: 20px;
   @include tablet {
     grid-template-columns: repeat(1,1fr);
