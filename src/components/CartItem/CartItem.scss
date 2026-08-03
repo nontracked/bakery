@@ -35,7 +35,11 @@
     font-size: fluid(22, 18);
     line-height: 1;
     font-family: var(--font-oswald), sans-serif;
-
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    position: relative;
+    overflow: hidden;
   }
 
   &__main {

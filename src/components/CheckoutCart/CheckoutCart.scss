@@ -7,10 +7,8 @@
     width: 100%;
     max-width: 500px;
   }
-  @include tablet {
-    height: 100%;
-    justify-content: space-between;
-  }
+  height: 100%;
+  justify-content: space-between;
 
   &-title {
     font-size: fluid(28, 20);
@@ -30,10 +28,12 @@
     row-gap: 20px;
     overflow-y: auto;
     scrollbar-width: thin;
-    padding-right:20px;
+    padding-right: 20px;
     @include tablet-above {
       max-height: 452px;
-
+    }
+    @include tablet {
+      max-height: 452px;
     }
   }
 
