@@ -1,6 +1,7 @@
 import './Field.scss'
 import {clsx} from "clsx";
 import {FieldErrors, UseFormRegister} from "react-hook-form";
+import {ReactNode} from "react";
 
 interface FieldProps {
   className?: string;
@@ -12,6 +13,7 @@ interface FieldProps {
   schemaName: string;
   placeholder: string;
   type?: string;
+  actionElement?: ReactNode; // динамический элемент, по типу кнопки и тд
 }
 
 export const Field = ({
@@ -23,7 +25,8 @@ export const Field = ({
                         errors,
                         schemaName,
                         placeholder,
-                        type = 'text'
+                        type = 'text',
+                        actionElement
                       }: FieldProps) => {
   const fieldError = errors[schemaName]
   const Component = textarea ? 'textarea' : 'input'
@@ -31,13 +34,16 @@ export const Field = ({
     <div className={clsx("field", `field--${className}`)}>
       <div className="field__inner">
         <label className="field__label" htmlFor={schemaName}>{label} {isReq && <b>*</b>}</label>
-        <Component
-          className={clsx(`field__${Component}`, fieldError && 'field--error')}
-          type={textarea ? undefined : type}
-          placeholder={placeholder}
-          id={schemaName}
-          {...register(schemaName)}
-        />
+        <div className="field__group">
+          <Component
+            className={clsx(`field__${Component}`, fieldError && 'field--error')}
+            type={textarea ? undefined : type}
+            placeholder={placeholder}
+            id={schemaName}
+            {...register(schemaName)}
+          />
+          {actionElement && actionElement}
+        </div>
         {fieldError && <p className="field__label--error">{fieldError.message as string}</p>}
       </div>
     </div>

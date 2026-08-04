@@ -10,14 +10,12 @@ export const checkoutSchema = z.object({
     .regex(nameRegex, 'You can only enter letters'),
   lastName: z
     .string()
-    .min(2, 'The last name must contain at least 2 letters')
-    .max(30, 'Last name too long')
-    .regex(nameRegex, 'You can only enter letters'),
+    .max(30, 'Last name too long'),
   email: z
     .email('Enter a valid email address'),
   phone: z
     .string()
-    .min(4,'Phone number is required')
+    .min(4, 'Phone number is required')
     .regex(/^[0-9+-]+$/, 'Only numbers and symbols + or -'),
   address: z
     .string()
@@ -26,7 +24,9 @@ export const checkoutSchema = z.object({
     .string()
     .max(200, 'Comment too long')
     .optional(),
-  discount: z
+  promocode: z
     .string()
+    .trim()
+    .toUpperCase()
     .optional()
 })

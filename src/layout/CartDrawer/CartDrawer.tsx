@@ -38,13 +38,6 @@ export const CartDrawer = () => {
         ) : (
           <>
             <CartList cart={cart} classNameList="cart-drawer__list" classNameItem="cart-drawer__item"/>
-{/*            <ul className="cart-drawer__list">
-              {cart?.map((item) => (
-                <li className="cart-drawer__item" key={item.id}>
-                  <CartItem item={item} />
-                </li>
-              ))}
-            </ul>*/}
             <div className="cart-drawer__footer">
               <div className="cart-drawer__total">
                 <div>Subtotal:</div>

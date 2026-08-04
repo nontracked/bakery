@@ -77,7 +77,7 @@ export const CartHydrator = ({fullItems}: Props) => {
         {cart?.length !== undefined && cart?.length > 0 && (
           <div className="cart-hydrator__cart">
             <span className="cart-hydrator__cart-info">Current Cart</span>
-            <CartList cart={cart} classNameList="cart-hydrator__list" classNameItem="cart-hydrator__item"/>
+            <CartList cart={cart} classNameList="cart-hydrator__list" classNameItem="cart-hydrator__item" />
           </div>
         )}
         <div className="cart-hydrator__actions">

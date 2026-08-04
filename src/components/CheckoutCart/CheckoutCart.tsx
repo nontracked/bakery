@@ -6,15 +6,15 @@ import {CartList} from "@/components/CartList";
 
 export const CheckoutCart = () => {
   const cart = useHydratedStore(useCartStore, ((state) => state.cart))
+  const discountPercent = useCartStore((state) => state.discountPercent)
   if (!cart) return null
   const cartLength = cart.reduce((acc, item) => acc + item.quantity, 0)
   const subTotal = cart.reduce((acc, item) => (acc + (item.price * item.quantity)), 0)
   const subTotalFormatted = formatPrice(subTotal)
-  const discountPercent = 20
-  const discount = subTotal * discountPercent / 100
-  const discountFormatted = formatPrice(discount)
-  const taxes = (subTotal - discount) * 0.05
+  const taxes = subTotal * 0.05
   const taxesFormatted = formatPrice(taxes)
+  const discount = (subTotal + taxes) * discountPercent / 100
+  const discountFormatted = formatPrice(discount)
   const totalPrice = subTotal - discount + taxes
   const totalFormatted = formatPrice(totalPrice)
   return (
@@ -29,7 +29,9 @@ export const CheckoutCart = () => {
             <span>Subtotal <p>$ {subTotalFormatted}</p></span>
             <span>Service Fee <p>$ {taxesFormatted}</p></span>
             <span>Shipping <p>Free</p></span>
-            <span>Discount <p>- $ {discountFormatted}</p></span>
+            {discount > 0 && (
+              <span>Discount <p>- $ {discountFormatted}</p></span>
+            )}
             <div className="checkout__cart-total">
               <span>Total <p>$ {totalFormatted}</p></span>
             </div>
