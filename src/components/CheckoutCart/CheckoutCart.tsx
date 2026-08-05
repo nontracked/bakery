@@ -1,49 +1,52 @@
 import './CheckoutCart.scss'
-import {formatPrice} from "@/utils/formatPrice";
+import {CartList} from "@/components/CartList";
+import {useCartMath} from "@/hooks/useCartMath";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {useCartStore} from "@/store/useCartStore";
-import {CartList} from "@/components/CartList";
+import {CheckoutCartLoader} from "@/components/CheckoutCartLoader";
 
 export const CheckoutCart = () => {
-  const cart = useHydratedStore(useCartStore, ((state) => state.cart))
+  const cart = useHydratedStore(useCartStore, (state) => state.cart)
+/*  const cart = undefined*/
   const discountPercent = useCartStore((state) => state.discountPercent)
-  if (!cart) return null
-  const cartLength = cart.reduce((acc, item) => acc + item.quantity, 0)
-  const subTotal = cart.reduce((acc, item) => (acc + (item.price * item.quantity)), 0)
-  const taxes = subTotal * 0.05
-  const discount = subTotal * discountPercent / 100
-  const totalPrice = subTotal - discount + taxes
-  const subTotalFormatted = formatPrice(subTotal)
-  const taxesFormatted = formatPrice(taxes)
-  const discountFormatted = formatPrice(discount)
-  const totalFormatted = formatPrice(totalPrice)
+  const {
+    subTotalFormatted,
+    discountFormatted,
+    totalFormatted,
+    taxesFormatted,
+    cartLength
+  } = useCartMath(cart, discountPercent)
   return (
     <div className="checkout__cart">
-      <div className="checkout__cart-inner">
-        <h2 className="checkout__cart-title">
-          Your cart {cartLength > 0 ? `has ${cartLength} item(-s)` : 'is empty'}
-        </h2>
-        <div className="checkout__cart-body">
-          <CartList cart={cart} classNameList="checkout__cart-list" classNameItem="checkout__cart-item" />
-          <div className="checkout__cart-info">
-            <span>Subtotal <p>$ {subTotalFormatted}</p></span>
-            <span>Service Fee <p>$ {taxesFormatted}</p></span>
-            <span>Shipping <p>Free</p></span>
-            {discount > 0 && (
-              <span>Discount <p>- $ {discountFormatted}</p></span>
-            )}
-            <div className="checkout__cart-total">
-              <span>Total <p>$ {totalFormatted}</p></span>
+      {!cart ? <CheckoutCartLoader/> : (
+        <>
+          <div className="checkout__cart-inner">
+            <h2 className="checkout__cart-title">
+              Your cart {cartLength > 0 ? `has ${cartLength} item(-s)` : 'is empty'}
+            </h2>
+            <div className="checkout__cart-body">
+              <CartList cart={cart} classNameList="checkout__cart-list" classNameItem="checkout__cart-item" />
+              <div className="checkout__cart-info">
+                <span>Subtotal <p>$ {subTotalFormatted}</p></span>
+                <span>Service Fee <p>$ {taxesFormatted}</p></span>
+                <span>Shipping <p>Free</p></span>
+                {discountPercent > 0 && (
+                  <span>Discount <p>- $ {discountFormatted}</p></span>
+                )}
+                <div className="checkout__cart-total">
+                  <span>Total <p>$ {totalFormatted}</p></span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <button
-        className="checkout__cart-button-payment" disabled={!cart || cart.length === 0} type="submit"
-        form="checkout-form"
-      >
-        Continue to Payment
-      </button>
+          <button
+            className="checkout__cart-button-payment" disabled={!cart || cart.length === 0} type="submit"
+            form="checkout-form"
+          >
+            Continue to Payment
+          </button>
+        </>
+        )}
     </div>
   )
 }

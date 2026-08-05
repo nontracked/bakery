@@ -5,40 +5,55 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {checkoutSchema} from "@/schemas/checkoutSchema";
 import {Button} from "@/ui/Button";
 import {usePromocode} from "@/hooks/usePromocode";
+import {z} from "zod";
+
+type CheckoutFormValues = z.infer<typeof checkoutSchema>
 
 interface CheckoutFormProps {
-  onSubmit: SubmitHandler<any> // SubmitHandler сам подхватит нужные типы данных
+  onSubmit: SubmitHandler<any>
 }
+
+type FieldConfig = {
+  schemaName: keyof CheckoutFormValues;
+  label: string;
+  placeholder: string;
+  isReq?: boolean;
+  className?: string;
+  textarea?: boolean;
+}
+
+const STANDARD_FIELDS: FieldConfig[] = [
+  {schemaName: 'firstName', label: 'First Name', placeholder: 'Ivan', isReq: true},
+  {schemaName: 'lastName', label: 'Last Name', placeholder: 'Ivanov'},
+  {schemaName: 'email', label: 'Email', placeholder: 'example@gmail.com', isReq: true},
+  {schemaName: 'phone', label: 'Phone', placeholder: 'Your Number', isReq: true},
+  {schemaName: 'address', label: 'Address', placeholder: 'Your Address', isReq: true, className: 'wide'}
+]
 
 export const CheckoutForm = ({onSubmit}: CheckoutFormProps) => {
   const formId = 'checkout-form'
   const {
     register,
     handleSubmit,
-    watch, // перерисовывает компонент
-    getValues,// позволяет "подсмотреть" текущее значение любого поля в RHF без запуска валидации и сабмита всей формы (не перерисовывает компонент)
-    setError, // zod не знает про промокоды ничего, поэтому будем в ручную вызывать ошибку
-    clearErrors,// сброс старой ошибки
+    watch,
+    getValues,
+    setError,
+    clearErrors,
     formState: {errors}
   } = useForm(
     {
       resolver: zodResolver(checkoutSchema),
       mode: 'onTouched',
     })
-  const {isSuccess, handleApply, isApplyDisabled} = usePromocode({watch, getValues, clearErrors, setError} )
+  const {isSuccess, handleApply, isApplyDisabled} = usePromocode({watch, getValues, clearErrors, setError})
   return (
     <form className={formId} id={formId} onSubmit={handleSubmit(onSubmit)}>
-      <Field label="First Name" isReq errors={errors} register={register} schemaName="firstName" placeholder="Ivan" />
-      <Field label="Last Name" errors={errors} register={register} schemaName="lastName" placeholder="Ivanov" />
-      <Field
-        label="Email" isReq placeholder="example@gmail.com" errors={errors} register={register} schemaName="email"
-      />
-      <Field label="Phone" isReq placeholder="Your Number" errors={errors} register={register} schemaName="phone" />
-      <Field
-        className="wide" isReq label="Address" placeholder="Your Address"
-        errors={errors} register={register}
-        schemaName="address"
-      />
+      {STANDARD_FIELDS.map(({label, schemaName, placeholder, isReq, className}) => (
+        <Field key={schemaName}
+          className={className} isReq={isReq} label={label} errors={errors} register={register} schemaName={schemaName}
+          placeholder={placeholder}
+        />
+      ))}
 
       <Field
         className="wide" label="Discount" isSuccess={isSuccess} placeholder="Discount Code" errors={errors}

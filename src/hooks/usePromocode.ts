@@ -4,6 +4,7 @@ import {checkPromocode} from "@/actions/checkPromocode";
 import {UseFormClearErrors, UseFormGetValues, UseFormSetError, UseFormWatch} from "react-hook-form";
 import {checkoutSchema} from "@/schemas/checkoutSchema";
 import {z} from "zod";
+import {useHydratedStore} from "@/hooks/useHydratedStore";
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>
 
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const usePromocode = ({watch, getValues, clearErrors, setError}: Props) => {
+  const cart = useHydratedStore(useCartStore, (state) => state.cart)
   const setAppliedPromocode = useCartStore((state) => state.setAppliedPromocode)
   const appliedPromocode = useCartStore((state) => state.appliedPromocode)
   const [isSuccess, setIsSuccess] = useState('')
@@ -23,7 +25,7 @@ export const usePromocode = ({watch, getValues, clearErrors, setError}: Props) =
   const handleApply = () => {
     const code = getValues('promocode')
     if (!code || code.length === 0) return
-    clearErrors('promocode') // очищаем предыдущие ошибки если были
+    clearErrors('promocode')
     setIsSuccess('')
     setAppliedPromocode(0, '')
     setTransition(async () => {
@@ -37,9 +39,11 @@ export const usePromocode = ({watch, getValues, clearErrors, setError}: Props) =
     })
   }
   const isApplyDisabled =
+    !cart ||
+    cart.length === 0 ||
     isPending ||
     !promocodeWatcher ||
-    promocodeWatcher?.trim()?.toUpperCase() !== appliedPromocode?.trim()?.toUpperCase()
+    promocodeWatcher?.trim()?.toUpperCase() === appliedPromocode?.toUpperCase()
 
   return {isSuccess, isApplyDisabled, handleApply}
 }
