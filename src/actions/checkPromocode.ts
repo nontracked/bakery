@@ -15,7 +15,7 @@ export const checkPromocode = async (code: string) => {
     if (!foundPromocode) {
       return {error: 'Invalid or expired code'}
     }
-    return {success: true, percent: foundPromocode.discountPercent}
+    return {success: 'Промокод успешно применен', percent: foundPromocode.discountPercent}
   } catch (error) {
     console.error('Error promocode checking')
     return {error: 'Error promocode checking'}

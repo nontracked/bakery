@@ -10,12 +10,12 @@ export const CheckoutCart = () => {
   if (!cart) return null
   const cartLength = cart.reduce((acc, item) => acc + item.quantity, 0)
   const subTotal = cart.reduce((acc, item) => (acc + (item.price * item.quantity)), 0)
-  const subTotalFormatted = formatPrice(subTotal)
   const taxes = subTotal * 0.05
-  const taxesFormatted = formatPrice(taxes)
-  const discount = (subTotal + taxes) * discountPercent / 100
-  const discountFormatted = formatPrice(discount)
+  const discount = subTotal * discountPercent / 100
   const totalPrice = subTotal - discount + taxes
+  const subTotalFormatted = formatPrice(subTotal)
+  const taxesFormatted = formatPrice(taxes)
+  const discountFormatted = formatPrice(discount)
   const totalFormatted = formatPrice(totalPrice)
   return (
     <div className="checkout__cart">
