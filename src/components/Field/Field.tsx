@@ -14,6 +14,7 @@ interface FieldProps {
   placeholder: string;
   type?: string;
   actionElement?: ReactNode; // динамический элемент, по типу кнопки и тд
+  isSuccess?: string,
 }
 
 export const Field = ({
@@ -26,7 +27,8 @@ export const Field = ({
                         schemaName,
                         placeholder,
                         type = 'text',
-                        actionElement
+                        actionElement,
+                        isSuccess
                       }: FieldProps) => {
   const fieldError = errors[schemaName]
   const Component = textarea ? 'textarea' : 'input'
@@ -45,6 +47,7 @@ export const Field = ({
           {actionElement && actionElement}
         </div>
         {fieldError && <p className="field__label--error">{fieldError.message as string}</p>}
+        {!fieldError && isSuccess && <p className="field__label--success">{isSuccess}</p>}
       </div>
     </div>
   )

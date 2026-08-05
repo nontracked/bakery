@@ -57,17 +57,24 @@
       color: var(--color-red);
     }
 
-    &--error {
+    &--error,
+    &--success{
       position: absolute;
       font-size: fluid(18, 14);
+      font-family: var(--fonst,asap),sans-serif;
       bottom: -28px;
-      color: var(--color-red);
       transition: all var(--transition-duration);
       animation: errorOpacity 0.2s;
       white-space: nowrap;
       @include tablet {
         bottom: -25px;
       }
+    }
+    &--error {
+      color: var(--color-red);
+    }
+    &--success {
+      color: green;
     }
   }
 
