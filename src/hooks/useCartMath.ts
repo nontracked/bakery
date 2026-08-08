@@ -1,6 +1,7 @@
 import {CartItem} from "@/store/useCartStore";
 import {formatPrice} from "@/utils/formatPrice";
 import {useMemo} from "react";
+import {TAXES_VALUE} from "@/lib/constants";
 
 export const useCartMath = (cart: CartItem[] | undefined, discountPercent: number) => {
   return useMemo(() => {
@@ -8,7 +9,7 @@ export const useCartMath = (cart: CartItem[] | undefined, discountPercent: numbe
     const cartLength = safeCart.reduce((acc, item) => acc + item.quantity, 0)
     const subTotal = safeCart.reduce((acc, item) => (acc + (item.price * item.quantity)), 0)
     const discount = subTotal * discountPercent / 100
-    const taxes = subTotal * 0.05
+    const taxes = subTotal * TAXES_VALUE
     const totalPrice = subTotal - discount + taxes
     return {
       cartLength,

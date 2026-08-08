@@ -10,7 +10,7 @@ import {z} from "zod";
 type CheckoutFormValues = z.infer<typeof checkoutSchema>
 
 interface CheckoutFormProps {
-  onSubmit: SubmitHandler<any>
+  onSubmit: SubmitHandler<CheckoutFormValues>
 }
 
 type FieldConfig = {

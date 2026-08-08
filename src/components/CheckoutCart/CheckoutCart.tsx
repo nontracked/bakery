@@ -7,7 +7,6 @@ import {CheckoutCartLoader} from "@/components/CheckoutCartLoader";
 
 export const CheckoutCart = () => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
-/*  const cart = undefined*/
   const discountPercent = useCartStore((state) => state.discountPercent)
   const {
     subTotalFormatted,
