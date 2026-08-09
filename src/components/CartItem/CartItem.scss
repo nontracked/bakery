@@ -8,6 +8,7 @@
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 5px;
+    min-width: 80px;
   }
 
   &__oval {
@@ -32,8 +33,13 @@
 
   &__title {
     font-size: fluid(22, 18);
-    line-height: 1;
+    line-height: 1.5;
     font-family: var(--font-oswald), sans-serif;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    position: relative;
+    overflow: hidden;
   }
 
   &__main {
@@ -48,6 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 10px;
 
     .quantity-items {
       @include tablet-above {

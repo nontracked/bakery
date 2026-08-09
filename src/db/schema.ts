@@ -23,10 +23,21 @@ export const orders = pgTable("orders", {
   id: uuid("id").defaultRandom().primaryKey(),
   customerName: text("customer_name").notNull(),
   phone: text("phone").notNull(),
+  email: text("email").notNull(),
   address: text("address").notNull(),
   totalPrice: integer("total_price").notNull(),
+  appliedPromocode: text("applied_promocode"),
+  discountPercent: integer("discount_percent").default(0),
   status: text("status").default("NEW").notNull(),
+  comment: text("comment"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+})
+
+export const discount = pgTable('discount', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  promocode: text('promocode').notNull().unique(),
+  discountPercent: integer('discount_percent').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
 })
 
 export const ordersItems = pgTable("orders_items", {

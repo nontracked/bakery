@@ -1,6 +1,7 @@
 .cart-drawer {
   display: grid;
   grid-template-columns: 80% auto;
+
   &__overlay {
     position: fixed;
     inset: 0;
@@ -17,11 +18,13 @@
 
     }
   }
+
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   &__close {
     cursor: pointer;
     width: fluid(44, 35);
@@ -30,6 +33,7 @@
       stroke: #d20348;
     }
   }
+
   &__main {
     display: flex;
     flex-direction: column;
@@ -114,6 +118,7 @@
     background-color: var(--color-dark);
     color: var(--color-white);
     border: 1px solid transparent;
+    justify-content: center;
     @include hover {
       background-color: var(--color-green);
       color: var(--color-dark);

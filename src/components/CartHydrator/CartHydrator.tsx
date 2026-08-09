@@ -6,6 +6,7 @@ import {toast} from "sonner";
 import {useScrollLock} from "@/hooks/useScrollLock";
 import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {CartItem as CartItemModal} from "@/components/CartItem";
+import {CartList} from "@/components/CartList";
 
 interface Props {
   fullItems: CartItem[]
@@ -76,13 +77,7 @@ export const CartHydrator = ({fullItems}: Props) => {
         {cart?.length !== undefined && cart?.length > 0 && (
           <div className="cart-hydrator__cart">
             <span className="cart-hydrator__cart-info">Current Cart</span>
-            <ul className="cart-hydrator__list">
-              {cart?.map((item) => (
-                <li className="cart-hydrator__item" key={item.id}>
-                  <CartItemModal item={item} />
-                </li>
-              ))}
-            </ul>
+            <CartList cart={cart} classNameList="cart-hydrator__list" classNameItem="cart-hydrator__item" />
           </div>
         )}
         <div className="cart-hydrator__actions">
