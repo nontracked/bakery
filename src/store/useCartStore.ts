@@ -12,25 +12,38 @@ export interface CartItem {
 interface CartState {
   cart: CartItem[],
   isCartOpen: boolean,
-  openCart: () => void;
-  closeCart: () => void;
+  discountPercent: number, // визуальное отображение для фронтенда
+  appliedPromocode: string | null,// текст промокода и логика для бекенда
+  setAppliedPromocode: (percent: number, code: string) => void,
+  removeAppliedPromocode: () => void,
+  openCart: () => void,
+  closeCart: () => void,
   addToCart: (product: Omit<CartItem, 'quantity'>) => void,
   removeFromCart: (productId: string) => void,
   updateQuantity: (productId: string, action: 'increase' | 'decrease') => void,
-  clearCart: () => void;
-  setCart: (items: CartItem[]) => void;
-  mergeCart: (items: CartItem[]) => void;
+  clearCart: () => void,
+  setCart: (items: CartItem[]) => void,
+  mergeCart: (items: CartItem[]) => void,
 }
 
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cart: [],
+      discountPercent: 0,
+      appliedPromocode: null,
+      setAppliedPromocode: (percent, code) => set({ // для обновления
+        discountPercent: percent,
+        appliedPromocode: code,
+      }),
+      removeAppliedPromocode: () => set({
+        discountPercent: 0,
+        appliedPromocode: null,
+      }),
       isCartOpen: false,
       openCart: () => set({isCartOpen: true}),
       closeCart: () => set({isCartOpen: false}),
       setCart: (items) => set({cart: items}),
-
       mergeCart: (sharedItems) => set((state) => {
         const newCart = [...state.cart]
         sharedItems.map((sharedItem) => {
@@ -81,7 +94,10 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'cart-storage',
-      partialize: (state) => ({cart: state.cart}),
+      partialize: (state) => {
+        const {isCartOpen, discountPercent, appliedPromocode, ...rest} = state
+        return rest
+      },
     },
   )
 )

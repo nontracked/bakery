@@ -29,6 +29,20 @@
       "when": 1785149271959,
       "tag": "0003_charming_madelyne_pryor",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1785840064488,
+      "tag": "0004_far_gateway",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1785843299485,
+      "tag": "0005_square_gertrude_yorkes",
+      "breakpoints": true
     }
   ]
 }
