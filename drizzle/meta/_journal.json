@@ -43,6 +43,13 @@
       "when": 1785843299485,
       "tag": "0005_square_gertrude_yorkes",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1786295163822,
+      "tag": "0006_fuzzy_carlie_cooper",
+      "breakpoints": true
     }
   ]
 }

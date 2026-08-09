@@ -27,6 +27,7 @@ export type Payload = {
 export const Checkout = () => {
   const router = useRouter()
   const cart = useCartStore(state => state.cart)
+  const searchParams = useSearchParams()
   const appliedPromocode = useCartStore(state => state.appliedPromocode)
   const [isPending, startTransition] = useTransition()
   const handleSubmit: SubmitHandler<CheckoutFormValues> = async (formData) => {
@@ -51,7 +52,7 @@ export const Checkout = () => {
           toast.success('Successfully processed!', {className: 'custom-toast__checkout'})
           window.location.href = response.url // просто перенаправляем пользователя по ссылке от Stripe
         } else {
-          toast.warning('Error', {className: 'custom-toast__checkout'})
+          toast.warning('Error whilst placing an order', {className: 'custom-toast__checkout'})
         }
       })
     } catch (e) {
@@ -59,6 +60,20 @@ export const Checkout = () => {
       toast.error('Error whilst placing an order', {className: 'custom-toast__checkout'})
     }
   }
+  useEffect(() => {
+    let timer = null
+    if (searchParams.has('canceled')) {
+      timer = setTimeout(() => {
+        toast.warning('Payment was cancelled', {className: 'custom-toast__checkout'})
+      }, 500)
+      window.history.replaceState({}, '', '/checkout')
+    }
+    return () => {
+      if (timer) {
+        clearTimeout(timer)
+      }
+    }
+  }, [searchParams]);
   return (
     <div className="checkout container">
       <div className="checkout__info">
