@@ -1,14 +1,14 @@
 'use client'
 import './Checkout.scss'
 import {CheckoutForm} from "@/components/CheckoutForm";
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {CheckoutCart} from "@/components/CheckoutCart";
 import {useCartStore} from "@/store/useCartStore";
 import {SubmitHandler} from "react-hook-form";
 import {checkoutSchema} from "@/schemas/checkoutSchema";
 import {z} from "zod";
 import {createOrder} from "@/actions/checkout";
-import {useTransition} from "react";
+import {useEffect, useTransition} from "react";
 import {toast} from "sonner";
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>
@@ -46,15 +46,19 @@ export const Checkout = () => {
     }
     try {
       startTransition(async () => {
-        await createOrder(payload)
-        toast.success('Successfully processed!', {className: 'custom-toast__checkout', duration: 100000})
+        const response = await createOrder(payload)
+        if (response.success && response.url) {
+          toast.success('Successfully processed!', {className: 'custom-toast__checkout'})
+          window.location.href = response.url // просто перенаправляем пользователя по ссылке от Stripe
+        } else {
+          toast.warning('Error', {className: 'custom-toast__checkout'})
+        }
       })
     } catch (e) {
       console.error(e)
-      toast.error('Error whilst placing an order', {className: 'custom-toast__checkout', duration: 10000})
+      toast.error('Error whilst placing an order', {className: 'custom-toast__checkout'})
     }
   }
-
   return (
     <div className="checkout container">
       <div className="checkout__info">

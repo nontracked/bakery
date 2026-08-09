@@ -5,6 +5,9 @@ import {db} from "@/db";
 import {discount, orders, ordersItems, products} from "@/db/schema";
 import {eq, inArray} from "drizzle-orm";
 import {TAXES_VALUE} from "@/lib/constants";
+import {Stripe} from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
 type CartProducts = {
   orderId: string;
@@ -68,7 +71,31 @@ export const createOrder = async (payload: Payload) => {
       return accum
     }, [] as CartProducts[])
     await db.insert(ordersItems).values(cartProducts)
-    return {success: true, orderId: newOrder.id}
+
+    // Получаем базовый URL сайта (локально или на проде)
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment', // Режим разовой оплаты (не подписка)
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: `Order #${newOrder.id}` // Это название клиент увидит на странице Stripe
+            },
+            unit_amount: totalPrice, // Сумма в центах
+          },
+          quantity: 1,
+        }
+      ],
+      metadata: {
+        orderId: newOrder.id // Прячем ID для вебхука
+      },
+      success_url: `${appUrl}/success?order=${newOrder.id}`, // Куда перекинуть при успехе
+      cancel_url: `${appUrl}/checkout?canceled=true` // Куда перекинуть, если клиент передумал и нажал "Назад"
+    })
+    return {success: true, orderId: newOrder.id, url: session.url} // 4. Возвращаем URL сессии вместо clientSecret
 
   } catch (e) {
     console.error('Order creating error', e)
