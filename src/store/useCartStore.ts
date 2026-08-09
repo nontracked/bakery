@@ -94,7 +94,10 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'cart-storage',
-      partialize: (state) => ({cart: state.cart}),
+      partialize: (state) => {
+        const {isCartOpen, discountPercent, appliedPromocode, ...rest} = state
+        return rest
+      },
     },
   )
 )
