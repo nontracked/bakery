@@ -9,6 +9,7 @@ import {checkoutSchema} from "@/schemas/checkoutSchema";
 import {z} from "zod";
 import {createOrder} from "@/actions/checkout";
 import {useTransition} from "react";
+import {toast} from "sonner";
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>
 export type Payload = {
@@ -47,9 +48,11 @@ export const Checkout = () => {
     try {
       startTransition(async () => {
         await createOrder(payload)
+        toast.success('Successfully processed!', {className: 'custom-toast__checkout', duration: 100000})
       })
     } catch (e) {
       console.error(e)
+      toast.error('Error whilst placing an order', {className: 'custom-toast__checkout', duration: 10000})
     }
   }
 
