@@ -19,6 +19,8 @@
     row-gap: 30px;
     justify-content: space-between;
     align-items: center;
+    column-gap: fluid(20, 10);
+    white-space: nowrap;
   }
 
   &__info {
@@ -36,17 +38,21 @@
     border: 1px solid var(--color-light-gray);
     background-color: var(--color-white);
     border-radius: 5px;
-    padding-inline: fluid(40, 30);
+    padding-inline: fluid(40, 5);
     font-size: fluid(20, 18);
     @include hover {
       background-color: var(--color-dark);
       color: var(--color-white);
+    }
+    @include mobile {
+      padding-inline: 15px;
     }
   }
 
   &__title {
     font-size: fluid(28, 20);
     font-family: var(--font-asap), sans-serif;
+    flex: 1;
   }
 
 }

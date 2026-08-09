@@ -31,7 +31,6 @@ export const Checkout = () => {
   const [isPending, startTransition] = useTransition()
   const handleSubmit: SubmitHandler<CheckoutFormValues> = async (formData) => {
     if (!cart || cart.length === 0) return
-    // Цены мы специально вырезаем, чтобы сервер сам их посчитал
     const itemsForBackend = cart.map(({id, quantity}) => ({
       productId: id,
       quantity
@@ -62,6 +61,9 @@ export const Checkout = () => {
         <div className="checkout__header">
           <button className="checkout__button" type="button" onClick={router.back}>
             Back
+          </button>
+          <button className="checkout__button" form="checkout-form" type="reset">
+            Clear form
           </button>
           <h1 className="checkout__title">Shipping info</h1>
         </div>

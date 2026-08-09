@@ -6,6 +6,7 @@ import {checkoutSchema} from "@/schemas/checkoutSchema";
 import {Button} from "@/ui/Button";
 import {usePromocode} from "@/hooks/usePromocode";
 import {z} from "zod";
+import React, {useEffect} from "react";
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>
 
@@ -20,6 +21,15 @@ type FieldConfig = {
   isReq?: boolean;
   className?: string;
   textarea?: boolean;
+}
+
+const getSaveFromData = () => {
+  try {
+    const savedData = sessionStorage.getItem('checkout-draft')
+    return savedData ? JSON.parse(savedData) : {}
+  } catch (error) {
+    return {}
+  }
 }
 
 const STANDARD_FIELDS: FieldConfig[] = [
@@ -38,18 +48,40 @@ export const CheckoutForm = ({onSubmit}: CheckoutFormProps) => {
     watch,
     getValues,
     setError,
+    reset,
     clearErrors,
     formState: {errors}
   } = useForm(
     {
       resolver: zodResolver(checkoutSchema),
       mode: 'onTouched',
+      defaultValues: getSaveFromData(),
     })
   const {isSuccess, handleApply, isApplyDisabled} = usePromocode({watch, getValues, clearErrors, setError})
+  const allFormData = watch()
+  const handleReset = () => {
+    reset({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      address: '',
+      comment: '',
+      promocode: ''
+    })
+    sessionStorage.removeItem('checkout-draft')
+  }
+  useEffect(() => {
+    const {promocode, ...rest} = allFormData
+    sessionStorage.setItem('checkout-draft', JSON.stringify(rest))
+
+  }, [allFormData]);
+
   return (
-    <form className={formId} id={formId} onSubmit={handleSubmit(onSubmit)}>
+    <form className={formId} id={formId} onReset={handleReset} onSubmit={handleSubmit(onSubmit)}>
       {STANDARD_FIELDS.map(({label, schemaName, placeholder, isReq, className}) => (
-        <Field key={schemaName}
+        <Field
+          key={schemaName}
           className={className} isReq={isReq} label={label} errors={errors} register={register} schemaName={schemaName}
           placeholder={placeholder}
         />
