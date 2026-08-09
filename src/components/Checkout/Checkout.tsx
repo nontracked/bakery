@@ -8,6 +8,7 @@ import {SubmitHandler} from "react-hook-form";
 import {checkoutSchema} from "@/schemas/checkoutSchema";
 import {z} from "zod";
 import {createOrder} from "@/actions/checkout";
+import {useTransition} from "react";
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>
 export type Payload = {
@@ -26,9 +27,9 @@ export const Checkout = () => {
   const router = useRouter()
   const cart = useCartStore(state => state.cart)
   const appliedPromocode = useCartStore(state => state.appliedPromocode)
+  const [isPending, startTransition] = useTransition()
   const handleSubmit: SubmitHandler<CheckoutFormValues> = async (formData) => {
     if (!cart || cart.length === 0) return
-
     // Цены мы специально вырезаем, чтобы сервер сам их посчитал
     const itemsForBackend = cart.map(({id, quantity}) => ({
       productId: id,
@@ -44,7 +45,9 @@ export const Checkout = () => {
       items: itemsForBackend,
     }
     try {
-      await createOrder(payload)
+      startTransition(async () => {
+        await createOrder(payload)
+      })
     } catch (e) {
       console.error(e)
     }
@@ -61,7 +64,7 @@ export const Checkout = () => {
         </div>
         <CheckoutForm onSubmit={handleSubmit} />
       </div>
-      <CheckoutCart />
+      <CheckoutCart isPending={isPending} />
     </div>
   )
 }

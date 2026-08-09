@@ -5,7 +5,7 @@ import {useHydratedStore} from "@/hooks/useHydratedStore";
 import {useCartStore} from "@/store/useCartStore";
 import {CheckoutCartLoader} from "@/components/CheckoutCartLoader";
 
-export const CheckoutCart = () => {
+export const CheckoutCart = ({isPending}: { isPending: boolean }) => {
   const cart = useHydratedStore(useCartStore, (state) => state.cart)
   const discountPercent = useCartStore((state) => state.discountPercent)
   const {
@@ -17,7 +17,7 @@ export const CheckoutCart = () => {
   } = useCartMath(cart, discountPercent)
   return (
     <div className="checkout__cart">
-      {!cart ? <CheckoutCartLoader/> : (
+      {!cart ? <CheckoutCartLoader /> : (
         <>
           <div className="checkout__cart-inner">
             <h2 className="checkout__cart-title">
@@ -39,13 +39,13 @@ export const CheckoutCart = () => {
             </div>
           </div>
           <button
-            className="checkout__cart-button-payment" disabled={!cart || cart.length === 0} type="submit"
+            className="checkout__cart-button-payment" disabled={!cart || cart.length === 0 || isPending} type="submit"
             form="checkout-form"
           >
-            Continue to Payment
+            {isPending ? 'Processing...' : 'Continue to Payment'}
           </button>
         </>
-        )}
+      )}
     </div>
   )
 }
