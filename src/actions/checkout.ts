@@ -16,6 +16,11 @@ type CartProducts = {
   price: number
 }
 
+export type ShortCartItems = {
+  name: string;
+  price: number
+}
+
 export const createOrder = async (payload: Payload) => {
   if (!payload.items || payload.items.length === 0) {
     return {success: false, message: 'Empty cart'}
@@ -71,7 +76,7 @@ export const createOrder = async (payload: Payload) => {
       return accum
     }, [] as CartProducts[])
     await db.insert(ordersItems).values(cartProducts)
-
+    const shortCartItems: ShortCartItems[] = payload.items.map(({name, price}) => ({name, price}))
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -89,7 +94,8 @@ export const createOrder = async (payload: Payload) => {
         }
       ],
       metadata: {
-        orderId: newOrder.id
+        orderId: newOrder.id,
+        receiptItems: JSON.stringify(shortCartItems),
       },
       success_url: `${appUrl}/success?order=${newOrder.id}`,
       cancel_url: `${appUrl}/checkout?canceled=true`
