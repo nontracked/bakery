@@ -4,6 +4,8 @@ import {Stripe} from "stripe";
 import {db} from "@/db";
 import {orders} from "@/db/schema";
 import {eq} from "drizzle-orm";
+import {resend} from "@/lib/resend";
+import {ShortCartItems} from "@/actions/checkout";
 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
@@ -16,10 +18,10 @@ export const POST = async (request: Request) => {
   try {
     event = stripe.webhooks.constructEvent(
       body,
-      signature,
+      signature as string,
       process.env.STRIPE_WEBHOOK_SECRET as string
     )
-  } catch (error) {
+  } catch (error: any) {
     console.error('Webhook signature error', error.message)
     return NextResponse.json({error: 'Invalid signature'}, {status: 400})
   }
@@ -27,8 +29,29 @@ export const POST = async (request: Request) => {
   const orderId = session.metadata?.orderId
   if (event.type === 'checkout.session.completed') {
     if (orderId) {
+      const items = session.metadata?.receiptItems as string
+      const customerEmail = session.customer_details?.email
+      const parsedItems: ShortCartItems[] = JSON.parse(items)
       await db.update(orders).set({status: 'PAID'}).where(eq(orders.id, orderId))
-    } else if (event.type === 'checkout.session.expired') {
+      if (customerEmail) {
+        await resend.emails.send({
+          from: 'Bakery <onboarding@resend.dev>',
+          to: customerEmail,
+          subject: 'Ваш заказ успешно оплачен! 🥐',
+          html: `<div>
+            <p>Спасибо за заказ! ID вашего заказа: ${orderId}</p>
+            <h3>Состав заказа:</h3>
+            <ul>
+              ${parsedItems.map((item) => `
+                <li>${item.name} — $${item.price / 100}</li>
+              `).join('')}
+            </ul>
+          </div>`
+        })
+      }
+    }
+  } else if (event.type === 'checkout.session.expired') {
+    if (orderId) {
       await db.update(orders).set({status: 'EXPIRED'}).where(eq(orders.id, orderId))
     }
   }

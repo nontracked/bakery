@@ -17,7 +17,9 @@ export type Payload = {
   comment: string | null;
   items: {
     productId: string;
-    quantity: number
+    quantity: number;
+    name:string;
+    price:number;
   }[];
 }
 
@@ -27,9 +29,11 @@ export const useCheckoutSubmit = () => {
   const [isPending, startTransition] = useTransition()
   const handleSubmit: SubmitHandler<CheckoutFormValues> = async (formData) => {
     if (!cart || cart.length === 0) return
-    const itemsForBackend = cart.map(({id, quantity}) => ({
+    const itemsForBackend = cart.map(({id, quantity, name, price}) => ({
       productId: id,
-      quantity
+      quantity,
+      name,
+      price
     }))
     const payload: Payload = {
       customerName: `${formData.firstName} ${formData.lastName || ''}`.trim(),
