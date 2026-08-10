@@ -1,11 +1,11 @@
 'use server'
 
-import {Payload} from "@/components/Checkout/Checkout";
 import {db} from "@/db";
 import {discount, orders, ordersItems, products} from "@/db/schema";
 import {eq, inArray} from "drizzle-orm";
 import {TAXES_VALUE} from "@/lib/constants";
 import {Stripe} from "stripe";
+import {Payload} from "@/hooks/useCheckoutSubmit";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
