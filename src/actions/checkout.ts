@@ -72,30 +72,29 @@ export const createOrder = async (payload: Payload) => {
     }, [] as CartProducts[])
     await db.insert(ordersItems).values(cartProducts)
 
-    // Получаем базовый URL сайта (локально или на проде)
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'payment', // Режим разовой оплаты (не подписка)
+      mode: 'payment',
       line_items: [
         {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: `Order #${newOrder.id}` // Это название клиент увидит на странице Stripe
+              name: `Order #${newOrder.id}`
             },
-            unit_amount: totalPrice, // Сумма в центах
+            unit_amount: totalPrice,
           },
           quantity: 1,
         }
       ],
       metadata: {
-        orderId: newOrder.id // Прячем ID для вебхука
+        orderId: newOrder.id
       },
-      success_url: `${appUrl}/success?order=${newOrder.id}`, // Куда перекинуть при успехе
-      cancel_url: `${appUrl}/checkout?canceled=true` // Куда перекинуть, если клиент передумал и нажал "Назад"
+      success_url: `${appUrl}/success?order=${newOrder.id}`,
+      cancel_url: `${appUrl}/checkout?canceled=true`
     })
-    return {success: true, orderId: newOrder.id, url: session.url} // 4. Возвращаем URL сессии вместо clientSecret
+    return {success: true, orderId: newOrder.id, url: session.url}
 
   } catch (e) {
     console.error('Order creating error', e)
