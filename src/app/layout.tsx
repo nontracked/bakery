@@ -70,7 +70,6 @@ export default function RootLayout({children}: Readonly<{
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
-          <Header />
           {children}
           {<Toaster
             position="top-center"
@@ -87,7 +86,6 @@ export default function RootLayout({children}: Readonly<{
           />}
           <CartDrawer />
         </QueryProvider>
-        <Footer />
       </body>
     </html>
   );
