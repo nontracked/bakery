@@ -1,5 +1,8 @@
 
 .success {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   &__main {
     display: flex;
     align-items: center;
