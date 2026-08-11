@@ -1,0 +1,112 @@
+
+.success {
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 20px;
+    color: var(--color-dark);
+    height: 50vh;
+    padding-block: fluid(50, 20);
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    row-gap: fluid(30, 20);
+    @include laptop {
+      width: 65%;
+    }
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  &__inner {
+    width: 100%;
+    padding-block: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: fluid(30, 20);
+    box-shadow: 0 0 10px #e3e3e3;
+    border-radius: fluid(10, 5);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+
+    span {
+      font-family: var(--font-oswald), sans-serif;
+      font-size: fluid(28, 18);
+    }
+
+    border-bottom: 1px solid rgba(219, 219, 219, 0.87);
+  }
+
+  &__header,
+  &__body,
+  &__payment {
+    width: 100%;
+  }
+
+  &__body,
+  &__header {
+    margin-bottom: fluid(20, 10);
+    padding-bottom: fluid(20, 10);
+  }
+
+  &__title {
+    font-size: fluid(34, 24);
+    font-family: var(--font-asap), sans-serif;
+  }
+
+  &__body,
+  &__payment {
+    font-size: fluid(22, 18);
+  }
+
+  &__body {
+
+    font-family: var(--fonst-asap), sans-serif;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    border-bottom: 1px dashed rgba(219, 219, 219, 0.87);
+  }
+
+  &__cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__info {
+    opacity: 0.8;
+  }
+
+  &__data {
+    font-family: var(--font-oswald), sans-serif;
+    letter-spacing: 1.5px;
+  }
+
+  &__button {
+    width: 100%;
+    padding: fluid(15, 10);
+    font-family: var(--font-asap), sans-serif;
+    font-size: fluid(22, 18);
+    border-radius: fluid(10, 5);
+    border: 1px solid var(--color-dark);
+    @include hover {
+      background-color: var(--color-dark);
+      color: var(--color-white);
+    }
+  }
+}
