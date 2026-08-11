@@ -174,16 +174,7 @@
 }
 
 .oval {
-  display: flex;
   position: absolute;
-  inset: 0;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: fluid(81, 61);
-    height: fluid(80, 60);
-  }
 }
 
 .product-card__button {

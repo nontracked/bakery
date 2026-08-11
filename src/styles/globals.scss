@@ -85,3 +85,21 @@ main {
 html {
   scrollbar-color: #ababab66 #f1f1f1;
 }
+
+.oval {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  z-index: 1;
+  svg {
+    width: fluid(81, 61);
+    height: fluid(80, 60);
+  }
+  @include tablet {
+    width: 50%;
+  }
+}

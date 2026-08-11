@@ -47,7 +47,7 @@
   &__oval {
     display: flex;
     position: absolute;
-    inset: 0;
+/*    inset: 0;*/
     align-items: center;
     justify-content: center;
     z-index: 11;
@@ -181,7 +181,6 @@
   &__loading {
     inset: 0;
     position: absolute;
-    background-color: red;
   }
 
 }
