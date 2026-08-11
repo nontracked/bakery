@@ -1,55 +1,48 @@
 import React from "react";
-import './Success.scss'
-import Image from "next/image";
+import {Success} from "@/components/Success";
+import {db} from "@/db";
+import {orders} from "@/db/schema";
+import {eq} from "drizzle-orm";
+import {notFound} from "next/navigation";
 
-export default function SuccessPage() {
+interface Props {
+  searchParams: Promise<{ [key: string]: string }>
+}
+
+export default async function SuccessPage({searchParams}: Props) {
+  const params = await searchParams
+  const orderId = params?.order
+  let dbOrder
+  try {
+    [dbOrder] = await db.select()
+      .from(orders)
+      .where(eq(orders.id, orderId))
+    if (!dbOrder) {
+      throw new Error('Error order ID')
+    }
+  } catch (e: any) {
+    console.error(e)
+    return notFound()
+  }
+  console.log(dbOrder)
+  const {customerName, totalPrice, createdAt} = dbOrder
+  const paymentTime = createdAt
+    ? new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Yekaterinburg',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(createdAt)
+    : 'Время не указано';
+  const shortOrderId = orderId?.split('-')[0]
+
   return (
     <>
-      {/*      <Header />*/}
       <main className="success__main container">
-        <div className="success__wrap">
-          <div className="success__inner">
-            <header className="success__header">
-              <Image className="success__icon" src="/success/success.svg" alt="success" width={100} height={100} />
-              <h1 className="success__title">Payment Success!</h1>
-              <span>$21.12</span>
-            </header>
-            <div className="success__body">
-              <div className="success__cell">
-                <span className="success__info">Short Order Id</span>
-                <p className="success__data">23131423</p>
-              </div>
-              <div className="success__cell">
-                <span className="success__info">Payment Time</span>
-                <p className="success__data">14:10</p>
-              </div>
-              <div className="success__cell">
-                <span className="success__info">Payment Method</span>
-                <p className="success__data">Card</p>
-              </div>
-              <div className="success__cell">
-                <span className="success__info">Client Name</span>
-                <p className="success__data">Piter Griffin</p>
-              </div>
-            </div>
-            <div className="success__payment">
-              <div className="success__cell">
-                <span className="success__info">Amount</span>
-                <p className="success__data">$ 21.21</p>
-              </div>
-              <div className="success__cell">
-                <span className="success__info">Service Fee</span>
-                <p className="success__data">$ 0.68</p>
-              </div>
-            </div>
-          </div>
-          <button className="success__button" type="button" >
-            Back To Main Page
-          </button>
-        </div>
-
+        <Success orderId={shortOrderId} totalPrice={totalPrice} clientName={customerName} paymentTime={paymentTime} />
       </main>
-      {/*      <Footer />*/}
     </>
   )
 }
