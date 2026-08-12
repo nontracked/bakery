@@ -26,6 +26,7 @@ export const orders = pgTable("orders", {
   email: text("email").notNull(),
   address: text("address").notNull(),
   totalPrice: integer("total_price").notNull(),
+  subTotalPrice: integer('sub_total_price').notNull(),
   appliedPromocode: text("applied_promocode"),
   discountPercent: integer("discount_percent").default(0),
   status: text("status").default("PENDING").notNull(),
