@@ -88,16 +88,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 20px;
   }
 
   &__info {
     opacity: 0.8;
+    white-space: nowrap;
   }
 
   &__data {
     font-family: var(--font-oswald), sans-serif;
     letter-spacing: 1.5px;
+    @include mobile {
+      max-width: 300px;
+      overflow: auto;
+    }
   }
 
   &__button {

@@ -24,8 +24,7 @@ export default async function SuccessPage({searchParams}: Props) {
     console.error(e)
     return notFound()
   }
-  console.log(dbOrder)
-  const {customerName, totalPrice, createdAt} = dbOrder
+  const {customerName, totalPrice, createdAt, email, discountPercent, subTotalPrice} = dbOrder
   const paymentTime = createdAt
     ? new Intl.DateTimeFormat('en-US', {
       timeZone: 'Asia/Yekaterinburg',
@@ -41,7 +40,10 @@ export default async function SuccessPage({searchParams}: Props) {
   return (
     <>
       <main className="success__main container">
-        <Success orderId={shortOrderId} totalPrice={totalPrice} clientName={customerName} paymentTime={paymentTime} />
+        <Success
+          orderId={shortOrderId} totalPrice={totalPrice} email={email} clientName={customerName}
+          paymentTime={paymentTime} subTotalPrice={subTotalPrice} discountPercent={discountPercent ?? 0}
+        />
       </main>
     </>
   )

@@ -60,6 +60,7 @@ export const createOrder = async (payload: Payload) => {
         appliedPromocode: promocodeFormatted,
         discountPercent: currentDiscountPercent,
         totalPrice: totalPrice,
+        subTotalPrice: cartPrice,
         comment: payload.comment
       })
       .returning()
