@@ -8,7 +8,6 @@ import {resend} from "@/lib/resend";
 import {ShortCartItems} from "@/actions/checkout";
 import {Email} from "@/emails/email";
 
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
 export const POST = async (request: Request) => {
@@ -38,7 +37,7 @@ export const POST = async (request: Request) => {
         await resend.emails.send({
           from: 'Bakery <onboarding@resend.dev>',
           to: customerEmail,
-          subject: 'Ваш заказ успешно оплачен! 🥐',
+          subject: 'Your order has been successfully paid! ✅',
           react: Email({parsedItems, orderId})
         })
       }
