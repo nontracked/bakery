@@ -49,7 +49,7 @@ export const useCheckoutSubmit = () => {
         const response = await createOrder(payload)
         if (response.success && response.url) {
           toast.success('Successfully processed!', {className: 'custom-toast__checkout'})
-          window.location.href = response.url // просто перенаправляем пользователя по ссылке от Stripe
+          window.location.href = response.url
         } else {
           toast.warning('Error whilst placing an order', {className: 'custom-toast__checkout'})
         }
