@@ -1,9 +1,10 @@
 import './Footer.scss'
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear()
   return (
     <footer className="footer">
-      22 Rue des Saints-Pères
+      <p>{currentYear} / dev M. E.</p>
     </footer>
   )
 }

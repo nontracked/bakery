@@ -1,3 +1,13 @@
 .footer {
-
+  font-family: var(--font-oswald), sans-serif;
+  padding-block: 30px;
+  background-color: transparent;
+  margin-top: fluid(80, 40);
+  border-top: 1px solid;
+  border-color:black ;
+  display: flex;
+  align-items: center;
+  font-size: fluid(22, 18);
+  justify-content: center;
+  opacity: 0.11;
 }
