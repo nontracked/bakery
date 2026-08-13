@@ -4,10 +4,10 @@ import {TAXES_VALUE} from "@/lib/constants";
 interface Props {
   totalPrice: number,
   subTotalPrice: number,
-  discountPercent: number
+  discountPercent: number | null
 }
 
-export const useReceiptMath = ({totalPrice, subTotalPrice, discountPercent}: Props) => {
+export const receiptMath = ({totalPrice, subTotalPrice, discountPercent}: Props) => {
   const totalPriceFormatted = formatPrice(totalPrice)
   const subTotalPriceFormatted = formatPrice(subTotalPrice)
   let discountSumFormatted = ''

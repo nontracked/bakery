@@ -15,14 +15,25 @@ import {Tailwind} from '@react-email/tailwind';
 
 interface ReceiptEmailProps {
   orderId: string,
+  subTotalPriceFormatted: string,
+  totalPriceFormatted: string,
+  serviceFeeFormatted: string,
+  discountSumFormatted: string,
   parsedItems: {
     name: string,
-    price: number
+    price: number,
   }[]
 }
 
-export function Email({orderId, parsedItems}: ReceiptEmailProps) {
-  const formatPrice = (price: number) => `$ ${(price / 100).toFixed(2)}`
+export function Email({
+                        orderId,
+                        totalPriceFormatted,
+                        subTotalPriceFormatted,
+                        serviceFeeFormatted,
+                        discountSumFormatted,
+                        parsedItems
+                      }: ReceiptEmailProps) {
+  const formatPrice = (price:number) => `$ ${(price / 100).toFixed(2)}`
   return (
     <Html>
       <Head />
@@ -50,6 +61,44 @@ export function Email({orderId, parsedItems}: ReceiptEmailProps) {
                 </Row>
               </Section>
             ))}
+            <Hr style={divider} />
+            <Section>
+              <Row style={itemRow}>
+                <Column align="left">
+                  <Text style={itemName}>Amount</Text>
+                </Column>
+                <Column align="right">
+                  <Text style={itemPrice}>$ {subTotalPriceFormatted}</Text>
+                </Column>
+              </Row>
+              <Row style={itemRow}>
+                <Column align="left">
+                  <Text style={itemName}>Service Fee</Text>
+                </Column>
+                <Column align="right">
+                  <Text style={itemPrice}>$ {serviceFeeFormatted}</Text>
+                </Column>
+              </Row>
+              {discountSumFormatted && (
+                <Row style={itemRow}>
+                  <Column align="left">
+                    <Text style={itemName}>Discount</Text>
+                  </Column>
+                  <Column align="right">
+                    <Text style={itemPrice}>-$ {discountSumFormatted}</Text>
+                  </Column>
+                </Row>
+              )}
+              <Hr style={divider} />
+              <Row style={itemRow}>
+                <Column align="left">
+                  <Text style={itemName}>Total Price</Text>
+                </Column>
+                <Column align="right">
+                  <Text style={itemPrice}>$ {totalPriceFormatted}</Text>
+                </Column>
+              </Row>
+            </Section>
             <Hr style={divider} />
             <Text style={footer}>
               If you have any questions, simply reply to this email.
@@ -95,8 +144,8 @@ const orderInfo = {
 };
 
 const orderIdText = {
+  fontSize: '18px',
   color: '#2a2a2a',
-  fontSize: '14px',
   margin: '0',
 };
 

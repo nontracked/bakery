@@ -13,7 +13,7 @@ interface FieldProps {
   schemaName: string;
   placeholder: string;
   type?: string;
-  actionElement?: ReactNode; // динамический элемент, по типу кнопки и тд
+  actionElement?: ReactNode;
   isSuccess?: string,
 }
 

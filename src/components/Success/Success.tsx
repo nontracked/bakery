@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {useCartStore} from "@/store/useCartStore";
-import {useReceiptMath} from "@/hooks/useReceiptMath";
+import {receiptMath} from "@/utils/receiptMath";
 
 interface Props {
   orderId: string,
@@ -31,7 +31,7 @@ export const Success = ({
     totalPriceFormatted,
     serviceFeeFormatted,
     discountSumFormatted
-  } = useReceiptMath({totalPrice, subTotalPrice, discountPercent})
+  } = receiptMath({totalPrice, subTotalPrice, discountPercent})
   const router = useRouter()
   const orderDetails = [
     {label: 'Short Order Id', value: orderId},
