@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
   &__main {
     display: flex;
     align-items: center;
@@ -116,5 +117,24 @@
       background-color: var(--color-dark);
       color: var(--color-white);
     }
+  }
+
+  &__icon {
+    animation: IconScale 0.4s 0.3s both ease-in-out;
+  }
+}
+
+@keyframes IconScale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

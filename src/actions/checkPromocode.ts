@@ -6,11 +6,11 @@ import {eq} from "drizzle-orm";
 export const checkPromocode = async (code: string) => {
   const normalizeCode = code.trim().toUpperCase()
   try {
-    const [foundPromocode] = await db // так как дризл возвращает массив, сразу деструктурируем 1 элемент
+    const [foundPromocode] = await db
       .select()
       .from(discount)
       .where(eq(discount.promocode, normalizeCode))
-      .limit(1) // так как промокоды уникальны, возвращаем сразу 1 найденный
+      .limit(1)
 
     if (!foundPromocode) {
       return {error: 'Invalid or expired code'}

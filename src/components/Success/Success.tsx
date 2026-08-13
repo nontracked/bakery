@@ -3,9 +3,8 @@ import './Success.scss'
 import Image from "next/image";
 import React, {useEffect} from "react";
 import {useRouter} from "next/navigation";
-import {formatPrice} from "@/utils/formatPrice";
 import {useCartStore} from "@/store/useCartStore";
-import {TAXES_VALUE} from "@/lib/constants";
+import {receiptMath} from "@/utils/receiptMath";
 
 interface Props {
   orderId: string,
@@ -27,15 +26,12 @@ export const Success = ({
                           totalPrice
                         }: Props) => {
   const clearCart = useCartStore((state) => state.clearCart)
-  const totalPriceFormatted = formatPrice(totalPrice)
-  const subTotalPriceFormatted = formatPrice(subTotalPrice)
-  let discountSumFormatted = ''
-  if (discountPercent) {
-    const discountSum = Math.round(subTotalPrice * discountPercent / 100)
-    discountSumFormatted = formatPrice(discountSum)
-  }
-  const serviceFee = subTotalPrice * TAXES_VALUE
-  const serviceFeeFormatted = formatPrice(serviceFee)
+  const {
+    subTotalPriceFormatted,
+    totalPriceFormatted,
+    serviceFeeFormatted,
+    discountSumFormatted
+  } = receiptMath({totalPrice, subTotalPrice, discountPercent})
   const router = useRouter()
   const orderDetails = [
     {label: 'Short Order Id', value: orderId},

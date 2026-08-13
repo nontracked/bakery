@@ -5,8 +5,9 @@ import {db} from "@/db";
 import {orders} from "@/db/schema";
 import {eq} from "drizzle-orm";
 import {resend} from "@/lib/resend";
+import {Email} from "@/emails/email";
+import {receiptMath} from "@/utils/receiptMath";
 import {ShortCartItems} from "@/actions/checkout";
-
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -30,23 +31,17 @@ export const POST = async (request: Request) => {
   if (event.type === 'checkout.session.completed') {
     if (orderId) {
       const items = session.metadata?.receiptItems as string
-      const customerEmail = session.customer_details?.email
       const parsedItems: ShortCartItems[] = JSON.parse(items)
-      await db.update(orders).set({status: 'PAID'}).where(eq(orders.id, orderId))
+      const customerEmail = session.customer_details?.email
+      const [updateOrder] = await db.update(orders).set({status: 'PAID'}).where(eq(orders.id, orderId)).returning()
+      const {totalPrice, subTotalPrice, discountPercent} = updateOrder
+      const receiptData = receiptMath({totalPrice, subTotalPrice, discountPercent})
       if (customerEmail) {
         await resend.emails.send({
           from: 'Bakery <onboarding@resend.dev>',
           to: customerEmail,
-          subject: 'Ваш заказ успешно оплачен! 🥐',
-          html: `<div>
-            <p>Спасибо за заказ! ID вашего заказа: ${orderId}</p>
-            <h3>Состав заказа:</h3>
-            <ul>
-              ${parsedItems.map((item) => `
-                <li>${item.name} — $${item.price / 100}</li>
-              `).join('')}
-            </ul>
-          </div>`
+          subject: 'Your order has been successfully paid! ✅',
+          react: Email({orderId, parsedItems, ...receiptData})
         })
       }
     }

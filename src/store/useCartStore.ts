@@ -12,8 +12,8 @@ export interface CartItem {
 interface CartState {
   cart: CartItem[],
   isCartOpen: boolean,
-  discountPercent: number, // визуальное отображение для фронтенда
-  appliedPromocode: string | null,// текст промокода и логика для бекенда
+  discountPercent: number,
+  appliedPromocode: string | null,
   setAppliedPromocode: (percent: number, code: string) => void,
   removeAppliedPromocode: () => void,
   openCart: () => void,
@@ -32,7 +32,7 @@ export const useCartStore = create<CartState>()(
       cart: [],
       discountPercent: 0,
       appliedPromocode: null,
-      setAppliedPromocode: (percent, code) => set({ // для обновления
+      setAppliedPromocode: (percent, code) => set({
         discountPercent: percent,
         appliedPromocode: code,
       }),
