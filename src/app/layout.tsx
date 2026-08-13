@@ -1,11 +1,9 @@
-import type {Metadata} from "next";
+import type {Metadata, Viewport} from "next";
 import "@/styles/index.js";
 import "./globals.css";
 import {QueryProvider} from "@/providers/QueryProvider";
 import React from "react";
 import localFont from "next/font/local";
-import {Header} from "@/layout/Header";
-import {Footer} from "@/layout/Footer";
 import {CartDrawer} from "@/layout/CartDrawer";
 import {Toaster} from "sonner";
 
@@ -55,9 +53,30 @@ const dancingFont = localFont({
   variable: '--font-dancing'
 })
 
+export const viewport:Viewport = {
+  themeColor: '#2a2a2a'
+}
+
 export const metadata: Metadata = {
-  title: "Bakery",
+  metadataBase: new URL('https://m-e-bakery.vercel.app'),
+  title: {
+    default: 'M.E. Bakery',
+    template: '%s | M.E. Bakery'
+  },
   description: "Exquisite handcrafted croissants, New York rolls, and pastry illusions.",
+  openGraph: {
+    title: 'M.E. Bakery',
+    description: "Exquisite handcrafted croissants, New York rolls, and pastry illusions.",
+    url: 'https://m-e-bakery.vercel.app',
+    siteName: 'M.E. Bakery',
+    images: {
+      url: '/crop.jpg',
+      width: 756,
+      height: 960,
+    },
+    type: 'website',
+    locale:'en_US'
+  }
 };
 
 export default function RootLayout({children}: Readonly<{
