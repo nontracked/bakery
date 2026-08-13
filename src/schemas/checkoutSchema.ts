@@ -12,7 +12,7 @@ export const checkoutSchema = z.object({
     .string()
     .max(30, 'Last name too long'),
   email: z
-    .email('Enter a valid email address'),
+    .email('Enter a valid emails address'),
   phone: z
     .string()
     .min(4, 'Phone number is required')
