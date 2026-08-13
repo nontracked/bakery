@@ -31,17 +31,13 @@ export function Email({orderId, parsedItems}: ReceiptEmailProps) {
         <Body style={main}>
           <Container style={container}>
             <Heading style={h1}>Thank you for order! 🥐</Heading>
-
             <Section style={orderInfo}>
               <Text style={orderIdText}>
-                <strong>Order Id:</strong>111 {orderId}
+                <strong>Order Id: </strong> {orderId}
               </Text>
             </Section>
-
             <Hr style={divider} />
-
             <Heading as="h3" style={h3}>Order details:</Heading>
-
             {parsedItems?.map((item, index) => (
               <Section key={index}>
                 <Row style={itemRow}>
@@ -49,13 +45,12 @@ export function Email({orderId, parsedItems}: ReceiptEmailProps) {
                     <Text style={itemName}>{item.name}</Text>
                   </Column>
                   <Column align="right">
-                    <Text style={itemPrice}>$ {formatPrice(item.price)}</Text>
+                    <Text style={itemPrice}>{formatPrice(item.price)}</Text>
                   </Column>
                 </Row>
               </Section>
             ))}
             <Hr style={divider} />
-
             <Text style={footer}>
               If you have any questions, simply reply to this email.
             </Text>
