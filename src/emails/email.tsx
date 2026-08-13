@@ -8,10 +8,10 @@ import {
   Preview, Row,
   Section,
   Text,
-} from 'react-email'
+  Column
+} from '@react-email/components'
 import * as React from 'react'
 import {Tailwind} from '@react-email/tailwind';
-import {Column} from "@react-email/components";
 
 interface ReceiptEmailProps {
   orderId: string,
@@ -21,7 +21,7 @@ interface ReceiptEmailProps {
   }[]
 }
 
-export default function Email({orderId, parsedItems}: ReceiptEmailProps) {
+export function Email({orderId, parsedItems}: ReceiptEmailProps) {
   const formatPrice = (price: number) => `$ ${(price / 100).toFixed(2)}`
   return (
     <Html>
@@ -42,37 +42,18 @@ export default function Email({orderId, parsedItems}: ReceiptEmailProps) {
 
             <Heading as="h3" style={h3}>Order details:</Heading>
 
-            <Section>
-              <Row style={itemRow}>
-                {/* Левая колонка */}
-                <Column align="left">
-                  <Text style={itemName}>Bufewfewfewewferger</Text>
-                </Column>
-
-                {/* Правая колонка */}
-                <Column align="right">
-                  <Text style={itemPrice}>$ 123</Text>
-                </Column>
-              </Row>
-              <Row style={itemRow}>
-                {/* Левая колонка */}
-                <Column align="left">
-                  <Text style={itemName}>Bufewfewfewewferger</Text>
-                </Column>
-
-                {/* Правая колонка */}
-                <Column align="right">
-                  <Text style={itemPrice}>$ 123</Text>
-                </Column>
-              </Row>
-              {/*            {parsedItems?.map((item, index) => (
-              <Section key={index} style={itemRow}>
-                <Text style={itemName}>{item.name}</Text>
-                <Text style={itemPrice}>{formatPrice(item.price)}</Text>
+            {parsedItems?.map((item, index) => (
+              <Section key={index}>
+                <Row style={itemRow}>
+                  <Column align="left">
+                    <Text style={itemName}>{item.name}</Text>
+                  </Column>
+                  <Column align="right">
+                    <Text style={itemPrice}>$ {formatPrice(item.price)}</Text>
+                  </Column>
+                </Row>
               </Section>
-            ))}*/}
-            </Section>
-
+            ))}
             <Hr style={divider} />
 
             <Text style={footer}>
@@ -130,25 +111,25 @@ const divider = {
 };
 
 const itemRow = {
-  padding:'5px',
-  paddingBlock:'3px'
+  padding: '5px',
+  paddingBlock: '3px'
 };
 
 const itemName = {
   padding: '5px',
-  margin:'0px',
+  margin: '0px',
   color: '#2a2a2a',
   fontSize: '18px',
-  fontWeight:'500'
+  fontWeight: '500'
 };
 
 const itemPrice = {
   color: '#2a2a2a',
   fontSize: '18px',
   fontWeight: 'bold',
-  whiteSpace:'nowrap',
+  whiteSpace: 'nowrap',
   padding: '5px',
-  margin:'0px',
+  margin: '0px',
 };
 
 const footer = {
