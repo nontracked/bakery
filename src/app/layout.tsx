@@ -1,7 +1,6 @@
 import type {Metadata, Viewport} from "next";
 import "@/styles/index.js";
 import "./globals.css";
-import {QueryProvider} from "@/providers/QueryProvider";
 import React from "react";
 import localFont from "next/font/local";
 import {CartDrawer} from "@/layout/CartDrawer";
@@ -88,7 +87,6 @@ export default function RootLayout({children}: Readonly<{
       className={`${oswaldFont.variable} ${asapFont.variable} ${dancingFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <QueryProvider>
           {children}
           {<Toaster
             position="top-center"
@@ -104,7 +102,6 @@ export default function RootLayout({children}: Readonly<{
             }}
           />}
           <CartDrawer />
-        </QueryProvider>
       </body>
     </html>
   );
