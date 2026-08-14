@@ -10,7 +10,10 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:seed": "tsx src/db/seed.ts",
-    "email:dev": "email dev --dir src/emails"
+    "email:dev": "email dev --dir src/emails",
+    "release:patch": "npm version patch && git push origin main --follow-tags",
+    "release:minor": "npm version minor && git push origin main --follow-tags",
+    "release:major": "npm version major && git push origin main --follow-tags"
   },
   "dependencies": {
     "@a1rth/css-normalize": "^1.2.4",
