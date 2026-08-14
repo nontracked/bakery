@@ -11,7 +11,6 @@ import {
   Column
 } from '@react-email/components'
 import * as React from 'react'
-import {Tailwind} from '@react-email/tailwind';
 
 interface ReceiptEmailProps {
   orderId: string,
@@ -37,7 +36,6 @@ export function Email({
   return (
     <Html>
       <Head />
-      <Tailwind>
         <Preview>Your order has been successfully paid!</Preview>
         <Body style={main}>
           <Container style={container}>
@@ -105,7 +103,6 @@ export function Email({
             </Text>
           </Container>
         </Body>
-      </Tailwind>
     </Html>
   )
 }
