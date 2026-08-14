@@ -8,5 +8,10 @@
   font-family: var(--font-oswald),sans-serif;
   color: var(--color-dark);
   letter-spacing: 1.2px;
-  font-size: fluid(18,16)
+  font-size: fluid(18,16);
+  align-items: center;
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
 }

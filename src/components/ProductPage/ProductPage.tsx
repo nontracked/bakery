@@ -19,7 +19,7 @@ export const ProductPage = ({product}: Props) => {
   return (
     <div className="product-page">
       <div className="product-page__body container">
-        <Image className="product-page__image" src={imgSrc} alt="name" width={500} height={690} />
+        <Image className="product-page__image" src={imgSrc} alt="name" loading={"eager"} width={500} height={690} />
         <div className="product-page__content">
           <header className="product-page__header">
             <h4 className="product-page__title">{name}</h4>
