@@ -52,7 +52,7 @@ const dancingFont = localFont({
   variable: '--font-dancing'
 })
 
-export const viewport:Viewport = {
+export const viewport: Viewport = {
   themeColor: '#2a2a2a'
 }
 
@@ -68,13 +68,15 @@ export const metadata: Metadata = {
     description: "Exquisite handcrafted croissants, New York rolls, and pastry illusions.",
     url: 'https://m-e-bakery.vercel.app',
     siteName: 'M.E. Bakery',
-    images: {
-      url: '/crop.jpg',
-      width: 756,
-      height: 960,
-    },
+    images: [
+      {
+        url: '/crop.jpg',
+        width: 756,
+        height: 960,
+      },
+    ],
     type: 'website',
-    locale:'en_US'
+    locale: 'en_US'
   }
 };
 
@@ -87,21 +89,21 @@ export default function RootLayout({children}: Readonly<{
       className={`${oswaldFont.variable} ${asapFont.variable} ${dancingFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-          {children}
-          {<Toaster
-            position="top-center"
-            duration={3000}
-            toastOptions={{
-              classNames: {
-                toast: 'custom-toast',
-                title: 'custom-toast-title',
-                success: 'custom-toast-success',
-                error: 'custom-toast-error',
-                warning: 'custom-toast-warning'
-              }
-            }}
-          />}
-          <CartDrawer />
+        {children}
+        {<Toaster
+          position="top-center"
+          duration={3000}
+          toastOptions={{
+            classNames: {
+              toast: 'custom-toast',
+              title: 'custom-toast-title',
+              success: 'custom-toast-success',
+              error: 'custom-toast-error',
+              warning: 'custom-toast-warning'
+            }
+          }}
+        />}
+        <CartDrawer />
       </body>
     </html>
   );
