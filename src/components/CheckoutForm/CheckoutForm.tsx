@@ -88,7 +88,7 @@ export const CheckoutForm = ({onSubmit}: CheckoutFormProps) => {
       ))}
 
       <Field
-        className="wide" label="Discount" isSuccess={isSuccess} placeholder="Discount Code" errors={errors}
+        className="wide" label="Discount" isSuccess={isSuccess} placeholder="Discount Code (BAKERY-10)" errors={errors}
         register={register}
         schemaName="promocode"
         actionElement={<Button

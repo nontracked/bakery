@@ -34,7 +34,7 @@ export default async function SuccessPage({searchParams}: Props) {
       hour: '2-digit',
       minute: '2-digit',
     }).format(createdAt)
-    : 'Время не указано';
+    : 'Time not found';
   const shortOrderId = orderId?.split('-')[0]
 
   return (
