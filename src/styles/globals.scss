@@ -142,3 +142,13 @@ html {
     border-radius: 5px;
   }
 }
+
+body:has(.product-page) {
+  @include mobile {
+    .header {
+      visibility: hidden;
+      height: 0;
+      padding-bottom: 0;
+    }
+  }
+}
